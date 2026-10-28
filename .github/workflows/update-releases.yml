@@ -1,0 +1,100 @@
+name: Auto Update PS5 Releases data.json
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Fetch Latest Releases and Generate data.json
+        run: |
+          node -e '
+          const fs = require("fs");
+          const https = require("https");
+
+          const modules = [
+              { id: "u1", owner: "itsPLK", repo: "ps5-y2jb-autoloader" },
+              { id: "u2", owner: "itsPLK", repo: "ps5-payload-manager" },
+              { id: "u3", owner: "drakmor", repo: "shadowMountPlus" },
+              { id: "u4", owner: "gasb07", repo: "ps4mount" },
+              { id: "u5", owner: "EchoStretch", repo: "kstuff-lite" },
+              { id: "u6", owner: "drakmor", repo: "nanoDNS" },
+              { id: "u7", owner: "itsPLK", repo: "ps5-webkit-autoloader" },
+              { id: "u8", owner: "ps5-payload-dev", repo: "ftpsrv" },
+              { id: "u9", owner: "itsPLK", repo: "ps5-pkg-manager" },
+              { id: "e1", owner: "mihawk-99", repo: "PS5_RetroArch" },
+              { id: "e2", owner: "MisterTemaki", repo: "snes9xPS5" },
+              { id: "e3", owner: "elripalda", repo: "Porpoise-Dolphin-Emulator-for-PS5" },
+              { id: "e4", owner: "premohq", repo: "PS5-ECAM" },
+              { id: "e5", owner: "MisterTemaki", repo: "fceummPS5" },
+              { id: "e6", owner: "MisterTemaki", repo: "fbneo-ps5" },
+              { id: "e7", owner: "blackbearreloaded", repo: "ProsperoEden" },
+              { id: "e8", owner: "kasobos67", repo: "SwitchLauncher" },
+              { id: "e9", owner: "darkxex", repo: "ProsperoStore" }
+          ];
+
+          function fetchGitHubRelease(owner, repo) {
+              return new Promise((resolve) => {
+                  const options = {
+                      hostname: "api.github.com",
+                      path: `/repos/${owner}/${repo}/releases/latest`,
+                      headers: { "User-Agent": "Node.js-AutoFetcher" }
+                  };
+                  https.get(options, (res) => {
+                      let data = "";
+                      res.on("data", chunk => data += chunk);
+                      res.on("end", () => {
+                          try {
+                              if (res.statusCode === 200) {
+                                  const json = JSON.parse(data);
+                                  resolve({
+                                      version: json.tag_name || json.name,
+                                      date: json.published_at ? json.published_at.split("T")[0] : new Date().toISOString().split("T")[0]
+                                  });
+                              } else {
+                                  resolve(null);
+                              }
+                          } catch (e) { resolve(null); }
+                      });
+                  }).on("error", () => resolve(null));
+              });
+          }
+
+          async function run() {
+              const results = [];
+              for (const mod of modules) {
+                  const release = await fetchGitHubRelease(mod.owner, mod.repo);
+                  if (release) {
+                      results.push({
+                          id: mod.id,
+                          version: release.version,
+                          date: release.date
+                      });
+                  }
+                  await new Promise(r => setTimeout(r, 300));
+              }
+              fs.writeFileSync("data.json", JSON.stringify(results, null, 2));
+              console.log("data.json generated successfully.");
+          }
+          run();
+          '
+
+      - name: Commit and Push if data changed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🤖 Auto-update data.json with latest GitHub releases"
+          branch: main
