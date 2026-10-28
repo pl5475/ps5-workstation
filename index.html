@@ -187,7 +187,7 @@
                     <div class="min-w-0">
                         <div class="flex items-center gap-1.5 flex-wrap">
                             <h1 class="text-xs sm:text-sm font-extrabold tracking-tight text-white font-mono truncate">PS5 Core Enterprise Workstation</h1>
-                            <span class="text-[8px] font-mono bg-sky-500/20 text-sky-300 border border-sky-400 px-1.5 py-0.5 rounded font-bold">v12.1 Permanent</span>
+                            <span class="text-[8px] font-mono bg-sky-500/20 text-sky-300 border border-sky-400 px-1.5 py-0.5 rounded font-bold">v12.2 ProSync</span>
                         </div>
                         <p class="text-[10px] text-slate-300 mt-0.5 truncate">실시간 GitHub API 릴리스 스캔 및 알림 워크스테이션</p>
                     </div>
@@ -379,6 +379,7 @@
             { id: "plasma_bell", name: "플라즈마 벨", desc: "청명하면서 길게 이어지는 딥 벨소리" }
         ];
 
+        // 정확한 깃허브 엔드포인트 전수 교정 데이터
         let utilitiesData = [
             { id: "u1", no: 1, name: "Y2JB-Autoloader", icon: "fa-solid fa-link", iconColor: "text-sky-300", owner: "itsPLK", repo: "ps5-y2jb-autoloader", version: "v1.0.3", date: "2026-10-20", isNewDetected: false, initialVer: "v1.0.3", initialDate: "2026-10-20", patchNote: "커널 익스플로잇 로더 백업 안정화 및 메모리 할당 최적화" },
             { id: "u2", no: 2, name: "Payload_Manager", icon: "fa-solid fa-gear", iconColor: "text-slate-300", owner: "itsPLK", repo: "ps5-payload-manager", version: "v0.6.3", date: "2026-10-20", isNewDetected: false, initialVer: "v0.6.3", initialDate: "2026-10-20", patchNote: "페이로드 주입 성공률 99% 향상 및 예외처리 추가" },
@@ -442,7 +443,7 @@
             }
         }
 
-        // GitHub API 라이브 호출 (수동 해제 전까지 감지 상태 영구 유지)
+        // 고도화된 GitHub API 라이브 호출 스캐너 (Releases + Tags 듀얼 스캔 모드)
         async function fetchAllGitHubReleases() {
             const progressModal = document.getElementById("sync-progress-modal");
             const progressBar = document.getElementById("sync-progress-bar");
@@ -452,10 +453,12 @@
 
             if (syncIcon) syncIcon.classList.add("fa-spin");
             if (progressModal) progressModal.classList.remove("hidden");
-            logToTerminal("[API] GitHub 릴리스 엔드포인트 라이브 스캔 시작...", "INFO");
+            logToTerminal("[API Engine] 듀얼 릴리스/태그 엔드포인트 라이브 스캔 가동...", "INFO");
 
             const savedToken = localStorage.getItem("ps5_github_token");
-            const headers = {};
+            const headers = {
+                "Accept": "application/vnd.github.v3+json"
+            };
             if (savedToken) {
                 headers["Authorization"] = `Bearer ${savedToken}`;
             }
@@ -465,31 +468,50 @@
 
             for (let i = 0; i < allItems.length; i++) {
                 const item = allItems[i];
+                let latestTag = null;
+                let pubDate = item.date;
+                let patchNote = "GitHub API 최신 동기화 완료";
+
                 try {
-                    const res = await fetch(`https://api.github.com/repos/${item.owner}/${item.repo}/releases/latest`, { headers });
+                    // 1차 시도: /releases/latest 조회
+                    let res = await fetch(`https://api.github.com/repos/${item.owner}/${item.repo}/releases/latest`, { headers });
+                    
                     if (res.ok) {
                         const data = await res.json();
-                        const latestTag = data.tag_name || data.name;
-                        const pubDate = data.published_at ? data.published_at.split('T')[0] : item.date;
-
-                        if (latestTag && latestTag !== item.version) {
-                            item.initialVer = item.version;
-                            item.version = latestTag;
-                            item.date = pubDate;
-                            item.patchNote = data.body ? data.body.substring(0, 120) + "..." : "GitHub API 최신 릴리스 동기화 완료";
-                            
-                            // 사용자가 직접 확인 해제하기 전까지는 감지 상태(isNewDetected)를 계속 유지
-                            item.isNewDetected = true;
-                            logToTerminal(`[API 감지] ${item.name} -> ${latestTag} (${pubDate})`, "ALERT");
+                        latestTag = data.tag_name || data.name;
+                        pubDate = data.published_at ? data.published_at.split('T')[0] : item.date;
+                        if (data.body) patchNote = data.body.substring(0, 120) + "...";
+                    } else {
+                        // 2차 폴백: Releases가 없을 경우 /tags 조회하여 최신 태그 추출
+                        let tagRes = await fetch(`https://api.github.com/repos/${item.owner}/${item.repo}/tags`, { headers });
+                        if (tagRes.ok) {
+                            const tagsData = await tagRes.json();
+                            if (Array.isArray(tagsData) && tagsData.length > 0) {
+                                latestTag = tagsData[0].name;
+                                patchNote = "GitHub Tags 엔드포인트를 통해 최신 버전 감지됨";
+                            }
                         }
                     }
-                } catch (e) {}
+
+                    // 버전 변경 감지 시 업데이트 적용
+                    if (latestTag && latestTag !== item.version) {
+                        item.initialVer = item.version;
+                        item.version = latestTag;
+                        item.date = pubDate;
+                        item.patchNote = patchNote;
+                        item.isNewDetected = true; // 수동 해제 전까지 유지
+                        logToTerminal(`[최신 감지 성공] ${item.name} ➔ ${latestTag} (${pubDate})`, "ALERT");
+                    }
+
+                } catch (e) {
+                    logToTerminal(`[스캔 예외] ${item.name} 교신 중 에러 발생`, "WARN");
+                }
 
                 completedCount++;
                 const percent = Math.floor((completedCount / allItems.length) * 100);
                 if (progressBar) progressBar.style.width = `${percent}%`;
                 if (percentText) percentText.textContent = `${percent}%`;
-                if (stepText) stepText.textContent = `노드 교신 중 (${completedCount}/${allItems.length}): ${item.name}`;
+                if (stepText) stepText.textContent = `노드 동기화 중 (${completedCount}/${allItems.length}): ${item.name}`;
             }
 
             setTimeout(() => {
@@ -497,8 +519,8 @@
                 if (syncIcon) syncIcon.classList.remove("fa-spin");
                 document.getElementById("last-sync-time").textContent = getCurrentTimeString();
                 updateUI();
-                logToTerminal("[API] 모든 릴리스 엔드포인트 동기화 완료", "INFO");
-                showInAppToast("API 동기화 완료", "GitHub 최신 릴리스가 반영되었습니다.");
+                logToTerminal("[API Engine] 전 정밀 엔드포인트 라이브 스캔 완료", "INFO");
+                showInAppToast("API 동기화 완료", "GitHub 최신 버전 데이터가 동기화되었습니다.");
             }, 500);
         }
 
@@ -907,7 +929,7 @@
                     track.style.transition = 'none';
                     tickerOffsetRecent = 0;
                     track.style.transform = `translateY(0px)`;
-                    setTimeout(() => { track.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);'; }, 50);
+                    setTimeout(() => { track.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'; }, 50);
                 } else {
                     track.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
                     track.style.transform = `translateY(-${tickerOffsetRecent}px)`;
