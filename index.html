@@ -84,13 +84,13 @@
         <div class="glass-panel border-sky-400 w-full max-w-sm rounded-2xl p-5 flex flex-col items-center text-center gap-3.5 shadow-2xl my-auto">
             <div class="w-12 h-12 rounded-2xl bg-sky-500/20 text-sky-400 border border-sky-400 flex items-center justify-center font-bold text-xl animate-spin shrink-0"><i class="fa-solid fa-rotate"></i></div>
             <div class="w-full">
-                <h3 class="text-xs font-extrabold font-mono text-white tracking-tight">릴리스 업데이트 검사 중...</h3>
-                <p id="sync-step-text" class="text-[10px] text-sky-300 font-mono mt-1">18개 노드 엔드포인트 수신 중 (1/4)</p>
+                <h3 class="text-xs font-extrabold font-mono text-white tracking-tight">GitHub API 릴리스 라이브 스캔 중...</h3>
+                <p id="sync-step-text" class="text-[10px] text-sky-300 font-mono mt-1">18개 엔드포인트 교신 중 (1/4)</p>
             </div>
             <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-sky-400/30">
                 <div id="sync-progress-bar" class="bg-gradient-to-r from-sky-400 via-purple-500 to-pink-500 h-full w-0 transition-all duration-300"></div>
             </div>
-            <div class="flex items-center justify-between w-full text-[10px] font-mono text-slate-300"><span>실시간 스캔</span><span id="sync-percent-text" class="text-sky-300 font-bold">0%</span></div>
+            <div class="flex items-center justify-between w-full text-[10px] font-mono text-slate-300"><span>실시간 API 스캔</span><span id="sync-percent-text" class="text-sky-300 font-bold">0%</span></div>
         </div>
     </div>
 
@@ -147,7 +147,7 @@
                             <h3 class="text-sm font-extrabold font-mono text-white tracking-tight">업데이트 자세히 보기</h3>
                             <span id="modal-total-count-badge" class="text-[10px] font-mono bg-purple-950 text-purple-300 border border-purple-400 px-2 py-0.5 rounded-full font-bold">0개 항목</span>
                         </div>
-                        <p class="text-[10px] text-purple-300 font-mono mt-0.5">최근 릴리스가 감지된 모듈의 상세 패치 내역</p>
+                        <p class="text-[10px] text-purple-300 font-mono mt-0.5">GitHub API 라이브 릴리스 패치 내역</p>
                     </div>
                 </div>
                 <button onclick="closeBigUpdateModal()" class="w-8 h-8 rounded-xl bg-slate-900 text-slate-400 hover:text-white border border-slate-700 flex items-center justify-center transition-all"><i class="fa-solid fa-xmark text-sm"></i></button>
@@ -170,9 +170,9 @@
                     <div class="min-w-0">
                         <div class="flex items-center gap-1.5 flex-wrap">
                             <h1 class="text-xs sm:text-sm font-extrabold tracking-tight text-white font-mono truncate">PS5 Core Enterprise Workstation</h1>
-                            <span class="text-[8px] font-mono bg-sky-500/20 text-sky-300 border border-sky-400 px-1.5 py-0.5 rounded font-bold">v12.0</span>
+                            <span class="text-[8px] font-mono bg-sky-500/20 text-sky-300 border border-sky-400 px-1.5 py-0.5 rounded font-bold">v12.0 API</span>
                         </div>
-                        <p class="text-[10px] text-slate-300 mt-0.5 truncate">실시간 릴리스 스캔 및 알림 워크스테이션</p>
+                        <p class="text-[10px] text-slate-300 mt-0.5 truncate">실시간 GitHub API 릴리스 스캔 및 알림 워크스테이션</p>
                     </div>
                 </div>
             </div>
@@ -184,8 +184,8 @@
                     <button onclick="document.getElementById('searchInput').value=''; updateUI();" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white p-1 text-xs"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <div class="flex items-center gap-2 w-full sm:w-auto shrink-0">
-                    <button onclick="runInstantSyncWithProgress(false)" class="flex-1 sm:flex-none bg-sky-600/20 active:bg-sky-600/40 text-sky-300 border border-sky-400 px-3 py-2 rounded-xl text-xs font-mono font-semibold flex items-center justify-center gap-1.5 min-h-[40px]">
-                        <i class="fa-solid fa-rotate text-xs" id="sync-icon"></i><span>동기화</span>
+                    <button onclick="fetchAllGitHubReleases()" class="flex-1 sm:flex-none bg-sky-600/20 active:bg-sky-600/40 text-sky-300 border border-sky-400 px-3 py-2 rounded-xl text-xs font-mono font-semibold flex items-center justify-center gap-1.5 min-h-[40px]">
+                        <i class="fa-solid fa-rotate text-xs" id="sync-icon"></i><span>API 동기화</span>
                     </button>
                     <button id="notification-btn" onclick="toggleNotification()" class="flex-1 sm:flex-none bg-slate-900 text-slate-200 border border-slate-700 rounded-xl px-3 py-2 flex items-center justify-center gap-1.5 text-xs font-semibold shrink-0 font-mono min-h-[40px]">
                         <i class="fa-solid fa-bell text-pink-400 text-xs" id="notif-icon"></i><span id="notif-btn-text">알림 ON</span>
@@ -205,7 +205,7 @@
                         </div>
                         PS5 코어 허브
                     </span>
-                    <span class="text-[9px] bg-sky-950 text-sky-300 px-2 py-0.5 rounded border border-sky-400 font-bold">ACTIVE</span>
+                    <span class="text-[9px] bg-sky-950 text-sky-300 px-2 py-0.5 rounded border border-sky-400 font-bold">API ACTIVE</span>
                 </div>
                 <div class="flex items-baseline justify-between my-1 z-10"><span id="total-count" class="text-xl sm:text-2xl font-extrabold font-mono text-white">18</span><span class="text-[10px] text-emerald-300 font-mono bg-emerald-950 px-2 py-0.5 rounded border border-emerald-400 font-bold">ONLINE</span></div>
                 <div class="grid grid-cols-2 gap-1.5 text-[10px] font-mono text-slate-100 pt-1.5 border-t border-sky-900 z-10">
@@ -214,19 +214,19 @@
                 </div>
             </div>
 
-            <!-- 2번째 카드: 7일 자동 만료 무한 플립 모션 (변경 감지 피드) -->
+            <!-- 2번째 카드: API 실시간 변경 감지 피드 (7일 자동 만료 무한 플립) -->
             <div id="card-detected" class="neon-pulse-card neon-pulse-rose card-artwork-bg p-3 flex flex-col justify-between min-h-[110px] cursor-pointer" onclick="scrollToRecentDetections()">
-                <div class="flex items-center justify-between text-xs text-rose-300 font-mono font-bold drop-shadow"><span><i class="fa-solid fa-satellite-dish animate-pulse"></i> 변경 감지 피드 (7일자동만료)</span><span id="detected-badge-count" class="text-[10px] bg-rose-600 text-white px-2.5 py-0.5 rounded-full font-black animate-bounce shadow">0건 ✔ 확인</span></div>
+                <div class="flex items-center justify-between text-xs text-rose-300 font-mono font-bold drop-shadow"><span><i class="fa-solid fa-satellite-dish animate-pulse"></i> API 변경 감지 피드 (7일이내)</span><span id="detected-badge-count" class="text-[10px] bg-rose-600 text-white px-2.5 py-0.5 rounded-full font-black animate-bounce shadow">0건 ✔ 확인</span></div>
                 <div class="flight-ticker-container my-1 bg-black/60 backdrop-blur-md p-1 rounded-lg border border-rose-500/40 shadow-inner">
                     <div id="card-detected-preview" class="flight-ticker-track"></div>
                 </div>
                 <div class="text-[9px] text-rose-300 font-mono flex items-center justify-between pt-0.5 border-t border-rose-950 drop-shadow"><span>플립 모션 무한반복 (1,2,1,2...)</span><span class="text-rose-400 font-black">보기 ➔</span></div>
             </div>
 
-            <!-- 3번째 카드: 7일 자동 만료 무한 플립 모션 (최근 업데이트 항목) -->
+            <!-- 3번째 카드: API 최근 업데이트 항목 (7일 자동 만료 무한 플립) -->
             <div class="neon-pulse-card neon-pulse-emerald p-3 flex flex-col justify-between min-h-[110px]">
                 <div class="flex items-center justify-between text-xs text-emerald-300 font-mono font-bold">
-                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-list-check"></i> 최근 업데이트 항목 (7일자동만료)</span>
+                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-list-check"></i> API 최근 업데이트 항목 (7일이내)</span>
                     <span id="recent-updated-badge-count" class="text-[10px] bg-emerald-600 text-white px-2.5 py-0.5 rounded-full font-black animate-bounce shadow">0건 ✔ 확인</span>
                 </div>
                 <div class="flight-ticker-container my-1 bg-slate-950 p-1 rounded-lg border border-emerald-900">
@@ -239,11 +239,11 @@
             </div>
 
             <div class="neon-pulse-card neon-pulse-purple p-3 flex flex-col justify-between min-h-[110px]">
-                <div class="flex items-center justify-between text-xs text-purple-300 font-mono font-semibold"><span>마지막 동기화 시각</span><span id="last-sync-time" class="text-xs font-mono text-purple-300 font-bold">--:--:--</span></div>
+                <div class="flex items-center justify-between text-xs text-purple-300 font-mono font-semibold"><span>마지막 API 동기화 시각</span><span id="last-sync-time" class="text-xs font-mono text-purple-300 font-bold">--:--:--</span></div>
                 <div class="flex items-baseline justify-between my-0.5"><div class="flex flex-col"><span class="text-[9px] text-slate-300 font-mono">현재 시각 (LIVE)</span><span id="card-live-clock" class="text-lg sm:text-xl font-extrabold font-mono text-white tracking-wider">--:--:--</span></div></div>
                 <div class="flex flex-col gap-1">
                     <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-purple-400/30"><div id="scan-timer-bar" class="bg-gradient-to-r from-purple-500 via-pink-500 to-sky-400 h-full w-full"></div></div>
-                    <div class="flex items-center justify-between text-[10px] font-mono text-slate-300"><span>정기 스캔 주기 (60분)</span><span class="text-pink-400 font-bold"><span id="card-countdown">60:00</span></span></div>
+                    <div class="flex items-center justify-between text-[10px] font-mono text-slate-300"><span>정기 API 스캔 주기 (60분)</span><span class="text-pink-400 font-bold"><span id="card-countdown">60:00</span></span></div>
                 </div>
             </div>
         </div>
@@ -266,7 +266,7 @@
                             <tr class="text-sky-300 uppercase bg-slate-900 border-b border-slate-800 text-[10px]">
                                 <th class="py-2.5 px-2 w-8 text-center">No</th>
                                 <th class="py-2.5 px-3">도구 이름</th>
-                                <th class="py-2.5 px-2">버전</th>
+                                <th class="py-2.5 px-2">버전 (API)</th>
                                 <th class="py-2.5 px-2">일자</th>
                                 <th class="py-2.5 px-2 text-center">감지 상태</th>
                                 <th class="py-2.5 px-2 text-center">경과</th>
@@ -289,7 +289,7 @@
                             <tr class="text-purple-300 uppercase bg-slate-900 border-b border-slate-800 text-[10px]">
                                 <th class="py-2.5 px-2 w-8 text-center">No</th>
                                 <th class="py-2.5 px-3">에뮬레이터 이름</th>
-                                <th class="py-2.5 px-2">버전</th>
+                                <th class="py-2.5 px-2">버전 (API)</th>
                                 <th class="py-2.5 px-2">일자</th>
                                 <th class="py-2.5 px-2 text-center">감지 상태</th>
                                 <th class="py-2.5 px-2 text-center">경과</th>
@@ -327,7 +327,7 @@
             <div class="flex items-center justify-between border-b border-slate-800 pb-2">
                 <span class="text-xs font-mono text-sky-300 font-bold flex items-center gap-1.5">
                     <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                    실시간 패킷 감지 스트림 (LIVE SCANNER)
+                    GitHub API 패킷 감지 스트림 (LIVE SCANNER)
                 </span>
                 <button onclick="clearTerminalLogs()" class="text-[10px] text-slate-300 bg-slate-900 border border-slate-700 px-2 py-0.5 rounded">지우기</button>
             </div>
@@ -339,7 +339,7 @@
     <!-- MOBILE FLOATING ACTION DOCK -->
     <div class="fixed bottom-2.5 left-1/2 -translate-x-1/2 z-40 w-[94%] max-w-md bg-slate-950/95 backdrop-blur-xl border border-sky-400 rounded-2xl p-2 shadow-2xl flex items-center justify-around font-mono text-[10px]">
         <button onclick="openSoundModal()" class="flex flex-col items-center gap-0.5 text-pink-300 p-1 font-bold"><i class="fa-solid fa-music text-sm"></i><span>효과음선택</span></button>
-        <button onclick="runInstantSyncWithProgress(false)" class="flex flex-col items-center gap-0.5 text-sky-300 p-1 font-bold"><i class="fa-solid fa-rotate text-sm"></i><span>동기화</span></button>
+        <button onclick="fetchAllGitHubReleases()" class="flex flex-col items-center gap-0.5 text-sky-300 p-1 font-bold"><i class="fa-solid fa-rotate text-sm"></i><span>API동기화</span></button>
         <button onclick="toggleNotification()" class="flex flex-col items-center gap-0.5 text-amber-300 p-1 font-bold"><i class="fa-solid fa-bell text-sm"></i><span>알림</span></button>
         <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="flex flex-col items-center gap-0.5 text-slate-200 p-1 font-bold"><i class="fa-solid fa-arrow-up text-sm"></i><span>맨위로</span></button>
     </div>
@@ -387,7 +387,7 @@
             { id: "e9", no: 9, name: "ProsperoStore", icon: "fa-solid fa-bag-shopping", iconColor: "text-amber-400", owner: "darkxex", repo: "ProsperoStore", version: "v1.000.114", date: "2026-10-28", isNewDetected: true, initialVer: "v1.000.112", initialDate: "2026-10-25", patchNote: "✔ v1.000.114 최신릴리스 반영: 카테고리 필터링 속도 개선" }
         ];
 
-        // 7일(일주일)이 지난 감지 항목 자동 만료 처리 함수
+        // 7일(일주일) 자동 만료 체크 및 API 연동 함수
         function checkAndUpdateExpiration() {
             const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
             const now = Date.now();
@@ -402,6 +402,66 @@
                     }
                 }
             });
+        }
+
+        // 실제 GitHub API를 호출하여 최신 릴리스 정보를 실시간으로 가져오는 함수
+        async function fetchAllGitHubReleases() {
+            const progressModal = document.getElementById("sync-progress-modal");
+            const progressBar = document.getElementById("sync-progress-bar");
+            const percentText = document.getElementById("sync-percent-text");
+            const stepText = document.getElementById("sync-step-text");
+            const syncIcon = document.getElementById("sync-icon");
+
+            if (syncIcon) syncIcon.classList.add("fa-spin");
+            if (progressModal) progressModal.classList.remove("hidden");
+            logToTerminal("[API] GitHub 릴리스 엔드포인트 라이브 스캔 시작...", "INFO");
+
+            const allItems = [...utilitiesData, ...emulatorsData];
+            let completedCount = 0;
+
+            for (let i = 0; i < allItems.length; i++) {
+                const item = allItems[i];
+                try {
+                    const res = await fetch(`https://api.github.com/repos/${item.owner}/${item.repo}/releases/latest`);
+                    if (res.ok) {
+                        const data = await res.json();
+                        const latestTag = data.tag_name || data.name;
+                        const pubDate = data.published_at ? data.published_at.split('T')[0] : item.date;
+
+                        if (latestTag && latestTag !== item.version) {
+                            item.initialVer = item.version;
+                            item.version = latestTag;
+                            item.date = pubDate;
+                            item.patchNote = data.body ? data.body.substring(0, 120) + "..." : "GitHub API 최신 릴리스 동기화 완료";
+                            
+                            // 7일 이내인 경우에만 자동으로 감지 상태(isNewDetected) 활성화
+                            const diffDays = (Date.now() - new Date(pubDate).getTime()) / (1000 * 3600 * 24);
+                            if (diffDays <= 7) {
+                                item.isNewDetected = true;
+                            }
+                            logToTerminal(`[API 업데이트 감지] ${item.name} -> ${latestTag} (${pubDate})`, "ALERT");
+                        }
+                    }
+                } catch (e) {
+                    // API 호출 제한 또는 네트워크 오류 시 기본 데이터 유지
+                }
+
+                completedCount++;
+                const percent = Math.floor((completedCount / allItems.length) * 100);
+                if (progressBar) progressBar.style.width = `${percent}%`;
+                if (percentText) percentText.textContent = `${percent}%`;
+                if (stepText) stepText.textContent = `노드 교신 중 (${completedCount}/${allItems.length}): ${item.name}`;
+            }
+
+            setTimeout(() => {
+                if (progressModal) progressModal.classList.add("hidden");
+                if (syncIcon) syncIcon.classList.remove("fa-spin");
+                document.getElementById("last-sync-time").textContent = getCurrentTimeString();
+                checkAndUpdateExpiration();
+                updateUI();
+                logToTerminal("[API] 모든 릴리스 엔드포인트 동기화 완료", "INFO");
+                showInAppToast("API 동기화 완료", "GitHub 최신 릴리스가 반영되었습니다.");
+            }, 500);
         }
 
         function getTagsPageUrl(item) { return `https://github.com/${item.owner}/${item.repo}/tags`; }
@@ -493,7 +553,7 @@
                         </div>
                         <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex flex-col gap-1">
                             <div class="flex items-center gap-1 text-purple-300 font-bold text-[10px]">
-                                <i class="fa-solid fa-code-commit text-purple-400"></i> 패치 노트 및 변경 내역:
+                                <i class="fa-solid fa-code-commit text-purple-400"></i> GitHub API 패치 노트:
                             </div>
                             <p class="text-slate-200 text-[11px] font-sans leading-relaxed pl-3 border-l-2 border-purple-400">${item.patchNote || "최신 릴리스 및 안정성 패치 반영 완료"}</p>
                         </div>
@@ -660,62 +720,20 @@
             setTimeout(() => { if (toast.parentElement) toast.remove(); }, 5000);
         }
 
-        function runInstantSyncWithProgress(isInitial = false) {
-            const progressModal = document.getElementById("sync-progress-modal");
-            const progressBar = document.getElementById("sync-progress-bar");
-            const percentText = document.getElementById("sync-percent-text");
-            const stepText = document.getElementById("sync-step-text");
-            const syncIcon = document.getElementById("sync-icon");
-
-            if (syncIcon) syncIcon.classList.add("fa-spin");
-            if (progressModal) progressModal.classList.remove("hidden");
-            logToTerminal(isInitial ? "[SYSTEM] 최초 접속 패킷 스캔 시작..." : "[SYNC] 사이버네틱 노드 동기화 중...", "INFO");
-
-            const steps = [
-                { percent: 25, label: "18개 노드 엔드포인트 패킷 수신 중 (1/4)" },
-                { percent: 50, label: "GitHub API 릴리스 태그 교신 중 (2/4)" },
-                { percent: 75, label: "최신 릴리스 및 이전 버전 대조 검증 (3/4)" },
-                { percent: 100, label: "스캔 완료 및 스트림 파이프라인 동기화 (4/4)" }
-            ];
-
-            let stepIdx = 0;
-            const interval = setInterval(() => {
-                if (stepIdx < steps.length) {
-                    progressBar.style.width = `${steps[stepIdx].percent}%`;
-                    percentText.textContent = `${steps[stepIdx].percent}%`;
-                    stepText.textContent = steps[stepIdx].label;
-                    stepIdx++;
-                } else {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        progressModal.classList.add("hidden");
-                        if (syncIcon) syncIcon.classList.remove("fa-spin");
-                        document.getElementById("last-sync-time").textContent = getCurrentTimeString();
-                        logToTerminal("[SYNC] 동기화 스캔 완료 (모든 엔드포인트 정상)", "INFO");
-                        updateUI();
-                    }, 400);
-                }
-            }, 300);
-        }
-
         function initializeAppSyncAndClock() {
             document.getElementById("last-sync-time").textContent = getCurrentTimeString();
             logToTerminal("[SYSTEM] PS5 Core Enterprise Workstation 부팅 완료", "INFO");
-            
-            setTimeout(() => { logToTerminal("[STREAM] ShadowMountPlus (1.7beta9) 패킷 변동 감지됨", "WARN"); }, 1500);
-            setTimeout(() => { logToTerminal("[STREAM] ProsperoStore (v1.000.114) 신규 릴리스 피드 수신", "ALERT"); }, 3000);
 
-            if (!sessionStorage.getItem("ps5_initial_scanned")) {
-                sessionStorage.setItem("ps5_initial_scanned", "true");
-                setTimeout(() => { runInstantSyncWithProgress(true); }, 500);
-            }
+            // 최초 접속 시 자동으로 GitHub API 라이브 스캔 실행
+            setTimeout(() => { fetchAllGitHubReleases(); }, 800);
+
             setInterval(() => {
                 const cardClockEl = document.getElementById("card-live-clock");
                 if (cardClockEl) cardClockEl.textContent = getCurrentTimeString();
                 updateTableTimes();
 
                 remainingSeconds--;
-                if (remainingSeconds <= 0) { remainingSeconds = TOTAL_SCAN_SECONDS; runInstantSyncWithProgress(false); }
+                if (remainingSeconds <= 0) { remainingSeconds = TOTAL_SCAN_SECONDS; fetchAllGitHubReleases(); }
                 const barEl = document.getElementById("scan-timer-bar");
                 if (barEl) barEl.style.width = `${(remainingSeconds / TOTAL_SCAN_SECONDS) * 100}%`;
                 const mins = Math.floor(remainingSeconds / 60);
@@ -835,7 +853,7 @@
                     track.style.transition = 'none';
                     tickerOffsetDetected = 0;
                     track.style.transform = `translateY(0px)`;
-                    setTimeout(() => { track.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);'; }, 50);
+                    setTimeout(() => { track.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'; }, 50);
                 } else {
                     track.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
                     track.style.transform = `translateY(-${tickerOffsetDetected}px)`;
@@ -853,7 +871,7 @@
                     track.style.transition = 'none';
                     tickerOffsetRecent = 0;
                     track.style.transform = `translateY(0px)`;
-                    setTimeout(() => { track.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);'; }, 50);
+                    setTimeout(() => { track.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'; }, 50);
                 } else {
                     track.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
                     track.style.transform = `translateY(-${tickerOffsetRecent}px)`;
