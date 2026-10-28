@@ -13,11 +13,6 @@
                     fontFamily: {
                         sans: ['Plus Jakarta Sans', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        darkBg: '#020408',
-                        cardBg: '#060913',
-                        borderSubtle: '#151c2e'
                     }
                 }
             }
@@ -26,217 +21,174 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * { -webkit-tap-highlight-color: transparent; }
-        body {
-            background-color: #020408;
-            color: #f8fafc;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            min-height: 100vh;
-            background-image: radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.06) 0%, transparent 70%);
-        }
-        .glass-panel {
-            background: rgba(6, 9, 19, 0.92);
-            backdrop-filter: blur(16px);
-            border: 1.5px solid rgba(56, 189, 248, 0.25);
-            box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.8), inset 0 0 12px rgba(56, 189, 248, 0.05);
-        }
-
-        .neon-pulse-card {
-            position: relative;
-            background: #060913;
-            border-radius: 1rem;
-            overflow: hidden;
-            border: 1.5px solid rgba(56, 189, 248, 0.3);
-        }
-
-        .neon-pulse-sky { animation: breathing-sky 3s ease-in-out infinite; }
-        @keyframes breathing-sky {
-            0%, 100% { border-color: rgba(56, 189, 248, 0.3); box-shadow: 0 0 12px rgba(56, 189, 248, 0.15); }
-            50% { border-color: rgba(56, 189, 248, 0.9); box-shadow: 0 0 25px rgba(56, 189, 248, 0.45), inset 0 0 10px rgba(56, 189, 248, 0.2); }
-        }
-
-        .neon-pulse-rose { animation: breathing-rose 3s ease-in-out infinite; }
-        @keyframes breathing-rose {
-            0%, 100% { border-color: rgba(244, 63, 94, 0.3); box-shadow: 0 0 12px rgba(244, 63, 94, 0.15); }
-            50% { border-color: rgba(244, 63, 94, 0.9); box-shadow: 0 0 25px rgba(244, 63, 94, 0.45), inset 0 0 10px rgba(244, 63, 94, 0.2); }
-        }
-
-        .neon-pulse-emerald { animation: breathing-emerald 3s ease-in-out infinite; }
-        @keyframes breathing-emerald {
-            0%, 100% { border-color: rgba(16, 185, 129, 0.3); box-shadow: 0 0 12px rgba(16, 185, 129, 0.15); }
-            50% { border-color: rgba(16, 185, 129, 0.9); box-shadow: 0 0 25px rgba(16, 185, 129, 0.45), inset 0 0 10px rgba(16, 185, 129, 0.2); }
-        }
-
-        .neon-pulse-purple { animation: breathing-purple 3s ease-in-out infinite; }
-        @keyframes breathing-purple {
-            0%, 100% { border-color: rgba(168, 85, 247, 0.3); box-shadow: 0 0 12px rgba(168, 85, 247, 0.15); }
-            50% { border-color: rgba(168, 85, 247, 0.9); box-shadow: 0 0 25px rgba(168, 85, 247, 0.45), inset 0 0 10px rgba(168, 85, 247, 0.2); }
-        }
-
-        .neon-pulse-terminal { animation: breathing-terminal 3s ease-in-out infinite; }
-        @keyframes breathing-terminal {
-            0%, 100% { border-color: rgba(56, 189, 248, 0.3); box-shadow: 0 0 15px rgba(56, 189, 248, 0.15); }
-            50% { border-color: rgba(56, 189, 248, 0.85); box-shadow: 0 0 30px rgba(56, 189, 248, 0.4); }
-        }
-
-        .neon-pulse-footer { animation: breathing-footer 3s ease-in-out infinite; }
-        @keyframes breathing-footer {
-            0%, 100% { border-color: rgba(244, 63, 94, 0.3); box-shadow: 0 0 15px rgba(244, 63, 94, 0.15); }
-            50% { border-color: rgba(244, 63, 94, 0.85); box-shadow: 0 0 30px rgba(244, 63, 94, 0.4); }
-        }
-
-        .terminal-box {
-            background: #03060d;
-            font-family: 'JetBrains Mono', monospace;
-        }
-        @keyframes scanline {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(1000%); }
-        }
-        .scanline::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(244, 63, 94, 0.4), transparent);
-            animation: scanline 4s linear infinite;
-            pointer-events: none;
-        }
+        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
         
-        .custom-scroll::-webkit-scrollbar { width: 4px; }
-        .custom-scroll::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.8); border-radius: 9999px; }
-        .custom-scroll::-webkit-scrollbar-thumb { 
-            background: linear-gradient(180deg, #f43f5e, #be123c); 
-            border-radius: 9999px; 
+        body { 
+            background: linear-gradient(135deg, rgba(8, 4, 28, 0.94), rgba(2, 12, 32, 0.96)), 
+                        url('https://gmedia.playstation.com/is/image/SIEPDC/ps5-product-thumbnail-01-en-14sep20?$facebook$') no-repeat center center fixed; 
+            background-size: cover; 
+            color: #f8fafc; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            min-height: 100vh; 
+            overflow-x: hidden; 
         }
 
-        ::-webkit-scrollbar { width: 4px; height: 4px; }
-        ::-webkit-scrollbar-track { background: #020408; }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
+        .glass-panel { background: rgba(8, 12, 28, 0.88); backdrop-filter: blur(16px); border: 1.5px solid rgba(56, 189, 248, 0.45); box-shadow: 0 12px 35px -5px rgba(0, 0, 0, 0.95); }
+        
+        .neon-head-pulse { animation: luxury-breathing 3.5s ease-in-out infinite; }
+        @keyframes luxury-breathing { 
+            0%, 100% { border-color: rgba(56, 189, 248, 0.4); box-shadow: 0 0 12px rgba(56, 189, 248, 0.2), inset 0 0 6px rgba(56, 189, 248, 0.15); } 
+            50% { border-color: rgba(236, 72, 153, 0.95); box-shadow: 0 0 30px rgba(236, 72, 153, 0.6), inset 0 0 15px rgba(56, 189, 248, 0.4); } 
+        }
+
+        .neon-pulse-card { position: relative; background: rgba(8, 14, 30, 0.86); border-radius: 1rem; overflow: hidden; border: 1.5px solid rgba(56, 189, 248, 0.4); }
+        
+        .card-artwork-bg {
+            background: linear-gradient(135deg, rgba(10, 6, 25, 0.85), rgba(4, 18, 40, 0.90)),
+                        url('https://gmedia.playstation.com/is/image/SIEPDC/ps5-slim-family-hero-desktop-01-en-20nov23?$native--t$') no-repeat center center;
+            background-size: cover;
+        }
+
+        .neon-pulse-sky { animation: breathing-sky 2.5s ease-in-out infinite; }
+        @keyframes breathing-sky { 0%, 100% { border-color: rgba(56, 189, 248, 0.4); box-shadow: 0 0 8px rgba(56, 189, 248, 0.2); } 50% { border-color: rgba(56, 189, 248, 0.95); box-shadow: 0 0 22px rgba(56, 189, 248, 0.5); } }
+        
+        .neon-pulse-rose { animation: breathing-rose 2.5s ease-in-out infinite; }
+        @keyframes breathing-rose { 0%, 100% { border-color: rgba(244, 63, 94, 0.4); box-shadow: 0 0 8px rgba(244, 63, 94, 0.2); } 50% { border-color: rgba(244, 63, 94, 0.95); box-shadow: 0 0 22px rgba(244, 63, 94, 0.5); } }
+        
+        .neon-pulse-emerald { animation: breathing-emerald 2.5s ease-in-out infinite; }
+        @keyframes breathing-emerald { 0%, 100% { border-color: rgba(16, 185, 129, 0.4); box-shadow: 0 0 8px rgba(16, 185, 129, 0.2); } 50% { border-color: rgba(16, 185, 129, 0.95); box-shadow: 0 0 22px rgba(16, 185, 129, 0.5); } }
+        
+        .neon-pulse-purple { animation: breathing-purple 2.5s ease-in-out infinite; }
+        @keyframes breathing-purple { 0%, 100% { border-color: rgba(168, 85, 247, 0.4); box-shadow: 0 0 8px rgba(168, 85, 247, 0.2); } 50% { border-color: rgba(168, 85, 247, 0.95); box-shadow: 0 0 22px rgba(168, 85, 247, 0.5); } }
+        
+        .terminal-box { background: rgba(3, 6, 16, 0.96); font-family: 'JetBrains Mono', monospace; border: 1.5px solid rgba(56, 189, 248, 0.4); }
+        
+        /* 플립 모션 무한반복 독립형 컨테이너 */
+        .flight-ticker-container { overflow: hidden; position: relative; height: 36px; perspective: 400px; }
+        .flight-ticker-track { display: flex; flex-direction: column; gap: 2px; will-change: transform; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .flip-item { transform-origin: center center; backface-visibility: hidden; height: 34px; display: flex; align-items: center; }
+
+        .custom-scroll::-webkit-scrollbar { width: 4px; height: 4px; }
+        .custom-scroll::-webkit-scrollbar-track { background: rgba(10, 15, 30, 0.8); border-radius: 9999px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #38bdf8, #ec4899); border-radius: 9999px; }
+        
+        table th, table td { white-space: nowrap; }
     </style>
 </head>
-<body class="p-3 sm:p-5 pb-24 antialiased relative overflow-x-hidden selection:bg-rose-500 selection:text-white">
+<body class="p-2 sm:p-5 pb-28 antialiased relative selection:bg-pink-500 selection:text-white">
 
-    <!-- Toast Container -->
-    <div id="toast-container" class="fixed top-3 left-3 right-3 z-50 flex flex-col gap-2 pointer-events-none max-w-md mx-auto"></div>
+    <div id="toast-container" class="fixed top-2 left-2 right-2 z-50 flex flex-col gap-2 pointer-events-none max-w-md mx-auto"></div>
 
-    <!-- Sync Scanning Progress Modal (Appears on Init and Sync) -->
-    <div id="sync-progress-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-panel border-sky-500/80 w-full max-w-sm rounded-2xl p-6 flex flex-col items-center text-center gap-4 shadow-[0_0_50px_rgba(56,189,248,0.4)] my-auto">
-            <div class="w-14 h-14 rounded-2xl bg-sky-500/20 text-sky-400 border border-sky-500/60 flex items-center justify-center font-bold text-2xl animate-spin shrink-0 shadow-lg">
-                <i class="fa-solid fa-rotate"></i>
-            </div>
-            
+    <!-- Sync Scanning Progress Modal -->
+    <div id="sync-progress-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-3">
+        <div class="glass-panel border-sky-400 w-full max-w-sm rounded-2xl p-5 flex flex-col items-center text-center gap-3.5 shadow-2xl my-auto">
+            <div class="w-12 h-12 rounded-2xl bg-sky-500/20 text-sky-400 border border-sky-400 flex items-center justify-center font-bold text-xl animate-spin shrink-0"><i class="fa-solid fa-rotate"></i></div>
             <div class="w-full">
-                <h3 class="text-sm font-extrabold font-mono text-white tracking-tight">릴리스 업데이트 검사 중...</h3>
-                <p id="sync-step-text" class="text-[11px] text-sky-400 font-mono mt-1">18개 노드 엔드포인트 수신 중 (1/4)</p>
+                <h3 class="text-xs font-extrabold font-mono text-white tracking-tight">릴리스 업데이트 검사 중...</h3>
+                <p id="sync-step-text" class="text-[10px] text-sky-300 font-mono mt-1">18개 노드 엔드포인트 수신 중 (1/4)</p>
             </div>
-
-            <div class="w-full bg-slate-900 rounded-full h-2 overflow-hidden border border-sky-500/30">
-                <div id="sync-progress-bar" class="bg-gradient-to-r from-sky-500 via-indigo-500 to-rose-500 h-full w-0 transition-all duration-300"></div>
+            <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-sky-400/30">
+                <div id="sync-progress-bar" class="bg-gradient-to-r from-sky-400 via-purple-500 to-pink-500 h-full w-0 transition-all duration-300"></div>
             </div>
+            <div class="flex items-center justify-between w-full text-[10px] font-mono text-slate-300"><span>실시간 스캔</span><span id="sync-percent-text" class="text-sky-300 font-bold">0%</span></div>
+        </div>
+    </div>
 
-            <div class="flex items-center justify-between w-full text-[10px] font-mono text-slate-400">
-                <span>실시간 스캔</span>
-                <span id="sync-percent-text" class="text-sky-300 font-bold">0%</span>
+    <!-- 효과음 선택 모달 창 -->
+    <div id="sound-setting-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-3">
+        <div class="glass-panel border-pink-500 w-full max-w-sm rounded-2xl p-4 flex flex-col gap-3 shadow-[0_0_40px_rgba(236,72,153,0.5)] my-auto animate-scale-in font-mono">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl bg-pink-500/20 text-pink-400 border border-pink-500 flex items-center justify-center text-base shrink-0">
+                        <i class="fa-solid fa-music"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xs font-extrabold text-white">확장형 트렌디 효과음 (7종)</h3>
+                        <p class="text-[9px] text-pink-300">선택 즉시 풍부한 여운의 사운드 재생</p>
+                    </div>
+                </div>
+                <button onclick="closeSoundModal()" class="w-7 h-7 rounded-lg bg-slate-900 text-slate-400 hover:text-white border border-slate-700 flex items-center justify-center"><i class="fa-solid fa-xmark text-xs"></i></button>
+            </div>
+            <div class="flex flex-col gap-2 max-h-[50vh] overflow-y-auto custom-scroll pr-1" id="sound-list-container"></div>
+            <button onclick="closeSoundModal()" class="w-full py-2 bg-pink-600 active:bg-pink-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-pink-600/30 mt-1">확인 및 적용 완료</button>
+        </div>
+    </div>
+
+    <!-- 커스텀 확인 팝업 모달 -->
+    <div id="custom-confirm-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-3">
+        <div class="glass-panel border-amber-500 w-full max-w-sm rounded-2xl p-4 flex flex-col gap-3 shadow-[0_0_40px_rgba(245,158,11,0.5)] my-auto animate-scale-in">
+            <div class="flex items-center gap-2.5 border-b border-slate-800 pb-2.5">
+                <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500 flex items-center justify-center text-base shrink-0">
+                    <i class="fa-solid fa-circle-question"></i>
+                </div>
+                <div>
+                    <h3 class="text-xs font-extrabold font-mono text-white">업데이트 확인 해제</h3>
+                    <p class="text-[9px] text-amber-300 font-mono">감지 상태 확인 제어</p>
+                </div>
+            </div>
+            <div id="confirm-modal-desc" class="font-mono text-[11px] text-slate-200 bg-slate-950 p-2.5 rounded-xl border border-slate-800 leading-relaxed"></div>
+            <div class="grid grid-cols-2 gap-2 pt-0.5">
+                <button onclick="closeConfirmModal(false)" class="w-full py-2 bg-slate-800 active:bg-slate-700 text-slate-300 text-xs font-mono font-semibold rounded-xl">아니오</button>
+                <button onclick="closeConfirmModal(true)" class="w-full py-2 bg-amber-600 active:bg-amber-500 text-white font-bold text-xs font-mono rounded-xl shadow-lg shadow-amber-600/30">예 (해제)</button>
             </div>
         </div>
     </div>
 
-    <!-- Mobile-Optimized Modal Popup for New Detection -->
-    <div id="detection-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="glass-panel border-rose-500/80 w-full max-w-md rounded-2xl p-5 flex flex-col gap-4 shadow-[0_0_50px_rgba(244,63,94,0.5)] relative my-auto max-h-[90vh] overflow-y-auto">
+    <!-- 업데이트 자세히 보기 대형 팝업 모달 -->
+    <div id="big-update-modal" class="fixed inset-0 bg-black/95 backdrop-blur-xl z-50 hidden flex items-center justify-center p-2 sm:p-5">
+        <div class="glass-panel border-purple-500 w-full max-w-2xl rounded-2xl p-4 sm:p-5 flex flex-col gap-4 shadow-[0_0_50px_rgba(168,85,247,0.4)] my-auto max-h-[88vh]">
             <div class="flex items-center justify-between border-b border-slate-800 pb-3">
                 <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded-xl bg-rose-500/20 text-rose-400 border border-rose-500/60 flex items-center justify-center font-bold text-base animate-pulse shrink-0">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-600 text-white flex items-center justify-center font-bold text-base shadow-lg border border-purple-400 shrink-0">
+                        <i class="fa-solid fa-list-check"></i>
                     </div>
                     <div>
-                        <h3 class="text-sm font-extrabold font-mono text-white tracking-tight">자동 감지 경보 (<span id="modal-queue-indicator">1/2</span>)</h3>
-                        <p id="modal-subtitle" class="text-[11px] text-rose-400 font-mono font-semibold">변경 항목 릴리스 감지됨</p>
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <h3 class="text-sm font-extrabold font-mono text-white tracking-tight">업데이트 자세히 보기</h3>
+                            <span id="modal-total-count-badge" class="text-[10px] font-mono bg-purple-950 text-purple-300 border border-purple-400 px-2 py-0.5 rounded-full font-bold">0개 항목</span>
+                        </div>
+                        <p class="text-[10px] text-purple-300 font-mono mt-0.5">최근 릴리스가 감지된 모듈의 상세 패치 내역</p>
                     </div>
                 </div>
-                <button onclick="closeModal()" class="w-8 h-8 rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white flex items-center justify-center text-base active:scale-95">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
+                <button onclick="closeBigUpdateModal()" class="w-8 h-8 rounded-xl bg-slate-900 text-slate-400 hover:text-white border border-slate-700 flex items-center justify-center transition-all"><i class="fa-solid fa-xmark text-sm"></i></button>
             </div>
-
-            <div class="bg-slate-950/90 border border-rose-950 rounded-xl p-3.5 flex flex-col gap-2.5 font-mono text-xs">
-                <div class="flex justify-between items-center">
-                    <span class="text-slate-400 text-[11px]">모듈명:</span>
-                    <span id="modal-module-name" class="text-white font-bold text-xs truncate max-w-[180px]">--</span>
-                </div>
-                <div class="flex justify-between items-center">
-                    <span class="text-slate-400 text-[11px]">레포지토리:</span>
-                    <span id="modal-repo-path" class="text-slate-300 text-[11px] truncate max-w-[180px]">--</span>
-                </div>
-                <div class="flex justify-between items-center pt-2 border-t border-slate-800/80">
-                    <span class="text-slate-400 text-[11px]">이전 버전:</span>
-                    <span id="modal-prev-ver" class="text-slate-500 line-through text-[11px]">--</span>
-                </div>
-                <div class="flex justify-between items-center">
-                    <span class="text-rose-400 font-bold text-[11px]">변경/감지된 버전:</span>
-                    <span id="modal-new-ver" class="text-rose-400 font-bold text-xs bg-rose-950/90 border border-rose-500/50 px-2 py-0.5 rounded">--</span>
-                </div>
-                <div class="flex justify-between items-center">
-                    <span class="text-slate-400 text-[11px]">확인 시각:</span>
-                    <span id="modal-detected-time" class="text-rose-300 font-semibold text-[11px]">--</span>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-2 gap-2 pt-1">
-                <button onclick="closeModal()" class="w-full py-2.5 bg-slate-800 active:bg-slate-700 text-slate-300 text-xs font-mono font-semibold rounded-xl active:scale-95 transition-transform">닫기 / 다음</button>
-                <a id="modal-github-link" href="#" target="_blank" onclick="event.stopPropagation();" class="w-full py-2.5 bg-rose-600 active:bg-rose-500 text-white font-bold text-xs font-mono rounded-xl flex items-center justify-center gap-1.5 shadow-lg shadow-rose-600/40 active:scale-95 transition-transform">
-                    <span>Tags 확인</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                </a>
-            </div>
+            <div id="big-update-modal-body" class="custom-scroll overflow-y-auto max-h-[58vh] flex flex-col gap-3 pr-1 font-mono"></div>
+            <button onclick="closeBigUpdateModal()" class="w-full py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs font-mono rounded-xl shadow-lg shadow-purple-600/30 transition-all">확인 및 닫기</button>
         </div>
     </div>
 
     <!-- Main Container -->
-    <div class="max-w-4xl mx-auto flex flex-col gap-4">
+    <div class="max-w-4xl mx-auto flex flex-col gap-3 sm:gap-4">
 
         <!-- HEADER SECTION -->
-        <header class="glass-panel rounded-2xl p-4 flex flex-col gap-3.5 relative overflow-hidden border-sky-500/40 shadow-[0_0_25px_rgba(56,189,248,0.2)]">
-            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center opacity-25 pointer-events-none mix-blend-luminosity"></div>
-            <div class="absolute inset-0 bg-gradient-to-b from-[#060913]/90 via-[#060913] to-[#060913] pointer-events-none"></div>
-            <div class="absolute -top-16 -left-16 w-48 h-48 bg-sky-500/20 rounded-full blur-2xl pointer-events-none"></div>
-           
-            <div class="relative z-10 flex items-center justify-between gap-3">
-                <div class="flex items-center gap-3">
-                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-sky-600 via-indigo-600 to-rose-600 flex items-center justify-center text-white shadow-lg shadow-sky-500/30 shrink-0 border border-sky-400/40">
-                        <i class="fa-brands fa-playstation text-xl"></i>
+        <header class="glass-panel rounded-2xl p-3 sm:p-4 flex flex-col gap-3 relative overflow-hidden neon-head-pulse shadow-xl">
+            <div class="relative z-10 flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2.5 min-w-0">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 via-indigo-600 to-pink-600 flex items-center justify-center text-white shadow-lg shrink-0 border border-sky-300">
+                        <i class="fa-brands fa-playstation text-lg"></i>
                     </div>
-                    <div>
-                        <div class="flex items-center gap-2 flex-wrap">
-                            <h1 class="text-base font-extrabold tracking-tight text-white font-mono">PS5 Core Enterprise Workstation</h1>
-                            <span class="text-[9px] font-mono bg-sky-500/20 text-sky-300 border border-sky-500/40 px-2 py-0.5 rounded font-bold tracking-wider">v12.0 INSTANT SYNC</span>
+                    <div class="min-w-0">
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <h1 class="text-xs sm:text-sm font-extrabold tracking-tight text-white font-mono truncate">PS5 Core Enterprise Workstation</h1>
+                            <span class="text-[8px] font-mono bg-sky-500/20 text-sky-300 border border-sky-400 px-1.5 py-0.5 rounded font-bold">v12.0</span>
                         </div>
-                        <p class="text-[11px] text-slate-300 mt-0.5">접속 시 및 60분마다 실시간 릴리스 스캔 및 알림 워크스테이션</p>
+                        <p class="text-[10px] text-slate-300 mt-0.5 truncate">실시간 릴리스 스캔 및 알림 워크스테이션</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Mobile Quick Search & Top Action Buttons -->
             <div class="relative z-10 flex flex-col sm:flex-row items-center gap-2">
                 <div class="relative w-full">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
-                    <input type="text" id="searchInput" placeholder="모듈 및 태그 라이브 검색..."
-                           class="w-full bg-slate-950/90 border border-slate-800 text-xs rounded-xl pl-9 pr-8 py-2.5 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-sky-500 font-mono transition-colors min-h-[42px]">
-                    <button onclick="document.getElementById('searchInput').value=''; updateUI();" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white p-1 text-xs">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                    <input type="text" id="searchInput" placeholder="모듈 및 태그 라이브 검색..." class="w-full bg-slate-950 border border-slate-700 text-xs rounded-xl pl-9 pr-8 py-2.5 text-slate-100 placeholder-slate-400 focus:outline-none focus:border-sky-400 font-mono min-h-[40px]">
+                    <button onclick="document.getElementById('searchInput').value=''; updateUI();" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white p-1 text-xs"><i class="fa-solid fa-xmark"></i></button>
                 </div>
-
                 <div class="flex items-center gap-2 w-full sm:w-auto shrink-0">
-                    <button onclick="runInstantSyncWithProgress(false)" class="flex-1 sm:flex-none bg-sky-600/20 active:bg-sky-600/40 text-sky-300 border border-sky-500/40 px-3 py-2.5 rounded-xl text-xs font-mono font-semibold transition-all active:scale-95 flex items-center justify-center gap-1.5 min-h-[42px]">
-                        <i class="fa-solid fa-rotate text-xs" id="sync-icon"></i>
-                        <span>실시간 동기화</span>
+                    <button onclick="runInstantSyncWithProgress(false)" class="flex-1 sm:flex-none bg-sky-600/20 active:bg-sky-600/40 text-sky-300 border border-sky-400 px-3 py-2 rounded-xl text-xs font-mono font-semibold flex items-center justify-center gap-1.5 min-h-[40px]">
+                        <i class="fa-solid fa-rotate text-xs" id="sync-icon"></i><span>동기화</span>
                     </button>
-
-                    <button id="notification-btn" onclick="toggleNotification()" class="flex-1 sm:flex-none bg-slate-900 active:bg-slate-800 text-slate-300 border border-slate-700 rounded-xl px-3 py-2.5 flex items-center justify-center gap-1.5 text-xs font-semibold transition-all active:scale-95 shrink-0 font-mono min-h-[42px]">
-                        <i class="fa-solid fa-bell text-rose-400 text-xs" id="notif-icon"></i>
-                        <span id="notif-btn-text">알림 ON</span>
+                    <button id="notification-btn" onclick="toggleNotification()" class="flex-1 sm:flex-none bg-slate-900 text-slate-200 border border-slate-700 rounded-xl px-3 py-2 flex items-center justify-center gap-1.5 text-xs font-semibold shrink-0 font-mono min-h-[40px]">
+                        <i class="fa-solid fa-bell text-pink-400 text-xs" id="notif-icon"></i><span id="notif-btn-text">알림 ON</span>
                     </button>
                 </div>
             </div>
@@ -244,139 +196,74 @@
 
         <!-- STATS GRID -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            
-            <!-- 1. TOTAL MONITORED NODES -->
-            <div class="neon-pulse-card neon-pulse-sky p-3.5 flex flex-col justify-between min-h-[120px] relative overflow-hidden">
-                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1606813907291-d86efa9b94db?q=80&w=800&auto=format&fit=crop')] bg-cover bg-center opacity-30 pointer-events-none mix-blend-luminosity"></div>
-                <div class="absolute inset-0 bg-gradient-to-t from-[#060913] via-[#060913]/80 to-transparent pointer-events-none"></div>
-
-                <div class="relative z-10 flex items-center justify-between text-xs text-sky-300 font-mono font-bold">
-                    <span class="flex items-center gap-1.5 drop-shadow"><i class="fa-brands fa-playstation text-sky-400"></i> PS5 코어 허브</span>
-                    <span class="text-[9px] bg-sky-950/90 text-sky-300 px-2 py-0.5 rounded border border-sky-500/50 font-bold">ACTIVE</span>
-                </div>
-                <div class="relative z-10 flex items-baseline justify-between my-1">
-                    <span id="total-count" class="text-2xl font-extrabold font-mono text-white drop-shadow-[0_0_12px_rgba(56,189,248,0.8)]">18</span>
-                    <span class="text-[10px] text-emerald-400 font-mono bg-emerald-950/90 px-2 py-0.5 rounded border border-emerald-500/50 font-bold">ONLINE</span>
-                </div>
-                <div class="relative z-10 grid grid-cols-2 gap-1.5 text-[10px] font-mono text-slate-100 pt-1.5 border-t border-sky-900/50">
-                    <div class="flex items-center justify-between bg-slate-950/90 px-2 py-0.5 rounded border border-slate-800">
-                        <span>유틸리티:</span>
-                        <span class="text-sky-300 font-bold">9종</span>
-                    </div>
-                    <div class="flex items-center justify-between bg-slate-950/90 px-2 py-0.5 rounded border border-slate-800">
-                        <span>에뮬레이터:</span>
-                        <span class="text-purple-300 font-bold">9종</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2. RECENT DETECTED ITEMS -->
-            <div id="card-detected" class="neon-pulse-card neon-pulse-rose p-3.5 flex flex-col justify-between min-h-[120px] active:scale-[0.99] transition-transform cursor-pointer relative overflow-hidden" onclick="scrollToRecentDetections()">
-                <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-rose-600/10 rounded-full blur-xl pointer-events-none"></div>
-
-                <div class="relative z-10 flex items-center justify-between text-xs text-rose-400 font-mono font-bold">
+            <div class="neon-pulse-card neon-pulse-sky p-3 flex flex-col justify-between min-h-[110px] relative overflow-hidden">
+                <div class="absolute -right-6 -bottom-6 text-sky-500/10 pointer-events-none text-8xl font-black"><i class="fa-brands fa-playstation"></i></div>
+                <div class="flex items-center justify-between text-xs text-sky-300 font-mono font-bold z-10">
                     <span class="flex items-center gap-1.5">
-                        <i class="fa-solid fa-satellite-dish animate-pulse"></i>
-                        <span>변경 감지 피드 (전체 적용)</span>
+                        <div class="w-5 h-5 rounded-lg bg-sky-500/20 text-sky-300 border border-sky-400 flex items-center justify-center text-[10px]">
+                            <i class="fa-brands fa-playstation"></i>
+                        </div>
+                        PS5 코어 허브
                     </span>
-                    <span id="detected-badge-count" class="text-[10px] bg-rose-600 text-white border border-rose-400 px-2.5 py-0.5 rounded-full font-black shadow-[0_0_12px_rgba(244,63,94,0.7)] animate-bounce">2건 ✔ 확인</span>
+                    <span class="text-[9px] bg-sky-950 text-sky-300 px-2 py-0.5 rounded border border-sky-400 font-bold">ACTIVE</span>
                 </div>
-                
-                <div id="card-detected-preview" class="custom-scroll relative z-10 my-1 h-12 overflow-y-auto pr-1 flex flex-col gap-1 text-[10px] font-mono text-slate-200 bg-slate-950/80 p-1 rounded-lg border border-rose-950 shadow-inner"></div>
-
-                <div class="relative z-10 text-[9px] text-rose-300 font-mono flex items-center justify-between pt-0.5 border-t border-rose-950">
-                    <span id="detected-status-msg" class="text-slate-300 font-semibold truncate max-w-[170px]">모든 변경 항목 팝업 연동</span>
-                    <span class="text-rose-400 font-black shrink-0">보기 ➔</span>
+                <div class="flex items-baseline justify-between my-1 z-10"><span id="total-count" class="text-xl sm:text-2xl font-extrabold font-mono text-white">18</span><span class="text-[10px] text-emerald-300 font-mono bg-emerald-950 px-2 py-0.5 rounded border border-emerald-400 font-bold">ONLINE</span></div>
+                <div class="grid grid-cols-2 gap-1.5 text-[10px] font-mono text-slate-100 pt-1.5 border-t border-sky-900 z-10">
+                    <div class="flex items-center justify-between bg-slate-950 px-2 py-0.5 rounded border border-slate-800"><span>유틸리티:</span><span class="text-sky-300 font-bold">9종</span></div>
+                    <div class="flex items-center justify-between bg-slate-950 px-2 py-0.5 rounded border border-slate-800"><span>에뮬레이터:</span><span class="text-purple-300 font-bold">9종</span></div>
                 </div>
             </div>
 
-            <!-- 3. RECENT UPDATED ITEMS CARD -->
-            <div class="neon-pulse-card neon-pulse-emerald p-3.5 flex flex-col justify-between min-h-[120px] relative overflow-hidden">
-                <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-emerald-600/10 rounded-full blur-xl pointer-events-none"></div>
-
-                <div class="relative z-10 flex items-center justify-between text-xs text-emerald-400 font-mono font-bold">
-                    <span class="flex items-center gap-1.5">
-                        <i class="fa-solid fa-list-check"></i>
-                        <span>최근 업데이트 항목</span>
-                    </span>
-                    <span id="recent-updated-count" class="text-[10px] bg-emerald-600 text-white border border-emerald-400 px-2.5 py-0.5 rounded-full font-black shadow-[0_0_12px_rgba(16,185,129,0.7)]">2개 모듈</span>
+            <!-- 2번째 카드: 독립형 무한 플립 모션 (변경 감지 피드) -->
+            <div id="card-detected" class="neon-pulse-card neon-pulse-rose card-artwork-bg p-3 flex flex-col justify-between min-h-[110px] cursor-pointer" onclick="scrollToRecentDetections()">
+                <div class="flex items-center justify-between text-xs text-rose-300 font-mono font-bold drop-shadow"><span><i class="fa-solid fa-satellite-dish animate-pulse"></i> 변경 감지 피드</span><span id="detected-badge-count" class="text-[10px] bg-rose-600 text-white px-2.5 py-0.5 rounded-full font-black animate-bounce shadow">2건 ✔ 확인</span></div>
+                <div class="flight-ticker-container my-1 bg-black/60 backdrop-blur-md p-1 rounded-lg border border-rose-500/40 shadow-inner">
+                    <div id="card-detected-preview" class="flight-ticker-track"></div>
                 </div>
-                
-                <div id="recent-updates-scroll-box" class="custom-scroll relative z-10 my-1 h-12 overflow-y-auto pr-1 flex flex-col gap-1 text-[10px] font-mono text-slate-200 bg-slate-950/80 p-1 rounded-lg border border-emerald-950 shadow-inner"></div>
+                <div class="text-[9px] text-rose-300 font-mono flex items-center justify-between pt-0.5 border-t border-rose-950 drop-shadow"><span>플립 모션 무한반복 (1,2,1,2...)</span><span class="text-rose-400 font-black">보기 ➔</span></div>
+            </div>
 
-                <div class="relative z-10 text-[9px] text-emerald-300 font-mono flex items-center justify-between pt-0.5 border-t border-emerald-950">
-                    <span class="text-slate-300 font-semibold">✔ 최신 릴리스 동기화 완료</span>
-                    <span class="text-emerald-400 font-black">실시간 피드</span>
+            <!-- 3번째 카드: 독립형 무한 플립 모션 (최근 업데이트 항목) -->
+            <div class="neon-pulse-card neon-pulse-emerald p-3 flex flex-col justify-between min-h-[110px]">
+                <div class="flex items-center justify-between text-xs text-emerald-300 font-mono font-bold">
+                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-list-check"></i> 최근 업데이트 항목</span>
+                    <span id="recent-updated-badge-count" class="text-[10px] bg-emerald-600 text-white px-2.5 py-0.5 rounded-full font-black animate-bounce shadow">0건 ✔ 확인</span>
+                </div>
+                <div class="flight-ticker-container my-1 bg-slate-950 p-1 rounded-lg border border-emerald-900">
+                    <div id="recent-updates-scroll-box" class="flight-ticker-track"></div>
+                </div>
+                <div class="text-[9px] text-emerald-300 font-mono flex items-center justify-between pt-0.5 border-t border-emerald-950">
+                    <span>플립 모션 무한반복</span>
+                    <button onclick="openBigUpdateModal()" class="text-[9px] bg-emerald-600 hover:bg-emerald-500 text-white px-2.5 py-1 rounded-full font-bold transition-all shadow cursor-pointer">업데이트 자세히 보기</button>
                 </div>
             </div>
 
-            <!-- 4. LIVE CLOCK & 60-MIN COUNTDOWN -->
-            <div class="neon-pulse-card neon-pulse-purple p-3.5 flex flex-col justify-between min-h-[120px]">
-                <div class="flex items-center justify-between text-xs text-purple-300 font-mono font-semibold">
-                    <span>마지막 동기화 시각</span>
-                    <span id="last-sync-time" class="text-xs font-mono text-purple-400 font-bold">--:--:--</span>
-                </div>
-                
-                <div class="flex items-baseline justify-between my-0.5">
-                    <div class="flex flex-col">
-                        <span class="text-[9px] text-slate-400 font-mono">현재 시각 (LIVE)</span>
-                        <span id="card-live-clock" class="text-xl font-extrabold font-mono text-white tracking-wider drop-shadow-[0_0_10px_rgba(168,85,247,0.6)]">--:--:--</span>
-                    </div>
-                </div>
-
+            <div class="neon-pulse-card neon-pulse-purple p-3 flex flex-col justify-between min-h-[110px]">
+                <div class="flex items-center justify-between text-xs text-purple-300 font-mono font-semibold"><span>마지막 동기화 시각</span><span id="last-sync-time" class="text-xs font-mono text-purple-300 font-bold">--:--:--</span></div>
+                <div class="flex items-baseline justify-between my-0.5"><div class="flex flex-col"><span class="text-[9px] text-slate-300 font-mono">현재 시각 (LIVE)</span><span id="card-live-clock" class="text-lg sm:text-xl font-extrabold font-mono text-white tracking-wider">--:--:--</span></div></div>
                 <div class="flex flex-col gap-1">
-                    <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-purple-500/30">
-                        <div id="scan-timer-bar" class="bg-gradient-to-r from-purple-500 via-rose-500 to-sky-400 h-full w-full transition-all duration-1000"></div>
-                    </div>
-                    <div class="flex items-center justify-between text-[10px] font-mono text-slate-400">
-                        <span class="flex items-center gap-1 text-slate-400">
-                            <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse"></span>
-                            <span>정기 스캔 주기 (60분)</span>
-                        </span>
-                        <span class="text-rose-400 font-bold flex items-center gap-1">
-                            <i class="fa-solid fa-hourglass-half text-[9px]"></i>
-                            <span id="card-countdown">60:00</span>
-                        </span>
-                    </div>
+                    <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-purple-400/30"><div id="scan-timer-bar" class="bg-gradient-to-r from-purple-500 via-pink-500 to-sky-400 h-full w-full"></div></div>
+                    <div class="flex items-center justify-between text-[10px] font-mono text-slate-300"><span>정기 스캔 주기 (60분)</span><span class="text-pink-400 font-bold"><span id="card-countdown">60:00</span></span></div>
                 </div>
             </div>
-
         </div>
 
         <!-- TABS -->
-        <div class="grid grid-cols-2 gap-2 border-b border-slate-800/80 pb-2">
-            <button onclick="switchTab('dashboard')" id="tab-btn-dashboard" class="py-2.5 px-3 rounded-xl text-xs font-mono font-bold bg-sky-600 text-white shadow-lg transition-all flex items-center justify-center gap-1.5 active:scale-95 min-h-[40px]">
-                <i class="fa-solid fa-chart-line text-xs"></i>
-                <span class="truncate">대시보드</span>
-            </button>
-            <button onclick="switchTab('emergency')" id="tab-btn-emergency" class="py-2.5 px-3 rounded-xl text-xs font-mono font-bold bg-slate-900 text-slate-400 hover:text-white border border-slate-800 transition-all flex items-center justify-center gap-1.5 active:scale-95 min-h-[40px]">
-                <i class="fa-solid fa-sliders text-amber-400 text-xs"></i>
-                <span class="truncate">수동 보정 제어</span>
-            </button>
+        <div class="grid grid-cols-2 gap-2 border-b border-slate-800 pb-2">
+            <button onclick="switchTab('dashboard')" id="tab-btn-dashboard" class="py-2.5 px-3 rounded-xl text-xs font-mono font-bold bg-sky-600 text-white shadow-lg border border-sky-400 flex items-center justify-center gap-1.5"><i class="fa-solid fa-chart-line"></i> 대시보드</button>
+            <button onclick="switchTab('emergency')" id="tab-btn-emergency" class="py-2.5 px-3 rounded-xl text-xs font-mono font-bold bg-slate-900 text-slate-300 border border-slate-700 flex items-center justify-center gap-1.5"><i class="fa-solid fa-sliders text-amber-400"></i> 수동 보정 제어</button>
         </div>
 
-        <!-- TAB CONTENT: DASHBOARD -->
-        <div id="tab-content-dashboard" class="flex flex-col gap-4">
-           
-            <!-- UTILITIES -->
-            <div id="section-utility" class="neon-pulse-card neon-pulse-sky p-3.5 sm:p-4 flex flex-col">
-                <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-800">
-                    <div class="flex items-center gap-2.5">
-                        <div class="p-2 bg-sky-500/10 rounded-xl text-sky-400 border border-sky-500/20 shrink-0">
-                            <i class="fa-solid fa-wrench text-sm"></i>
-                        </div>
-                        <div>
-                            <h2 class="text-sm font-bold text-white font-mono tracking-tight">유틸리티 모듈 (UTILITIES)</h2>
-                            <p class="text-[10px] text-slate-400">유틸리티 9종 실시간 릴리스 연동</p>
-                        </div>
-                    </div>
-                    <span id="utility-count" class="text-[10px] font-mono bg-sky-950/80 text-sky-300 px-2 py-0.5 rounded border border-sky-800/50 font-bold shrink-0">9개</span>
+        <!-- DASHBOARD TAB -->
+        <div id="tab-content-dashboard" class="flex flex-col gap-3.5">
+            <div class="neon-pulse-card neon-pulse-sky p-3 sm:p-4 flex flex-col">
+                <div class="flex items-center justify-between pb-2.5 mb-2.5 border-b border-slate-800">
+                    <h2 class="text-xs sm:text-sm font-bold text-white font-mono">유틸리티 모듈 (UTILITIES)</h2><span id="utility-count" class="text-[10px] font-mono bg-sky-950 text-sky-300 px-2 py-0.5 rounded border border-sky-400 font-bold">9개</span>
                 </div>
-
-                <div class="overflow-x-auto rounded-xl border border-slate-800/80 bg-slate-950/70 -mx-1 sm:mx-0">
-                    <table class="w-full text-left text-xs font-mono min-w-[620px]">
+                <div class="overflow-x-auto custom-scroll rounded-xl border border-slate-700 bg-slate-950">
+                    <table class="w-full text-left text-xs font-mono min-w-[540px]">
                         <thead>
-                            <tr class="text-sky-400 uppercase font-semibold bg-slate-900/90 border-b border-slate-800 text-[10px]">
+                            <tr class="text-sky-300 uppercase bg-slate-900 border-b border-slate-800 text-[10px]">
                                 <th class="py-2.5 px-2 w-8 text-center">No</th>
                                 <th class="py-2.5 px-3">도구 이름</th>
                                 <th class="py-2.5 px-2">버전</th>
@@ -387,30 +274,19 @@
                                 <th class="py-2.5 px-2 text-center">Tags</th>
                             </tr>
                         </thead>
-                        <tbody id="utility-tbody" class="divide-y divide-slate-900/80"></tbody>
+                        <tbody id="utility-tbody" class="divide-y divide-slate-900"></tbody>
                     </table>
                 </div>
             </div>
 
-            <!-- EMULATORS -->
-            <div id="section-emulator" class="neon-pulse-card neon-pulse-purple p-3.5 sm:p-4 flex flex-col">
-                <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-800">
-                    <div class="flex items-center gap-2.5">
-                        <div class="p-2 bg-purple-500/10 rounded-xl text-purple-400 border border-purple-500/20 shrink-0">
-                            <i class="fa-solid fa-gamepad text-sm"></i>
-                        </div>
-                        <div>
-                            <h2 class="text-sm font-bold text-white font-mono tracking-tight">에뮬레이터 코어 (EMULATORS)</h2>
-                            <p class="text-[10px] text-slate-400">에뮬레이터 9종 실시간 릴리스 연동</p>
-                        </div>
-                    </div>
-                    <span id="emulator-count" class="text-[10px] font-mono bg-purple-950/80 text-purple-300 px-2 py-0.5 rounded border border-purple-800/50 font-bold shrink-0">9개</span>
+            <div class="neon-pulse-card neon-pulse-purple p-3 sm:p-4 flex flex-col">
+                <div class="flex items-center justify-between pb-2.5 mb-2.5 border-b border-slate-800">
+                    <h2 class="text-xs sm:text-sm font-bold text-white font-mono">에뮬레이터 코어 (EMULATORS)</h2><span id="emulator-count" class="text-[10px] font-mono bg-purple-950 text-purple-300 px-2 py-0.5 rounded border border-purple-400 font-bold">9개</span>
                 </div>
-
-                <div class="overflow-x-auto rounded-xl border border-slate-800/80 bg-slate-950/70 -mx-1 sm:mx-0">
-                    <table class="w-full text-left text-xs font-mono min-w-[620px]">
+                <div class="overflow-x-auto custom-scroll rounded-xl border border-slate-700 bg-slate-950">
+                    <table class="w-full text-left text-xs font-mono min-w-[540px]">
                         <thead>
-                            <tr class="text-purple-400 uppercase font-semibold bg-slate-900/90 border-b border-slate-800 text-[10px]">
+                            <tr class="text-purple-300 uppercase bg-slate-900 border-b border-slate-800 text-[10px]">
                                 <th class="py-2.5 px-2 w-8 text-center">No</th>
                                 <th class="py-2.5 px-3">에뮬레이터 이름</th>
                                 <th class="py-2.5 px-2">버전</th>
@@ -421,162 +297,204 @@
                                 <th class="py-2.5 px-2 text-center">Tags</th>
                             </tr>
                         </thead>
-                        <tbody id="emulator-tbody" class="divide-y divide-slate-900/80"></tbody>
+                        <tbody id="emulator-tbody" class="divide-y divide-slate-900"></tbody>
                     </table>
                 </div>
             </div>
-
         </div>
 
-        <!-- TAB CONTENT: EMERGENCY OVERRIDE -->
+        <!-- EMERGENCY TAB -->
         <div id="tab-content-emergency" class="hidden flex flex-col gap-3">
-            <div class="glass-panel rounded-2xl p-3.5 sm:p-4 border-amber-500/40 flex flex-col gap-3 shadow-[0_0_20px_rgba(245,158,11,0.15)]">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-800">
-                    <div class="flex items-center gap-2.5">
-                        <div class="p-2 bg-amber-500/10 rounded-xl text-amber-400 border border-amber-500/20 shrink-0">
-                            <i class="fa-solid fa-sliders text-sm"></i>
-                        </div>
-                        <div>
-                            <h2 class="text-sm font-bold text-white font-mono tracking-tight">수동 보정 / 비상 제어</h2>
-                            <p class="text-[10px] text-slate-400">버전 오버라이드 수동 제어 패널</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-2 w-full sm:w-auto">
-                        <button onclick="resetAllOverrides()" class="flex-1 sm:flex-none bg-rose-600/20 active:bg-rose-600/30 text-rose-300 border border-rose-500/40 px-3 py-2 rounded-xl text-xs font-mono font-semibold transition-all min-h-[38px] active:scale-95">
-                            초기화
-                        </button>
-                        <button onclick="saveAllOverrides()" class="flex-1 sm:flex-none bg-rose-600 active:bg-rose-500 text-white px-3 py-2 rounded-xl text-xs font-mono font-bold shadow-lg transition-all min-h-[38px] active:scale-95">
-                            전체 적용
-                        </button>
+            <div class="glass-panel rounded-2xl p-3 sm:p-4 border-amber-500 flex flex-col gap-3">
+                <div class="flex items-center justify-between pb-2.5 border-b border-slate-800">
+                    <h2 class="text-xs sm:text-sm font-bold text-white font-mono">수동 보정 / 비상 제어</h2>
+                    <div class="flex items-center gap-1.5">
+                        <button onclick="resetAllOverrides()" class="bg-rose-600/20 text-rose-300 border border-rose-500 px-2.5 py-1.5 rounded-xl text-xs font-mono font-bold">초기화</button>
+                        <button onclick="saveAllOverrides()" class="bg-rose-600 text-white border border-rose-400 px-2.5 py-1.5 rounded-xl text-xs font-mono font-bold shadow">전체 적용</button>
                     </div>
                 </div>
-
-                <div class="overflow-x-auto rounded-xl border border-slate-800/80 bg-slate-950/70 max-h-[500px] overflow-y-auto -mx-1 sm:mx-0">
+                <div class="overflow-x-auto custom-scroll rounded-xl border border-slate-700 bg-slate-950 max-h-[500px]">
                     <table class="w-full text-left text-xs font-mono min-w-[500px]">
-                        <thead>
-                            <tr class="text-amber-400 uppercase font-semibold bg-slate-900/90 border-b border-slate-800 sticky top-0 z-10 text-[10px]">
-                                <th class="py-2.5 px-3 w-10 text-center">No</th>
-                                <th class="py-2.5 px-3">모듈 이름</th>
-                                <th class="py-2.5 px-3">지정 버전</th>
-                                <th class="py-2.5 px-3">지정 일자</th>
-                                <th class="py-2.5 px-3 text-center">개별 적용</th>
-                            </tr>
-                        </thead>
-                        <tbody id="emergency-tbody" class="divide-y divide-slate-900/80"></tbody>
+                        <thead><tr class="text-amber-400 uppercase bg-slate-900 text-[10px]"><th class="py-2.5 px-3">No</th><th class="py-2.5 px-3">모듈 이름</th><th class="py-2.5 px-3">지정 버전</th><th class="py-2.5 px-3">지정 일자</th><th class="py-2.5 px-3 text-center">적용</th></tr></thead>
+                        <tbody id="emergency-tbody" class="divide-y divide-slate-900"></tbody>
                     </table>
                 </div>
             </div>
         </div>
 
         <!-- TERMINAL LOGS -->
-        <div class="glass-panel rounded-2xl p-3.5 flex flex-col gap-2 terminal-box relative overflow-hidden scanline neon-pulse-card neon-pulse-terminal">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-2 relative z-10">
-                <div class="flex items-center gap-2 text-xs font-mono text-sky-400 font-bold">
-                    <i class="fa-solid fa-terminal"></i>
-                    <span>실시간 감지 스트림</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <button onclick="clearTerminalLogs()" class="text-[10px] text-slate-400 hover:text-white font-mono px-2 py-0.5 rounded border border-slate-700 active:scale-95">지우기</button>
-                    <span id="terminal-pulse-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                </div>
+        <div class="glass-panel rounded-2xl p-3 flex flex-col gap-2 terminal-box neon-pulse-card neon-pulse-sky">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                <span class="text-xs font-mono text-sky-300 font-bold flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    실시간 패킷 감지 스트림 (LIVE SCANNER)
+                </span>
+                <button onclick="clearTerminalLogs()" class="text-[10px] text-slate-300 bg-slate-900 border border-slate-700 px-2 py-0.5 rounded">지우기</button>
             </div>
-            <div id="terminal-logs" class="h-28 overflow-y-auto flex flex-col gap-1 text-[11px] font-mono text-slate-300 scroll-smooth relative z-10"></div>
+            <div id="terminal-logs" class="h-28 overflow-y-auto custom-scroll flex flex-col gap-1 text-[11px] font-mono text-slate-200"></div>
         </div>
-
-        <!-- FOOTER WITH POPUP & SOUND TEST BUTTON -->
-        <footer class="glass-panel rounded-2xl p-3.5 text-[11px] flex flex-col sm:flex-row justify-between items-center gap-3 text-slate-300 font-mono neon-pulse-card neon-pulse-footer">
-            <div class="flex items-center gap-2.5 relative z-10 w-full sm:w-auto">
-                <span id="footer-status-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-lg shadow-emerald-500/80 animate-pulse shrink-0"></span>
-                <span class="truncate">60분 자동 동기화 스캔 중 (남은 시간: <strong id="footer-countdown" class="text-rose-400 font-bold">60:00</strong>)</span>
-            </div>
-            <div class="flex items-center justify-between w-full sm:w-auto gap-2 relative z-10">
-                <button onclick="testPopupAndSound()" class="bg-rose-600/20 active:bg-rose-600/40 text-rose-300 border border-rose-500/50 px-3 py-2 rounded-xl text-[11px] font-mono font-bold transition-all active:scale-95 flex items-center gap-1.5 min-h-[36px]">
-                    <i class="fa-solid fa-bullhorn text-xs"></i>
-                    <span>팝업 및 알림음 테스트</span>
-                </button>
-                <div class="flex items-center gap-2">
-                    <button onclick="runInstantSyncWithProgress(false)" class="bg-sky-600 active:bg-sky-500 text-white px-3 py-2 rounded-xl text-xs font-bold shadow-lg shadow-sky-600/30 active:scale-95 flex items-center gap-1.5 font-mono border border-sky-400/50 min-h-[36px]">
-                        <i class="fa-solid fa-sync text-xs"></i>
-                        <span>지금 동기화</span>
-                    </button>
-                </div>
-            </div>
-        </footer>
 
     </div>
 
     <!-- MOBILE FLOATING ACTION DOCK -->
-    <div class="fixed bottom-3 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-md bg-slate-950/90 backdrop-blur-xl border border-sky-500/40 rounded-2xl p-2 shadow-[0_10px_30px_rgba(0,0,0,0.9)] flex items-center justify-around font-mono text-[10px]">
-        <button onclick="testPopupAndSound()" class="flex flex-col items-center gap-1 text-rose-400 active:scale-95 transition-transform p-1">
-            <i class="fa-solid fa-bullhorn text-base"></i>
-            <span>테스트</span>
-        </button>
-        <button onclick="runInstantSyncWithProgress(false)" class="flex flex-col items-center gap-1 text-sky-400 active:scale-95 transition-transform p-1">
-            <i class="fa-solid fa-rotate text-base"></i>
-            <span>동기화</span>
-        </button>
-        <button onclick="toggleNotification()" class="flex flex-col items-center gap-1 text-amber-400 active:scale-95 transition-transform p-1">
-            <i class="fa-solid fa-bell text-base"></i>
-            <span>알림</span>
-        </button>
-        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="flex flex-col items-center gap-1 text-slate-300 active:scale-95 transition-transform p-1">
-            <i class="fa-solid fa-arrow-up text-base"></i>
-            <span>맨위로</span>
-        </button>
+    <div class="fixed bottom-2.5 left-1/2 -translate-x-1/2 z-40 w-[94%] max-w-md bg-slate-950/95 backdrop-blur-xl border border-sky-400 rounded-2xl p-2 shadow-2xl flex items-center justify-around font-mono text-[10px]">
+        <button onclick="openSoundModal()" class="flex flex-col items-center gap-0.5 text-pink-300 p-1 font-bold"><i class="fa-solid fa-music text-sm"></i><span>효과음선택</span></button>
+        <button onclick="runInstantSyncWithProgress(false)" class="flex flex-col items-center gap-0.5 text-sky-300 p-1 font-bold"><i class="fa-solid fa-rotate text-sm"></i><span>동기화</span></button>
+        <button onclick="toggleNotification()" class="flex flex-col items-center gap-0.5 text-amber-300 p-1 font-bold"><i class="fa-solid fa-bell text-sm"></i><span>알림</span></button>
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="flex flex-col items-center gap-0.5 text-slate-200 p-1 font-bold"><i class="fa-solid fa-arrow-up text-sm"></i><span>맨위로</span></button>
     </div>
 
     <script>
         let isNotificationEnabled = true;
-        const TOTAL_SCAN_SECONDS = 3600; // 60분
+        const TOTAL_SCAN_SECONDS = 3600;
         let remainingSeconds = TOTAL_SCAN_SECONDS;
-
         const nowMs = Date.now();
+        let pendingConfirmItem = null;
+        let pendingLinkUrl = null;
+
+        let currentSoundType = "cyber_chime";
+        const soundOptions = [
+            { id: "cyber_chime", name: "사이버네틱 차임 (추천)", desc: "영롱하고 풍부한 여운의 듀얼 하이 톤" },
+            { id: "neon_pop", name: "네온 팝업", desc: "톡톡 튀는 트렌디한 롱 디지털 알림 사운드" },
+            { id: "quantum_beep", name: "퀀텀 비프", desc: "하이테크 연구소 느낌의 시크한 확장형 전자음" },
+            { id: "holo_pulse", name: "홀로그래픽 펄스", desc: "공간감과 여운이 깊은 하이엔드 신스" },
+            { id: "laser_sweep", name: "퓨처 레이저", desc: "날카롭고 세련된 SF 롱 스위프 효과음" },
+            { id: "glitch_ping", name: "글리치 핑", desc: "트렌디한 감성의 감각적인 버스트 사운드" },
+            { id: "plasma_bell", name: "플라즈마 벨", desc: "청명하면서 길게 이어지는 딥 벨소리" }
+        ];
 
         let utilitiesData = [
-            { id: "u1", no: 1, name: "Y2JB-Autoloader", icon: "fa-solid fa-link", iconColor: "text-sky-400", owner: "itsPLK", repo: "ps5-y2jb-autoloader", version: "v1.0.3", date: "2026-10-20", lastUpdatedTime: nowMs - (4 * 3600 * 1000), isNewDetected: false, initialVer: "v1.0.3", initialDate: "2026-10-20", patchNote: "커널 익스플로잇 로더 백업 안정화" },
-            { id: "u2", no: 2, name: "Payload_Manager", icon: "fa-solid fa-gear", iconColor: "text-slate-400", owner: "itsPLK", repo: "ps5-payload-manager", version: "v0.6.3", date: "2026-10-20", lastUpdatedTime: nowMs - (18 * 3600 * 1000), isNewDetected: false, initialVer: "v0.6.3", initialDate: "2026-10-20", patchNote: "페이로드 주입 성공률 99% 향상" },
-            { id: "u3", no: 3, name: "ShadowMountPlus", icon: "fa-solid fa-database", iconColor: "text-rose-400", owner: "drakmor", repo: "shadowMountPlus", version: "1.7beta9", date: "2026-10-28", lastUpdatedTime: nowMs - (15 * 60 * 1000), isNewDetected: true, initialVer: "1.7beta8", initialDate: "2026-10-26", patchNote: "✔ 1.7beta9 최신릴리스 반영 (설치 및 SMB 전송 안정화)" },
-            { id: "u4", no: 4, name: "PS4_Mount", icon: "fa-solid fa-folder-closed", iconColor: "text-amber-400", owner: "gasb07", repo: "ps4mount", version: "v0.7.0", date: "2026-10-25", lastUpdatedTime: nowMs - (2 * 86400 * 1000), isNewDetected: false, initialVer: "v0.7.0", initialDate: "2026-10-25", patchNote: "하위호환 이미지 읽기 패치" },
-            { id: "u5", no: 5, name: "kstuff-lite", icon: "fa-solid fa-microchip", iconColor: "text-sky-400", owner: "EchoStretch", repo: "kstuff-lite", version: "v1.11", date: "2026-09-20", lastUpdatedTime: nowMs - (15 * 86400 * 1000), isNewDetected: false, initialVer: "v1.11", initialDate: "2026-09-20", patchNote: "FW 4.03-5.50 호환 패널 개편" },
-            { id: "u6", no: 6, name: "nanoDNS", icon: "fa-solid fa-globe", iconColor: "text-rose-400", owner: "drakmor", repo: "nanoDNS", version: "0.4", date: "2026-08-04", lastUpdatedTime: nowMs - (42 * 86400 * 1000), isNewDetected: false, initialVer: "0.4", initialDate: "2026-08-04", patchNote: "업데이트 차단 DNS 테이블 갱신" },
-            { id: "u7", no: 7, name: "WebKit-Autoloader", icon: "fa-solid fa-code", iconColor: "text-indigo-400", owner: "itsPLK", repo: "ps5-webkit-autoloader", version: "v0.6.1", date: "2026-10-09", lastUpdatedTime: nowMs - (7 * 3600 * 1000), isNewDetected: false, initialVer: "v0.6.1", initialDate: "2026-10-09", patchNote: "웹킷 캐시 메모리 리크 수정" },
-            { id: "u8", no: 8, name: "ftpsrv", icon: "fa-solid fa-network-wired", iconColor: "text-purple-400", owner: "ps5-payload-dev", repo: "ftpsrv", version: "v0.21.1", date: "2026-08-20", lastUpdatedTime: nowMs - (55 * 86400 * 1000), isNewDetected: false, initialVer: "v0.21.1", initialDate: "2026-08-20", patchNote: "초당 120MB 파일 전송 지원" },
-            { id: "u9", no: 9, name: "PKG_Manager", icon: "fa-solid fa-box-archive", iconColor: "text-amber-500", owner: "itsPLK", repo: "ps5-pkg-manager", version: "v1.5.1", date: "2026-10-13", lastUpdatedTime: nowMs - (12 * 3600 * 1000), isNewDetected: false, initialVer: "v1.5.1", initialDate: "2026-10-13", patchNote: "대용량 패키지 분할 설치 개선" }
+            { id: "u1", no: 1, name: "Y2JB-Autoloader", icon: "fa-solid fa-link", iconColor: "text-sky-300", owner: "itsPLK", repo: "ps5-y2jb-autoloader", version: "v1.0.3", date: "2026-10-20", lastUpdatedTime: nowMs - (4 * 3600 * 1000), isNewDetected: false, initialVer: "v1.0.3", initialDate: "2026-10-20", patchNote: "커널 익스플로잇 로더 백업 안정화 및 메모리 할당 최적화" },
+            { id: "u2", no: 2, name: "Payload_Manager", icon: "fa-solid fa-gear", iconColor: "text-slate-300", owner: "itsPLK", repo: "ps5-payload-manager", version: "v0.6.3", date: "2026-10-20", lastUpdatedTime: nowMs - (18 * 3600 * 1000), isNewDetected: false, initialVer: "v0.6.3", initialDate: "2026-10-20", patchNote: "페이로드 주입 성공률 99% 향상 및 예외처리 추가" },
+            { id: "u3", no: 3, name: "ShadowMountPlus", icon: "fa-solid fa-database", iconColor: "text-rose-400", owner: "drakmor", repo: "shadowMountPlus", version: "1.7beta9", date: "2026-10-28", lastUpdatedTime: nowMs - (15 * 60 * 1000), isNewDetected: true, initialVer: "1.7beta8", initialDate: "2026-10-26", patchNote: "✔ 1.7beta9 최신릴리스 반영: 백그라운드 마운트 안정성 강화" },
+            { id: "u4", no: 4, name: "PS4_Mount", icon: "fa-solid fa-folder-closed", iconColor: "text-amber-400", owner: "gasb07", repo: "ps4mount", version: "v0.7.0", date: "2026-10-25", lastUpdatedTime: nowMs - (2 * 86400 * 1000), isNewDetected: false, initialVer: "v0.7.0", initialDate: "2026-10-25", patchNote: "하위호환 이미지 읽기 패치 및 가상 디스크 속도 개선" },
+            { id: "u5", no: 5, name: "kstuff-lite", icon: "fa-solid fa-microchip", iconColor: "text-sky-300", owner: "EchoStretch", repo: "kstuff-lite", version: "v1.11", date: "2026-09-20", lastUpdatedTime: nowMs - (15 * 86400 * 1000), isNewDetected: false, initialVer: "v1.11", initialDate: "2026-09-20", patchNote: "FW 호환 패널 개편 및 디버그 심볼 정리" },
+            { id: "u6", no: 6, name: "nanoDNS", icon: "fa-solid fa-globe", iconColor: "text-rose-400", owner: "drakmor", repo: "nanoDNS", version: "0.4", date: "2026-08-04", lastUpdatedTime: nowMs - (42 * 86400 * 1000), isNewDetected: false, initialVer: "0.4", initialDate: "2026-08-04", patchNote: "업데이트 차단 DNS 테이블 갱신 및 응답 속도 최적화" },
+            { id: "u7", no: 7, name: "WebKit-Autoloader", icon: "fa-solid fa-code", iconColor: "text-indigo-400", owner: "itsPLK", repo: "ps5-webkit-autoloader", version: "v0.6.1", date: "2026-10-09", lastUpdatedTime: nowMs - (7 * 3600 * 1000), isNewDetected: false, initialVer: "v0.6.1", initialDate: "2026-10-09", patchNote: "웹킷 캐시 메모리 리크 수정 및 트리거 안정성 확보" },
+            { id: "u8", no: 8, name: "ftpsrv", icon: "fa-solid fa-network-wired", iconColor: "text-purple-400", owner: "ps5-payload-dev", repo: "ftpsrv", version: "v0.21.1", date: "2026-08-20", lastUpdatedTime: nowMs - (55 * 86400 * 1000), isNewDetected: false, initialVer: "v0.21.1", initialDate: "2026-08-20", patchNote: "초당 120MB 파일 전송 지원 및 멀티 세션 버그 수정" },
+            { id: "u9", no: 9, name: "PKG_Manager", icon: "fa-solid fa-box-archive", iconColor: "text-amber-400", owner: "itsPLK", repo: "ps5-pkg-manager", version: "v1.5.1", date: "2026-10-13", lastUpdatedTime: nowMs - (12 * 3600 * 1000), isNewDetected: false, initialVer: "v1.5.1", initialDate: "2026-10-13", patchNote: "대용량 패키지 분할 설치 개선 및 검증 로직 추가" }
         ];
 
         let emulatorsData = [
-            { id: "e1", no: 1, name: "PS5_RetroArch", icon: "fa-solid fa-robot", iconColor: "text-sky-400", owner: "mihawk-99", repo: "PS5_RetroArch", version: "v4.0.0-beta-4", date: "2026-10-20", lastUpdatedTime: nowMs - (1 * 3600 * 1000), isNewDetected: false, initialVer: "v4.0.0-beta-4", initialDate: "2026-10-20", patchNote: "코어 모듈 60FPS 프레임 스킵 지원" },
-            { id: "e2", no: 2, name: "Snes9x", icon: "fa-solid fa-gamepad", iconColor: "text-purple-400", owner: "MisterTemaki", repo: "snes9xPS5", version: "v2.9", date: "2026-10-24", lastUpdatedTime: nowMs - (22 * 3600 * 1000), isNewDetected: false, initialVer: "v2.9", initialDate: "2026-10-24", patchNote: "SuperFX 칩셋 에뮬레이션 속도 향상" },
-            { id: "e3", no: 3, name: "Porpoise-Dolphin", icon: "fa-solid fa-fish", iconColor: "text-sky-400", owner: "elripalda", repo: "Porpoise-Dolphin-Emulator-for-PS5", version: "v4.0", date: "2026-10-25", lastUpdatedTime: nowMs - (6 * 3600 * 1000), isNewDetected: false, initialVer: "v4.0", initialDate: "2026-10-25", patchNote: "GC/Wii GPU 파이프라인 버그 패치" },
-            { id: "e4", no: 4, name: "ECAM", icon: "fa-solid fa-cube", iconColor: "text-rose-400", owner: "premohq", repo: "PS5-ECAM", version: "v5.0.1", date: "2026-10-22", lastUpdatedTime: nowMs - (3 * 86400 * 1000), isNewDetected: false, initialVer: "v5.0.1", initialDate: "2026-10-22", patchNote: "GBA 커스텀 오디오 필터 패치" },
-            { id: "e5", no: 5, name: "fceummPS5", icon: "fa-solid fa-tv", iconColor: "text-rose-400", owner: "MisterTemaki", repo: "fceummPS5", version: "v1.3.0", date: "2026-10-11", lastUpdatedTime: nowMs - (16 * 86400 * 1000), isNewDetected: false, initialVer: "v1.3.0", initialDate: "2026-10-11", patchNote: "NES 팔레트 색상 렌더링 수정" },
-            { id: "e6", no: 6, name: "fbneo-PS5", icon: "fa-solid fa-gamepad", iconColor: "text-amber-400", owner: "MisterTemaki", repo: "fbneo-ps5", version: "v2.1", date: "2026-10-26", lastUpdatedTime: nowMs - (48 * 60 * 1000), isNewDetected: false, initialVer: "v2.1", initialDate: "2026-10-26", patchNote: "아케이드 CPS3 롬셋 호환성 확보" },
-            { id: "e7", no: 7, name: "ProsperoEden", icon: "fa-solid fa-leaf", iconColor: "text-rose-400", owner: "blackbearreloaded", repo: "ProsperoEden", version: "v1.005.000", date: "2026-10-18", lastUpdatedTime: nowMs - (9 * 3600 * 1000), isNewDetected: false, initialVer: "v1.005.000", initialDate: "2026-10-18", patchNote: "3D 그래픽 쉐이더 캐싱 속도 개선" },
-            { id: "e8", no: 8, name: "SwitchLauncher", icon: "fa-solid fa-toggle-on", iconColor: "text-rose-500", owner: "kasobos67", repo: "SwitchLauncher", version: "v1.004.003", date: "2026-10-17", lastUpdatedTime: nowMs - (11 * 3600 * 1000), isNewDetected: false, initialVer: "v1.004.003", initialDate: "2026-10-17", patchNote: "듀얼센스 햅틱 피드백 매핑 개선" },
-            { id: "e9", no: 9, name: "ProsperoStore", icon: "fa-solid fa-bag-shopping", iconColor: "text-amber-400", owner: "darkxex", repo: "ProsperoStore", version: "v1.000.114", date: "2026-10-28", lastUpdatedTime: nowMs - (20 * 60 * 1000), isNewDetected: true, initialVer: "v1.000.112", initialDate: "2026-10-25", patchNote: "✔ v1.000.114 최신릴리스 반영 (개발자 페이지 정렬 및 다운로드 카운트 표시)" }
+            { id: "e1", no: 1, name: "PS5_RetroArch", icon: "fa-solid fa-robot", iconColor: "text-sky-300", owner: "mihawk-99", repo: "PS5_RetroArch", version: "v4.0.0-beta-4", date: "2026-10-20", lastUpdatedTime: nowMs - (1 * 3600 * 1000), isNewDetected: false, initialVer: "v4.0.0-beta-4", initialDate: "2026-10-20", patchNote: "코어 모듈 프레임 스킵 지원 및 불칸 렌더러 최적화" },
+            { id: "e2", no: 2, name: "Snes9x", icon: "fa-solid fa-gamepad", iconColor: "text-purple-400", owner: "MisterTemaki", repo: "snes9xPS5", version: "v2.9", date: "2026-10-24", lastUpdatedTime: nowMs - (22 * 3600 * 1000), isNewDetected: false, initialVer: "v2.9", initialDate: "2026-10-24", patchNote: "SuperFX 칩셋 에뮬레이션 속도 향상 및 오디오 끊김 패치" },
+            { id: "e3", no: 3, name: "Porpoise-Dolphin", icon: "fa-solid fa-fish", iconColor: "text-sky-300", owner: "elripalda", repo: "Porpoise-Dolphin-Emulator-for-PS5", version: "v4.0", date: "2026-10-25", lastUpdatedTime: nowMs - (6 * 3600 * 1000), isNewDetected: false, initialVer: "v4.0", initialDate: "2026-10-25", patchNote: "GC/Wii GPU 파이프라인 버그 패치 및 쉐이더 컴파일 속도 개선" },
+            { id: "e4", no: 4, name: "ECAM", icon: "fa-solid fa-cube", iconColor: "text-rose-400", owner: "premohq", repo: "PS5-ECAM", version: "v5.0.1", date: "2026-10-22", lastUpdatedTime: nowMs - (3 * 86400 * 1000), isNewDetected: false, initialVer: "v5.0.1", initialDate: "2026-10-22", patchNote: "GBA 커스텀 오디오 필터 패치 및 입력 지연 감소" },
+            { id: "e5", no: 5, name: "fceummPS5", icon: "fa-solid fa-tv", iconColor: "text-rose-400", owner: "MisterTemaki", repo: "fceummPS5", version: "v1.3.0", date: "2026-10-11", lastUpdatedTime: nowMs - (16 * 86400 * 1000), isNewDetected: false, initialVer: "v1.3.0", initialDate: "2026-10-11", patchNote: "NES 팔레트 색상 렌더링 수정 및 매퍼 확장" },
+            { id: "e6", no: 6, name: "fbneo-PS5", icon: "fa-solid fa-gamepad", iconColor: "text-amber-400", owner: "MisterTemaki", repo: "fbneo-ps5", version: "v2.1", date: "2026-10-26", lastUpdatedTime: nowMs - (48 * 60 * 1000), isNewDetected: false, initialVer: "v2.1", initialDate: "2026-10-26", patchNote: "아케이드 CPS3 롬셋 호환성 확보 및 메모리 맵 재조정" },
+            { id: "e7", no: 7, name: "ProsperoEden", icon: "fa-solid fa-leaf", iconColor: "text-rose-400", owner: "blackbearreloaded", repo: "ProsperoEden", version: "v1.005.000", date: "2026-10-18", lastUpdatedTime: nowMs - (9 * 3600 * 1000), isNewDetected: false, initialVer: "v1.005.000", initialDate: "2026-10-18", patchNote: "3D 그래픽 쉐이더 캐싱 속도 개선 및 예외 핸들링 강화" },
+            { id: "e8", no: 8, name: "SwitchLauncher", icon: "fa-solid fa-toggle-on", iconColor: "text-rose-400", owner: "kasobos67", repo: "SwitchLauncher", version: "v1.005.000", date: "2026-10-19", lastUpdatedTime: nowMs - (11 * 3600 * 1000), isNewDetected: false, initialVer: "v1.005.000", initialDate: "2026-10-19", patchNote: "듀얼센스 햅틱 피드백 매핑 개선 및 설정 UI 반응성 향상" },
+            { id: "e9", no: 9, name: "ProsperoStore", icon: "fa-solid fa-bag-shopping", iconColor: "text-amber-400", owner: "darkxex", repo: "ProsperoStore", version: "v1.000.114", date: "2026-10-28", lastUpdatedTime: nowMs - (20 * 60 * 1000), isNewDetected: true, initialVer: "v1.000.112", initialDate: "2026-10-25", patchNote: "✔ v1.000.114 최신릴리스 반영: 카테고리 필터링 속도 개선" }
         ];
 
-        let modalQueue = [];
-        let currentModalIndex = 0;
+        function getTagsPageUrl(item) { return `https://github.com/${item.owner}/${item.repo}/tags`; }
+        function getDownloadPageUrl(item) { return `https://github.com/${item.owner}/${item.repo}/releases/latest`; }
 
-        function getTagsPageUrl(item) {
-            return `https://github.com/${item.owner}/${item.repo}/tags`;
-        }
-
-        function getDownloadPageUrl(item) {
-            return `https://github.com/${item.owner}/${item.repo}/releases/latest`;
-        }
-
-        function formatTimeAgo(timestamp) {
-            const diffSec = Math.max(0, Math.floor((Date.now() - timestamp) / 1000));
-            if (diffSec < 60) return `${diffSec}초전`;
+        function formatTimeAgo(dateString) {
+            if (!dateString) return "정보 없음";
+            const releaseTime = new Date(dateString).getTime();
+            const diffSec = Math.max(0, Math.floor((Date.now() - releaseTime) / 1000));
             const diffMin = Math.floor(diffSec / 60);
-            if (diffMin < 60) return `${diffMin}분전`;
+            if (diffMin < 60) return `${diffMin}분 경과`;
             const diffHour = Math.floor(diffMin / 60);
-            if (diffHour < 24) return `${diffHour}시간전`;
+            if (diffHour < 24) return `${diffHour}시간 경과`;
             const diffDay = Math.floor(diffHour / 24);
-            return `${diffDay}일전`;
+            return `${diffDay}일 경과`;
         }
+
+        function handleItemClick(item, targetUrl) {
+            if (item.isNewDetected) {
+                pendingConfirmItem = item;
+                pendingLinkUrl = targetUrl;
+                playTadaSound();
+                const descEl = document.getElementById("confirm-modal-desc");
+                descEl.innerHTML = `[<strong class="text-white">${item.name}</strong>]<br>현재 감지된 버전: <span class="text-rose-400 font-bold">${item.version}</span><br><br>해당 모듈의 업데이트 확인을 해제하고 최신 유지 상태로 전환할까요?`;
+                document.getElementById("custom-confirm-modal").classList.remove("hidden");
+                logToTerminal(`[확인창] ${item.name} 감지 상태 해제 대화상자 오픈`, "WARN");
+            } else {
+                window.open(targetUrl, '_blank');
+            }
+        }
+
+        function closeConfirmModal(isYes) {
+            document.getElementById("custom-confirm-modal").classList.add("hidden");
+            if (isYes && pendingConfirmItem) {
+                pendingConfirmItem.initialVer = pendingConfirmItem.version;
+                pendingConfirmItem.initialDate = pendingConfirmItem.date;
+                pendingConfirmItem.isNewDetected = false;
+                showInAppToast("최신 유지 상태로 전환됨", `[${pendingConfirmItem.name}] 모듈의 업데이트 확인이 해제되었습니다.`);
+                logToTerminal(`[최신유지전환] ${pendingConfirmItem.name} (${pendingConfirmItem.version}) 확인 해제됨`, "WARN");
+                updateUI();
+            }
+            if (pendingLinkUrl) {
+                window.open(pendingLinkUrl, '_blank');
+            }
+            pendingConfirmItem = null;
+            pendingLinkUrl = null;
+        }
+
+        function openBigUpdateModal() {
+            playTadaSound();
+            const modal = document.getElementById("big-update-modal");
+            const body = document.getElementById("big-update-modal-body");
+            const countBadge = document.getElementById("modal-total-count-badge");
+            if (!body) return;
+            body.innerHTML = "";
+
+            const recentItems = [...utilitiesData, ...emulatorsData].filter(i => i.isNewDetected);
+            if (countBadge) countBadge.textContent = `${recentItems.length}개 항목`;
+
+            if (recentItems.length === 0) {
+                body.innerHTML = `
+                    <div class="py-10 px-4 text-center flex flex-col items-center justify-center gap-2 bg-slate-950/80 rounded-2xl border border-slate-700">
+                        <i class="fa-solid fa-circle-check text-emerald-400 text-2xl mb-1"></i>
+                        <p class="text-slate-200 font-bold text-xs">현재 감지된 최근 업데이트 항목이 없습니다.</p>
+                        <p class="text-slate-400 text-[10px]">모든 모듈이 최신 버전 상태를 유지하고 있습니다.</p>
+                    </div>`;
+            } else {
+                recentItems.forEach((item, index) => {
+                    const daysText = formatTimeAgo(item.date);
+                    const itemDiv = document.createElement("div");
+                    itemDiv.className = "p-3.5 rounded-2xl bg-slate-900 border border-slate-700 flex flex-col gap-2.5 hover:border-purple-400 transition-all shadow-md cursor-pointer group";
+                    itemDiv.onclick = () => handleItemClick(item, getTagsPageUrl(item));
+                    
+                    itemDiv.innerHTML = `
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-2.5 flex-wrap gap-1.5">
+                            <div class="flex items-center gap-2.5">
+                                <span class="w-5 h-5 rounded-lg bg-purple-500/20 text-purple-300 border border-purple-400 flex items-center justify-center font-bold text-[10px]">#${String(index+1).padStart(2,'0')}</span>
+                                <div class="flex items-center gap-1.5">
+                                    <i class="${item.icon} ${item.iconColor} text-xs"></i>
+                                    <span class="text-white font-extrabold text-xs tracking-tight group-hover:text-purple-300 transition-colors">${item.name}</span>
+                                    <span class="text-[9px] text-slate-400 hidden sm:inline">(${item.owner}/${item.repo})</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-1.5 shrink-0">
+                                <span class="text-sky-300 font-extrabold bg-sky-950 px-2 py-0.5 rounded-lg border border-sky-400 text-[11px]">${item.version}</span>
+                                <span class="text-amber-300 font-bold bg-amber-950 px-2 py-0.5 rounded-lg border border-amber-400 text-[10px]"><i class="fa-regular fa-clock"></i> ${daysText} (${item.date})</span>
+                            </div>
+                        </div>
+                        <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex flex-col gap-1">
+                            <div class="flex items-center gap-1 text-purple-300 font-bold text-[10px]">
+                                <i class="fa-solid fa-code-commit text-purple-400"></i> 패치 노트 및 변경 내역:
+                            </div>
+                            <p class="text-slate-200 text-[11px] font-sans leading-relaxed pl-3 border-l-2 border-purple-400">${item.patchNote || "최신 릴리스 및 안정성 패치 반영 완료"}</p>
+                        </div>
+                        <div class="flex items-center justify-between text-[9px] text-slate-400 pt-0.5">
+                            <span>등록 일자: <strong class="text-slate-200">${item.date}</strong></span>
+                            <div class="flex items-center gap-1 text-purple-300 font-bold group-hover:translate-x-1 transition-transform">
+                                <span>GitHub 태그 이동</span>
+                                <i class="fa-solid fa-arrow-right text-[8px]"></i>
+                            </div>
+                        </div>
+                    `;
+                    body.appendChild(itemDiv);
+                });
+            }
+            modal.classList.remove("hidden");
+            logToTerminal("업데이트 자세히 보기 팝업 오픈", "INFO");
+        }
+
+        function closeBigUpdateModal() { document.getElementById("big-update-modal").classList.add("hidden"); }
 
         function playTadaSound() {
             if (!isNotificationEnabled) return;
@@ -584,22 +502,133 @@
                 const AudioCtx = window.AudioContext || window.webkitAudioContext;
                 if (!AudioCtx) return;
                 const ctx = new AudioCtx();
-                const notes = [587.33, 880.00, 1174.66, 1760.00];
                 const now = ctx.currentTime;
-                notes.forEach((freq, index) => {
+
+                if (currentSoundType === "cyber_chime") {
+                    const notes = [523.25, 659.25, 783.99, 1046.50, 1318.51, 1567.98, 2093.00];
+                    notes.forEach((freq, index) => {
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(freq, now + (index * 0.08));
+                        gain.gain.setValueAtTime(0.3, now + (index * 0.08));
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + (index * 0.08) + 0.6);
+                        osc.connect(gain); gain.connect(ctx.destination);
+                        osc.start(now + (index * 0.08)); osc.stop(now + (index * 0.08) + 0.6);
+                    });
+                } else if (currentSoundType === "neon_pop") {
+                    const notes = [440, 659.25, 880, 1318.51, 1760];
+                    notes.forEach((freq, index) => {
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = 'triangle';
+                        osc.frequency.setValueAtTime(freq, now + (index * 0.09));
+                        gain.gain.setValueAtTime(0.35, now + (index * 0.09));
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + (index * 0.09) + 0.45);
+                        osc.connect(gain); gain.connect(ctx.destination);
+                        osc.start(now + (index * 0.09)); osc.stop(now + (index * 0.09) + 0.45);
+                    });
+                } else if (currentSoundType === "quantum_beep") {
+                    const notes = [587.33, 880, 1174.66, 1760];
+                    notes.forEach((freq, index) => {
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = 'square';
+                        osc.frequency.setValueAtTime(freq, now + (index * 0.1));
+                        gain.gain.setValueAtTime(0.2, now + (index * 0.1));
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + (index * 0.1) + 0.5);
+                        osc.connect(gain); gain.connect(ctx.destination);
+                        osc.start(now + (index * 0.1)); osc.stop(now + (index * 0.1) + 0.5);
+                    });
+                } else if (currentSoundType === "holo_pulse") {
                     const osc = ctx.createOscillator();
                     const gain = ctx.createGain();
-                    osc.type = index % 2 === 0 ? 'sawtooth' : 'sine';
-                    osc.frequency.setValueAtTime(freq, now + (index * 0.06));
-                    gain.gain.setValueAtTime(0.35, now + (index * 0.06));
-                    const duration = index === notes.length - 1 ? 0.45 : 0.1;
-                    gain.gain.exponentialRampToValueAtTime(0.001, now + (index * 0.06) + duration);
-                    osc.connect(gain);
-                    gain.connect(ctx.destination);
-                    osc.start(now + (index * 0.06));
-                    osc.stop(now + (index * 0.06) + duration);
-                });
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.linearRampToValueAtTime(880, now + 0.4);
+                    osc.frequency.linearRampToValueAtTime(440, now + 0.8);
+                    gain.gain.setValueAtTime(0.3, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.9);
+                    osc.connect(gain); gain.connect(ctx.destination);
+                    osc.start(now); osc.stop(now + 0.9);
+                } else if (currentSoundType === "laser_sweep") {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(2200, now);
+                    osc.frequency.exponentialRampToValueAtTime(100, now + 0.7);
+                    gain.gain.setValueAtTime(0.3, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.75);
+                    osc.connect(gain); gain.connect(ctx.destination);
+                    osc.start(now); osc.stop(now + 0.75);
+                } else if (currentSoundType === "glitch_ping") {
+                    const notes = [800, 1200, 600, 1600, 2400];
+                    notes.forEach((freq, index) => {
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = 'square';
+                        osc.frequency.setValueAtTime(freq, now + (index * 0.07));
+                        gain.gain.setValueAtTime(0.25, now + (index * 0.07));
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + (index * 0.07) + 0.2);
+                        osc.connect(gain); gain.connect(ctx.destination);
+                        osc.start(now + (index * 0.07)); osc.stop(now + (index * 0.07) + 0.2);
+                    });
+                } else if (currentSoundType === "plasma_bell") {
+                    const notes = [1046.50, 1567.98, 2093.00, 3135.96];
+                    notes.forEach((freq, index) => {
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(freq, now + (index * 0.06));
+                        gain.gain.setValueAtTime(0.25, now + (index * 0.06));
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + (index * 0.06) + 0.8);
+                        osc.connect(gain); gain.connect(ctx.destination);
+                        osc.start(now + (index * 0.06)); osc.stop(now + (index * 0.06) + 0.8);
+                    });
+                }
             } catch (e) {}
+        }
+
+        function openSoundModal() {
+            const modal = document.getElementById("sound-setting-modal");
+            const container = document.getElementById("sound-list-container");
+            if (!container) return;
+            container.innerHTML = "";
+
+            soundOptions.forEach(opt => {
+                const isSelected = currentSoundType === opt.id;
+                const itemDiv = document.createElement("div");
+                itemDiv.className = `p-3 rounded-xl border flex items-center justify-between cursor-pointer transition-all ${isSelected ? 'bg-pink-950 border-pink-400 text-white shadow-lg' : 'bg-slate-900 border-slate-700 text-slate-200 hover:border-slate-500'}`;
+                itemDiv.onclick = () => selectSound(opt.id);
+
+                itemDiv.innerHTML = `
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-7 h-7 rounded-lg ${isSelected ? 'bg-pink-600 text-white' : 'bg-slate-800 text-slate-300'} flex items-center justify-center text-xs font-bold border border-pink-400">
+                            <i class="fa-solid ${isSelected ? 'fa-check' : 'fa-music'}"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-extrabold text-xs">${opt.name}</h4>
+                            <p class="text-[9px] text-slate-300">${opt.desc}</p>
+                        </div>
+                    </div>
+                    <span class="text-[10px] font-bold px-2 py-1 rounded ${isSelected ? 'bg-pink-600 text-white' : 'bg-slate-800 text-slate-300'}">${isSelected ? '적용됨' : '선택'}</span>
+                `;
+                container.appendChild(itemDiv);
+            });
+
+            modal.classList.remove("hidden");
+            logToTerminal("효과음 설정 대화상자 오픈", "INFO");
+        }
+
+        function closeSoundModal() { document.getElementById("sound-setting-modal").classList.add("hidden"); }
+
+        function selectSound(soundId) {
+            currentSoundType = soundId;
+            playTadaSound();
+            const selectedOpt = soundOptions.find(o => o.id === soundId);
+            showInAppToast("효과음 변경 완료", `[${selectedOpt.name}] 확장형 효과음이 적용되었습니다.`);
+            logToTerminal(`[효과음설정] 효과음이 '${selectedOpt.name}'(으)로 변경됨`, "ALERT");
+            openSoundModal();
         }
 
         function showInAppToast(title, message) {
@@ -607,73 +636,10 @@
             const container = document.getElementById("toast-container");
             if (!container) return;
             const toast = document.createElement("div");
-            toast.className = "pointer-events-auto bg-slate-950/95 border-2 border-rose-500 backdrop-blur-xl p-3 rounded-xl shadow-[0_0_20px_rgba(244,63,94,0.4)] flex items-center gap-2.5 text-xs font-mono text-slate-100 animate-slide-in";
-            toast.innerHTML = `
-                <div class="p-1.5 bg-rose-500/20 text-rose-400 rounded-lg shrink-0 animate-pulse text-xs">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-                </div>
-                <div class="flex-1 min-w-0">
-                    <h4 class="font-bold text-rose-300 mb-0.5 text-[11px] truncate">${title}</h4>
-                    <p class="text-slate-300 text-[10px] truncate">${message}</p>
-                </div>
-                <button onclick="this.parentElement.remove()" class="text-slate-500 hover:text-white p-1 shrink-0">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            `;
+            toast.className = "pointer-events-auto bg-slate-950 border-2 border-pink-500 backdrop-blur-xl p-2.5 rounded-xl shadow-2xl flex items-center gap-2 text-xs font-mono text-slate-100";
+            toast.innerHTML = `<div class="p-1.5 bg-pink-500/20 text-pink-400 rounded-lg"><i class="fa-solid fa-triangle-exclamation"></i></div><div class="flex-1 min-w-0"><h4 class="font-bold text-pink-300 text-[11px] truncate">${title}</h4><p class="text-slate-200 text-[10px] truncate">${message}</p></div>`;
             container.appendChild(toast);
             setTimeout(() => { if (toast.parentElement) toast.remove(); }, 5000);
-        }
-
-        function triggerAllDetectedModals(itemsToDisplay) {
-            modalQueue = itemsToDisplay;
-            currentModalIndex = 0;
-            if (modalQueue.length > 0) {
-                showCurrentModalInQueue();
-            }
-        }
-
-        function showCurrentModalInQueue() {
-            if (currentModalIndex >= modalQueue.length) {
-                closeModal();
-                return;
-            }
-            const item = modalQueue[currentModalIndex];
-            
-            document.getElementById("modal-module-name").textContent = item.name;
-            document.getElementById("modal-repo-path").textContent = `${item.owner}/${item.repo}`;
-            document.getElementById("modal-prev-ver").textContent = item.initialVer;
-            document.getElementById("modal-new-ver").textContent = item.version;
-            document.getElementById("modal-detected-time").textContent = getCurrentTimeString();
-            document.getElementById("modal-github-link").href = getTagsPageUrl(item);
-            document.getElementById("modal-queue-indicator").textContent = `${currentModalIndex + 1}/${modalQueue.length}`;
-            
-            document.getElementById("detection-modal").classList.remove("hidden");
-
-            playTadaSound();
-            showInAppToast(`변경 항목 감지 (${currentModalIndex + 1}/${modalQueue.length})`, `${item.name}: ${item.initialVer} ➔ ${item.version}`);
-            logToTerminal(`[팝업알림] ${item.name} (${item.version}) 알림 및 모달 출력`, "ALERT");
-        }
-
-        function closeModal() {
-            currentModalIndex++;
-            if (currentModalIndex < modalQueue.length) {
-                showCurrentModalInQueue();
-            } else {
-                document.getElementById("detection-modal").classList.add("hidden");
-            }
-        }
-
-        function testPopupAndSound() {
-            const allItems = [...utilitiesData, ...emulatorsData];
-            const changedItems = allItems.filter(i => i.isNewDetected);
-            
-            if (changedItems.length === 0) {
-                showInAppToast("알림", "현재 변경 감지된 항목이 없습니다. 수동 보정에서 버전을 변경해 보세요.");
-                return;
-            }
-
-            logToTerminal("[TEST] 팝업창 및 알림음 테스트 버튼 실행됨.", "WARN");
-            triggerAllDetectedModals(changedItems);
         }
 
         function runInstantSyncWithProgress(isInitial = false) {
@@ -685,40 +651,30 @@
 
             if (syncIcon) syncIcon.classList.add("fa-spin");
             if (progressModal) progressModal.classList.remove("hidden");
-
-            logToTerminal(isInitial ? "[SYSTEM] 최초 접속: 전체 모듈 릴리스 스캔 실행중..." : "[SYNC] 사용자 요청: 실시간 동기화 스캔 실행중...", "INFO");
+            logToTerminal(isInitial ? "[SYSTEM] 최초 접속 패킷 스캔 시작..." : "[SYNC] 사이버네틱 노드 동기화 중...", "INFO");
 
             const steps = [
-                { percent: 25, label: "18개 노드 엔드포인트 수신 중 (1/4)" },
-                { percent: 50, label: "GitHub API 릴리스 태그 매칭 중 (2/4)" },
-                { percent: 75, label: "최신 릴리스 및 이전 버전 비교 검증 중 (3/4)" },
-                { percent: 100, label: "업데이트 스캔 완료 및 알림 연동 중 (4/4)" }
+                { percent: 25, label: "18개 노드 엔드포인트 패킷 수신 중 (1/4)" },
+                { percent: 50, label: "GitHub API 릴리스 태그 교신 중 (2/4)" },
+                { percent: 75, label: "최신 릴리스 및 이전 버전 대조 검증 (3/4)" },
+                { percent: 100, label: "스캔 완료 및 스트림 파이프라인 동기화 (4/4)" }
             ];
 
             let stepIdx = 0;
             const interval = setInterval(() => {
                 if (stepIdx < steps.length) {
-                    const currentStep = steps[stepIdx];
-                    if (progressBar) progressBar.style.width = `${currentStep.percent}%`;
-                    if (percentText) percentText.textContent = `${currentStep.percent}%`;
-                    if (stepText) stepText.textContent = currentStep.label;
+                    progressBar.style.width = `${steps[stepIdx].percent}%`;
+                    percentText.textContent = `${steps[stepIdx].percent}%`;
+                    stepText.textContent = steps[stepIdx].label;
                     stepIdx++;
                 } else {
                     clearInterval(interval);
                     setTimeout(() => {
-                        if (progressModal) progressModal.classList.add("hidden");
+                        progressModal.classList.add("hidden");
                         if (syncIcon) syncIcon.classList.remove("fa-spin");
-                        
                         document.getElementById("last-sync-time").textContent = getCurrentTimeString();
+                        logToTerminal("[SYNC] 동기화 스캔 완료 (모든 엔드포인트 정상)", "INFO");
                         updateUI();
-
-                        const allItems = [...utilitiesData, ...emulatorsData];
-                        const changedItems = allItems.filter(i => i.isNewDetected);
-                        
-                        logToTerminal(`[COMPLETE] 스캔 완료. 감지된 변경 항목: ${changedItems.length}건`, "ALERT");
-                        if (isInitial) {
-                            triggerAllDetectedModals(changedItems);
-                        }
                     }, 400);
                 }
             }, 300);
@@ -726,45 +682,27 @@
 
         function initializeAppSyncAndClock() {
             document.getElementById("last-sync-time").textContent = getCurrentTimeString();
+            logToTerminal("[SYSTEM] PS5 Core Enterprise Workstation 부팅 완료", "INFO");
             
-            // 최초 접속 시 1회 자동 실행 스캔 (새로고침/재방문 시 세션 체크)
+            setTimeout(() => { logToTerminal("[STREAM] ShadowMountPlus (1.7beta9) 패킷 변동 감지됨", "WARN"); }, 1500);
+            setTimeout(() => { logToTerminal("[STREAM] ProsperoStore (v1.000.114) 신규 릴리스 피드 수신", "ALERT"); }, 3000);
+
             if (!sessionStorage.getItem("ps5_initial_scanned")) {
                 sessionStorage.setItem("ps5_initial_scanned", "true");
-                setTimeout(() => {
-                    runInstantSyncWithProgress(true);
-                }, 400);
-            } else {
-                logToTerminal("[SYSTEM] 워크스테이션 세션 복원됨 (초기 팝업 생략).", "INFO");
+                setTimeout(() => { runInstantSyncWithProgress(true); }, 500);
             }
-
             setInterval(() => {
-                const currentTimeStr = getCurrentTimeString();
                 const cardClockEl = document.getElementById("card-live-clock");
-                if (cardClockEl) cardClockEl.textContent = currentTimeStr;
-
+                if (cardClockEl) cardClockEl.textContent = getCurrentTimeString();
                 updateTableTimes();
 
                 remainingSeconds--;
-                if (remainingSeconds <= 0) {
-                    remainingSeconds = TOTAL_SCAN_SECONDS;
-                    logToTerminal("60분 정기 스캔 주기 도달. 자동 동기화 실행.", "INFO");
-                    runInstantSyncWithProgress(false);
-                }
-
+                if (remainingSeconds <= 0) { remainingSeconds = TOTAL_SCAN_SECONDS; runInstantSyncWithProgress(false); }
                 const barEl = document.getElementById("scan-timer-bar");
-                if (barEl) {
-                    const percentage = (remainingSeconds / TOTAL_SCAN_SECONDS) * 100;
-                    barEl.style.width = `${percentage}%`;
-                }
-
+                if (barEl) barEl.style.width = `${(remainingSeconds / TOTAL_SCAN_SECONDS) * 100}%`;
                 const mins = Math.floor(remainingSeconds / 60);
                 const secs = remainingSeconds % 60;
-                const formattedTime = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-                
-                const cardCdEl = document.getElementById("card-countdown");
-                const footerCdEl = document.getElementById("footer-countdown");
-                if (cardCdEl) cardCdEl.textContent = formattedTime;
-                if (footerCdEl) footerCdEl.textContent = formattedTime;
+                document.getElementById("card-countdown").textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
             }, 1000);
         }
 
@@ -775,26 +713,17 @@
             renderTable("emulator-tbody", emulatorsData, kw);
         }
 
-        function navigateToUrl(url, name) {
-            if (url) {
-                logToTerminal(`[이동] ${name} 페이지 오픈`, "INFO");
-                window.open(url, '_blank');
-            }
-        }
-
         function toggleNotification() {
             isNotificationEnabled = !isNotificationEnabled;
             const btnText = document.getElementById("notif-btn-text");
             const icon = document.getElementById("notif-icon");
-
             if (isNotificationEnabled) {
-                if (btnText) btnText.textContent = "알림 ON";
-                if (icon) icon.className = "fa-solid fa-bell text-rose-400 text-xs";
-                playTadaSound();
-                showInAppToast("알림 설정", "사운드 및 알림이 활성화되었습니다.");
+                btnText.textContent = "알림 ON"; icon.className = "fa-solid fa-bell text-pink-400 text-xs";
+                playTadaSound(); showInAppToast("알림 설정", "확장형 효과음 및 알림 활성화됨");
+                logToTerminal("[알림] 사운드 및 알림 활성화됨", "INFO");
             } else {
-                if (btnText) btnText.textContent = "알림 OFF";
-                if (icon) icon.className = "fa-solid fa-bell-slash text-slate-500 text-xs";
+                btnText.textContent = "알림 OFF"; icon.className = "fa-solid fa-bell-slash text-slate-400 text-xs";
+                logToTerminal("[알림] 사운드 및 알림 비활성화됨", "WARN");
             }
         }
 
@@ -803,18 +732,15 @@
             const emerTab = document.getElementById("tab-content-emergency");
             const dashBtn = document.getElementById("tab-btn-dashboard");
             const emerBtn = document.getElementById("tab-btn-emergency");
-
             if (tabName === 'dashboard') {
-                dashTab.classList.remove("hidden");
-                emerTab.classList.add("hidden");
-                dashBtn.className = "py-2.5 px-3 rounded-xl text-xs font-mono font-bold bg-sky-600 text-white shadow-lg transition-all flex items-center justify-center gap-1.5 active:scale-95 min-h-[40px]";
-                emerBtn.className = "py-2.5 px-3 rounded-xl text-xs font-mono font-bold bg-slate-900 text-slate-400 hover:text-white border border-slate-800 transition-all flex items-center justify-center gap-1.5 active:scale-95 min-h-[40px]";
+                dashTab.classList.remove("hidden"); emerTab.classList.add("hidden");
+                dashBtn.className = "py-2.5 px-3 rounded-xl text-xs font-mono font-bold bg-sky-600 text-white shadow-lg border border-sky-400 flex items-center justify-center gap-1.5";
+                emerBtn.className = "py-2.5 px-3 rounded-xl text-xs font-mono font-bold bg-slate-900 text-slate-300 border border-slate-700 flex items-center justify-center gap-1.5";
                 updateUI();
             } else {
-                dashTab.classList.add("hidden");
-                emerTab.classList.remove("hidden");
-                emerBtn.className = "py-2.5 px-3 rounded-xl text-xs font-mono font-bold bg-amber-600 text-white shadow-lg transition-all flex items-center justify-center gap-1.5 active:scale-95 min-h-[40px]";
-                dashBtn.className = "py-2.5 px-3 rounded-xl text-xs font-mono font-bold bg-slate-900 text-slate-400 hover:text-white border border-slate-800 transition-all flex items-center justify-center gap-1.5 active:scale-95 min-h-[40px]";
+                dashTab.classList.add("hidden"); emerTab.classList.remove("hidden");
+                emerBtn.className = "py-2.5 px-3 rounded-xl text-xs font-mono font-bold bg-amber-600 text-white shadow-lg border border-amber-400 flex items-center justify-center gap-1.5";
+                dashBtn.className = "py-2.5 px-3 rounded-xl text-xs font-mono font-bold bg-slate-900 text-slate-300 border border-slate-700 flex items-center justify-center gap-1.5";
                 renderEmergencyTable();
             }
         }
@@ -828,132 +754,100 @@
             const container = document.getElementById("terminal-logs");
             if (!container) return;
             const div = document.createElement("div");
-            const time = getCurrentTimeString();
-            let colorClass = "text-slate-300";
-            if (type === "ALERT") colorClass = "text-rose-400 font-bold animate-pulse";
-            if (type === "WARN") colorClass = "text-amber-400 font-bold";
-
-            div.className = colorClass;
-            div.textContent = `[${time}] [${type}] ${message}`;
-            container.appendChild(div);
-            container.scrollTop = container.scrollHeight;
+            div.className = type === "ALERT" ? "text-pink-400 font-bold animate-pulse" : (type === "WARN" ? "text-amber-300 font-bold" : "text-slate-200");
+            div.textContent = `[${getCurrentTimeString()}] [${type}] ${message}`;
+            container.appendChild(div); container.scrollTop = container.scrollHeight;
         }
 
         function clearTerminalLogs() {
             document.getElementById("terminal-logs").innerHTML = "";
-            logToTerminal("로그 스트림이 초기화되었습니다.", "INFO");
+            logToTerminal("터미널 로그가 초기화되었습니다.", "INFO");
         }
+
+        // 각 카드별 독립적인 무한 플립 순환 변수 및 함수
+        let tickerOffsetDetected = 0;
+        let tickerOffsetRecent = 0;
 
         function renderDetectedPreviewList(detectedItems) {
             const container = document.getElementById("card-detected-preview");
             const badgeEl = document.getElementById("detected-badge-count");
             if (!container) return;
             container.innerHTML = "";
-
             if (badgeEl) badgeEl.textContent = `${detectedItems.length}건 ✔ 확인`;
 
-            detectedItems.forEach(item => {
-                const div = document.createElement("div");
-                div.className = "p-1 rounded bg-slate-900/90 border border-rose-500/50 flex items-center justify-between text-[9px] text-rose-200 font-mono active:bg-rose-950/40 transition-all cursor-pointer shadow-sm";
-                div.onclick = (e) => {
-                    e.stopPropagation();
-                    navigateToUrl(getTagsPageUrl(item), item.name);
-                };
+            const listToRender = detectedItems.length > 0 ? [...detectedItems, ...detectedItems, ...detectedItems] : [];
 
-                div.innerHTML = `
-                    <div class="flex items-center gap-1 truncate max-w-[110px]">
-                        <i class="${item.icon} text-rose-400 text-[8px]"></i>
-                        <span class="font-bold text-white truncate">✔ ${item.name}</span>
-                    </div>
-                    <div class="flex items-center gap-1 shrink-0">
-                        <span class="text-slate-500 line-through text-[8px]">${item.initialVer}</span>
-                        <i class="fa-solid fa-arrow-right text-[8px] text-rose-400"></i>
-                        <span class="bg-rose-950 text-rose-300 font-black px-1 py-0.2 rounded border border-rose-500/60">${item.version}</span>
-                    </div>
-                `;
+            listToRender.forEach(item => {
+                const div = document.createElement("div");
+                div.className = "p-1.5 rounded bg-slate-900/90 border border-rose-500/80 flex items-center justify-between text-[10px] text-rose-200 font-mono cursor-pointer shrink-0 flip-item shadow";
+                div.onclick = (e) => { e.stopPropagation(); handleItemClick(item, getTagsPageUrl(item)); };
+                div.innerHTML = `<div class="flex items-center gap-1 truncate"><i class="${item.icon} text-rose-400 text-[10px]"></i><span class="font-bold text-white truncate">✔ ${item.name}</span></div><span class="text-rose-300 font-black">${item.version}</span>`;
                 container.appendChild(div);
             });
         }
 
         function renderRecentUpdatesScrollList() {
             const container = document.getElementById("recent-updates-scroll-box");
+            const badgeEl = document.getElementById("recent-updated-badge-count");
             if (!container) return;
             container.innerHTML = "";
-
-            const allItems = [...utilitiesData, ...emulatorsData];
-            const recentItems = allItems.filter(i => i.isNewDetected);
+            const recentItems = [...utilitiesData, ...emulatorsData].filter(i => i.isNewDetected);
             
-            const countEl = document.getElementById("recent-updated-count");
-            if (countEl) countEl.textContent = `${recentItems.length}개 모듈`;
+            if (badgeEl) badgeEl.textContent = `${recentItems.length}건 ✔ 확인`;
 
-            recentItems.forEach(item => {
+            const listToRender = recentItems.length > 0 ? [...recentItems, ...recentItems, ...recentItems] : [];
+
+            listToRender.forEach(item => {
                 const div = document.createElement("div");
-                div.className = "p-1 rounded bg-slate-900/90 border border-emerald-500/40 flex flex-col gap-0.5 active:border-emerald-400 transition-colors cursor-pointer shadow-sm";
-                div.onclick = (e) => {
-                    e.stopPropagation();
-                    navigateToUrl(getTagsPageUrl(item), item.name);
-                };
-
-                div.innerHTML = `
-                    <div class="flex items-center justify-between">
-                        <span class="font-bold text-emerald-300 flex items-center gap-1 text-[9px] truncate max-w-[120px]">
-                            <i class="${item.icon} text-[8px] text-emerald-400"></i>
-                            ✔ ${item.name}
-                        </span>
-                        <span class="text-[8px] text-slate-200 bg-slate-950 px-1 rounded font-bold">${item.version}</span>
-                    </div>
-                    <p class="text-[8px] text-slate-300 truncate">${item.patchNote}</p>
-                `;
+                div.className = "p-1.5 rounded bg-slate-900 border border-emerald-500 flex items-center justify-between text-[10px] text-emerald-200 font-mono cursor-pointer shrink-0 flip-item";
+                div.onclick = (e) => { e.stopPropagation(); handleItemClick(item, getTagsPageUrl(item)); };
+                div.innerHTML = `<div class="flex items-center gap-1 truncate"><i class="${item.icon} text-emerald-400 text-[10px]"></i><span class="font-bold text-white truncate">✔ ${item.name}</span></div><span class="text-emerald-300 font-black">${item.version}</span>`;
                 container.appendChild(div);
             });
         }
 
-        // ==========================================
-        // 새롭게 추가/수정된 자동 동기화 적용 리스너
-        // ==========================================
-        document.addEventListener("DOMContentLoaded", () => {
-            // [자동 동기화] data.json에서 최신 GitHub 릴리스 정보 불러오기
-            fetch('data.json')
-                .then(response => {
-                    if (!response.ok) throw new Error("data.json 파일 없음");
-                    return response.json();
-                })
-                .then(data => {
-                    const mergeData = (targetArray) => {
-                        targetArray.forEach(item => {
-                            const updated = data.find(f => f.id === item.id);
-                            if (updated && updated.version !== item.version) {
-                                item.initialVer = item.version;
-                                item.initialDate = item.date;
-                                item.version = updated.version;
-                                item.date = updated.date;
-                                item.isNewDetected = true;
-                                item.patchNote = `[자동 연동] ${updated.version} 릴리스 반영`;
-                                item.lastUpdatedTime = Date.now();
-                            }
-                        });
-                    };
-                    mergeData(utilitiesData);
-                    mergeData(emulatorsData);
-                    
-                    finishInit();
-                    setTimeout(() => logToTerminal("[SYSTEM] GitHub Actions 릴리스 데이터(data.json) 동기화 적용 완료", "INFO"), 800);
-                })
-                .catch(err => {
-                    console.log("로컬 데이터를 사용합니다:", err.message);
-                    finishInit();
-                });
-
-            // 초기화 마무리 함수 (데이터 fetch 성공/실패 여부와 관계없이 실행)
-            function finishInit() {
-                updateUI();
-                initializeAppSyncAndClock();
-
-                const searchInput = document.getElementById("searchInput");
-                if (searchInput) {
-                    searchInput.addEventListener("input", updateUI);
+        // 독립된 개별 루프 인터벌로 2개 카드 모두 완벽하게 무한 반복동작 보장
+        setInterval(() => {
+            const track = document.getElementById('card-detected-preview');
+            if (track && track.children.length >= 3) {
+                const singleSetLen = track.children.length / 3;
+                tickerOffsetDetected += 36;
+                const maxScroll = singleSetLen * 36;
+                if (tickerOffsetDetected >= maxScroll) {
+                    track.style.transition = 'none';
+                    tickerOffsetDetected = 0;
+                    track.style.transform = `translateY(0px)`;
+                    setTimeout(() => { track.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'; }, 50);
+                } else {
+                    track.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+                    track.style.transform = `translateY(-${tickerOffsetDetected}px)`;
                 }
             }
+        }, 2600);
+
+        setInterval(() => {
+            const track = document.getElementById('recent-updates-scroll-box');
+            if (track && track.children.length >= 3) {
+                const singleSetLen = track.children.length / 3;
+                tickerOffsetRecent += 36;
+                const maxScroll = singleSetLen * 36;
+                if (tickerOffsetRecent >= maxScroll) {
+                    track.style.transition = 'none';
+                    tickerOffsetRecent = 0;
+                    track.style.transform = `translateY(0px)`;
+                    setTimeout(() => { track.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'; }, 50);
+                } else {
+                    track.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+                    track.style.transform = `translateY(-${tickerOffsetRecent}px)`;
+                }
+            }
+        }, 2800);
+
+        document.addEventListener("DOMContentLoaded", () => {
+            updateUI();
+            initializeAppSyncAndClock();
+            const searchInput = document.getElementById("searchInput");
+            if (searchInput) searchInput.addEventListener("input", updateUI);
         });
 
         function updateUI() {
@@ -961,173 +855,83 @@
             const kw = searchInput ? searchInput.value.trim() : "";
             renderTable("utility-tbody", utilitiesData, kw);
             renderTable("emulator-tbody", emulatorsData, kw);
-
-            const total = utilitiesData.length + emulatorsData.length;
+            document.getElementById("total-count").textContent = utilitiesData.length + emulatorsData.length;
             const detectedItems = [...utilitiesData, ...emulatorsData].filter(i => i.isNewDetected);
-           
-            const totalCountEl = document.getElementById("total-count");
-            if (totalCountEl) totalCountEl.textContent = total;
-
             renderDetectedPreviewList(detectedItems);
             renderRecentUpdatesScrollList();
         }
 
         function renderEmergencyTable() {
             const tbody = document.getElementById("emergency-tbody");
-            if (!tbody) return;
-            tbody.innerHTML = "";
-            const allItems = [...utilitiesData, ...emulatorsData];
-
-            allItems.forEach((item, index) => {
+            if (!tbody) return; tbody.innerHTML = "";
+            [...utilitiesData, ...emulatorsData].forEach((item, index) => {
                 const tr = document.createElement("tr");
-                tr.className = "hover:bg-slate-900/60";
-                tr.innerHTML = `
-                    <td class="py-2.5 px-3 text-center text-slate-500 text-[10px]">#${String(index + 1).padStart(2, '0')}</td>
-                    <td class="py-2.5 px-3 font-bold text-white text-xs">
-                        <div class="flex items-center gap-1.5 truncate max-w-[120px]">
-                            <i class="${item.icon} ${item.iconColor} text-xs"></i>
-                            <span class="truncate">${item.isNewDetected ? '✔ ' : ''}${item.name}</span>
-                        </div>
-                    </td>
-                    <td class="py-2.5 px-2">
-                        <input type="text" id="override-ver-${item.id}" value="${item.version}" class="w-20 bg-slate-900 border border-slate-700 rounded-lg px-2 py-1 text-rose-400 font-mono text-[11px] focus:outline-none focus:border-amber-500 font-bold">
-                    </td>
-                    <td class="py-2.5 px-2">
-                        <input type="text" id="override-date-${item.id}" value="${item.date}" class="w-24 bg-slate-900 border border-slate-700 rounded-lg px-2 py-1 text-slate-300 font-mono text-[10px] focus:outline-none focus:border-amber-500">
-                    </td>
-                    <td class="py-2.5 px-2 text-center">
-                        <button onclick="applySingleOverride('${item.id}')" class="bg-amber-500/20 active:bg-amber-500/40 text-amber-300 border border-amber-500/40 px-2.5 py-1 rounded-lg text-[10px] font-semibold transition-all">
-                            적용
-                        </button>
-                    </td>
-                `;
+                tr.className = "hover:bg-slate-900";
+                tr.innerHTML = `<td class="py-2.5 px-3 text-slate-400 text-[10px]">#${String(index + 1).padStart(2, '0')}</td><td class="py-2.5 px-3 font-bold text-white text-xs">${item.name}</td><td class="py-2.5 px-2"><input type="text" id="override-ver-${item.id}" value="${item.version}" class="w-20 bg-slate-900 border border-slate-700 rounded px-2 py-1 text-rose-400 text-[11px]"></td><td class="py-2.5 px-2"><input type="text" id="override-date-${item.id}" value="${item.date}" class="w-24 bg-slate-900 border border-slate-700 rounded px-2 py-1 text-slate-200 text-[10px]"></td><td class="py-2.5 px-2 text-center"><button onclick="applySingleOverride('${item.id}')" class="bg-amber-500/20 text-amber-300 border border-amber-400 px-2.5 py-1 rounded text-[10px] font-bold">적용</button></td>`;
                 tbody.appendChild(tr);
             });
         }
 
         function applySingleOverride(id) {
-            const allItems = [...utilitiesData, ...emulatorsData];
-            const target = allItems.find(i => i.id === id);
+            const target = [...utilitiesData, ...emulatorsData].find(i => i.id === id);
             if (!target) return;
-
-            const verInput = document.getElementById(`override-ver-${id}`);
-            const dateInput = document.getElementById(`override-date-${id}`);
-            if (!verInput || !dateInput) return;
-
-            const oldVer = target.version;
-            target.version = verInput.value.trim() || target.version;
-            target.date = dateInput.value.trim() || target.date;
-            target.lastUpdatedTime = Date.now();
+            target.version = document.getElementById(`override-ver-${id}`).value.trim() || target.version;
+            target.date = document.getElementById(`override-date-${id}`).value.trim() || target.date;
             target.isNewDetected = true;
-            target.patchNote = `수동 보정 패치 (${target.version})`;
-
-            playTadaSound();
-            showInAppToast("수동 보정 반영", `${target.name}: ${oldVer} ➔ ${target.version}`);
-            logToTerminal(`[수동보정] ${target.name} 버전 오버라이드 (${target.version})`, "WARN");
+            showInAppToast("수동 보정 반영", `${target.name}: ${target.version}`);
+            logToTerminal(`[수동보정] ${target.name} -> ${target.version}`, "WARN");
             updateUI();
-
-            triggerAllDetectedModals([target]);
         }
 
         function saveAllOverrides() {
-            const allItems = [...utilitiesData, ...emulatorsData];
-            let changesCount = 0;
-
-            allItems.forEach(item => {
-                const verInput = document.getElementById(`override-ver-${item.id}`);
-                const dateInput = document.getElementById(`override-date-${item.id}`);
-                if (verInput && dateInput) {
-                    item.version = verInput.value.trim() || item.version;
-                    item.date = dateInput.value.trim() || item.date;
-                    item.lastUpdatedTime = Date.now();
-                    item.isNewDetected = true;
-                    item.patchNote = `일괄 수동 보정 적용 (${item.version})`;
-                    changesCount++;
-                }
+            [...utilitiesData, ...emulatorsData].forEach(item => {
+                const v = document.getElementById(`override-ver-${item.id}`);
+                const d = document.getElementById(`override-date-${item.id}`);
+                if (v && d) { item.version = v.value.trim() || item.version; item.date = d.value.trim() || item.date; item.isNewDetected = true; }
             });
-
-            playTadaSound();
-            showInAppToast("전체 지정 저장", `${changesCount}개 항목 수동 저장 완료`);
-            logToTerminal(`전체 수동 보정 완료 (${changesCount}개 노드)`, "WARN");
-            updateUI();
-            switchTab('dashboard');
-
-            const changedItems = allItems.filter(i => i.isNewDetected);
-            triggerAllDetectedModals(changedItems);
+            showInAppToast("전체 지정 저장", "수동 저장 완료");
+            logToTerminal("[수동보정] 전체 항목 재지정 완료", "WARN");
+            updateUI(); switchTab('dashboard');
         }
 
         function resetAllOverrides() {
-            const allItems = [...utilitiesData, ...emulatorsData];
-            allItems.forEach(item => {
-                item.version = item.initialVer;
-                item.date = item.initialDate;
-                item.isNewDetected = false;
-            });
-            showInAppToast("상태 초기화", "모든 버전이 초기 상태로 복원되었습니다.");
-            logToTerminal("사용자에 의해 모든 오버라이드 상태가 초기화되었습니다.", "INFO");
+            [...utilitiesData, ...emulatorsData].forEach(item => { item.version = item.initialVer; item.date = item.initialDate; item.isNewDetected = false; });
+            showInAppToast("상태 초기화", "모든 버전 복원됨");
+            logToTerminal("[초기화] 모든 모듈 버전이 초기값으로 복원됨", "INFO");
             updateUI();
         }
 
         function renderTable(tbodyId, data, keyword = "") {
             const tbody = document.getElementById(tbodyId);
-            if (!tbody) return;
-            tbody.innerHTML = "";
-            const filtered = data.filter(i => i.name.toLowerCase().includes(keyword.toLowerCase()) || i.version.toLowerCase().includes(keyword.toLowerCase()));
-
-            filtered.forEach(item => {
+            if (!tbody) return; tbody.innerHTML = "";
+            data.filter(i => i.name.toLowerCase().includes(keyword.toLowerCase()) || i.version.toLowerCase().includes(keyword.toLowerCase())).forEach((item, index) => {
                 const tr = document.createElement("tr");
-                tr.id = `row-${item.id}`;
-                tr.className = item.isNewDetected 
-                    ? "bg-rose-500/20 border-l-4 border-rose-500 font-bold transition-all hover:bg-rose-500/30 shadow-md shadow-rose-950/30" 
-                    : "hover:bg-slate-900/50 active:bg-slate-900 transition-colors";
-               
-                const tagsUrl = getTagsPageUrl(item);
-                const downloadUrl = getDownloadPageUrl(item);
+                tr.className = item.isNewDetected ? "bg-rose-500/20 border-l-4 border-rose-500 font-bold" : "hover:bg-slate-900/60";
+                const daysText = formatTimeAgo(item.date);
 
                 const versionDisplay = item.isNewDetected
-                    ? `<div class="flex flex-col"><span class="text-[9px] text-slate-500 line-through">${item.initialVer}</span><span class="text-rose-400 font-black text-xs drop-shadow">${item.version}</span></div>`
-                    : `<span class="text-sky-400 font-semibold text-xs">${item.version}</span>`;
+                    ? `<div class="flex flex-col"><span class="text-[9px] text-slate-400 line-through">${item.initialVer}</span><span class="text-rose-400 font-black text-xs">${item.version}</span></div>`
+                    : `<span class="text-sky-300 font-semibold text-xs">${item.version}</span>`;
 
                 const dateDisplay = item.isNewDetected
-                    ? `<div class="flex flex-col"><span class="text-[8px] text-slate-500 line-through">${item.initialDate}</span><span class="text-rose-300 font-semibold text-[10px]">${item.date}</span></div>`
-                    : `<span class="text-slate-400 text-[10px]">${item.date}</span>`;
-
-                const timeSinceUpdate = formatTimeAgo(item.lastUpdatedTime);
-
-                const badge = item.isNewDetected
-                    ? `<span class="px-2 py-0.5 rounded bg-rose-500/30 text-rose-300 border border-rose-500/60 text-[9px] font-bold flex items-center justify-center gap-1 animate-pulse"><i class="fa-solid fa-check text-[8px]"></i> ✔ 업데이트 확인</span>`
-                    : `<span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-[9px] font-bold flex items-center justify-center gap-1"><i class="fa-solid fa-circle-check text-[8px] text-emerald-400"></i> 최신 유지</span>`;
+                    ? `<div class="flex flex-col"><span class="text-[8px] text-slate-400 line-through">${item.initialDate}</span><span class="text-rose-300 font-semibold text-[10px]">${item.date}</span></div>`
+                    : `<span class="text-slate-300 text-[10px]">${item.date}</span>`;
 
                 tr.innerHTML = `
-                    <td class="py-2.5 px-2 text-center text-slate-500 text-[10px]">#${String(item.no).padStart(2, '0')}</td>
-                    <td class="py-2.5 px-3 font-bold ${item.isNewDetected ? 'text-rose-200' : 'text-slate-200'}">
-                        <div class="flex items-center gap-1.5 truncate max-w-[130px]">
-                            <i class="${item.icon} ${item.iconColor} text-xs shrink-0"></i>
-                            <span class="truncate text-xs">${item.isNewDetected ? '✔ ' : ''}${item.name}</span>
-                        </div>
-                    </td>
-                    <td class="py-2.5 px-2">${versionDisplay}</td>
+                    <td class="py-2.5 px-2 text-center text-slate-400 text-[10px]">#${String(item.no || index+1).padStart(2, '0')}</td>
+                    <td class="py-2.5 px-3 font-bold text-slate-100"><div class="flex items-center gap-1.5"><i class="${item.icon} ${item.iconColor} text-xs"></i><span class="text-xs">${item.name}</span></div></td>
+                    <td class="py-2.5 px-2"><button onclick="handleItemClick(utilitiesData.concat(emulatorsData).find(m=>m.id==='${item.id}'), getTagsPageUrl(utilitiesData.concat(emulatorsData).find(m=>m.id==='${item.id}')))" class="text-left hover:opacity-80 transition-opacity block">${versionDisplay}</button></td>
                     <td class="py-2.5 px-2">${dateDisplay}</td>
-                    <td class="py-2.5 px-2 text-center">${badge}</td>
-                    <td class="py-2.5 px-2 text-center text-purple-300 font-mono font-bold text-[10px]">${timeSinceUpdate}</td>
-                    <td class="py-2.5 px-2 text-center">
-                        <a href="${downloadUrl}" target="_blank" onclick="event.stopPropagation();" class="px-2 py-1 bg-sky-600/20 active:bg-sky-600/40 text-sky-300 border border-sky-500/40 rounded text-[10px] font-bold transition-colors inline-flex items-center gap-1">
-                            <i class="fa-solid fa-download text-[9px]"></i> 받기
-                        </a>
-                    </td>
-                    <td class="py-2.5 px-2 text-center">
-                        <a href="${tagsUrl}" target="_blank" onclick="event.stopPropagation();" class="p-1.5 text-slate-400 active:text-rose-400 transition-colors inline-block"><i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
-                    </td>
+                    <td class="py-2.5 px-2 text-center"><span class="px-2 py-0.5 rounded ${item.isNewDetected ? 'bg-rose-500/30 text-rose-300 border border-rose-500' : 'bg-emerald-500/20 text-emerald-300 border border-emerald-400'} text-[9px] font-bold">${item.isNewDetected ? '✔ 감지됨' : '최신 유지'}</span></td>
+                    <td class="py-2.5 px-2 text-center text-amber-300 font-mono font-bold text-[10px]">${daysText}</td>
+                    <td class="py-2.5 px-2 text-center"><button onclick="handleItemClick(utilitiesData.concat(emulatorsData).find(m=>m.id==='${item.id}'), getDownloadPageUrl(utilitiesData.concat(emulatorsData).find(m=>m.id==='${item.id}')))" class="px-2 py-1 bg-sky-600/20 text-sky-300 border border-sky-400 rounded text-[10px] font-bold">받기</button></td>
+                    <td class="py-2.5 px-2 text-center"><button onclick="handleItemClick(utilitiesData.concat(emulatorsData).find(m=>m.id==='${item.id}'), getTagsPageUrl(utilitiesData.concat(emulatorsData).find(m=>m.id==='${item.id}')))" class="px-2 py-1 bg-purple-600/20 text-purple-300 border border-purple-400 rounded text-[10px] font-bold">Tag</button></td>
                 `;
                 tbody.appendChild(tr);
             });
         }
 
-        function scrollToRecentDetections() {
-            switchTab('dashboard');
-            const searchInput = document.getElementById("searchInput");
-            if (searchInput) searchInput.focus();
-        }
+        function scrollToRecentDetections() { switchTab('dashboard'); document.getElementById("searchInput").focus(); }
     </script>
 </body>
 </html>
