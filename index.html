@@ -63,7 +63,6 @@
         
         .terminal-box { background: rgba(3, 6, 16, 0.96); font-family: 'JetBrains Mono', monospace; border: 1.5px solid rgba(56, 189, 248, 0.4); }
         
-        /* 플립 모션 무한반복 독립형 컨테이너 */
         .flight-ticker-container { overflow: hidden; position: relative; height: 36px; perspective: 400px; }
         .flight-ticker-track { display: flex; flex-direction: column; gap: 2px; will-change: transform; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
         .flip-item { transform-origin: center center; backface-visibility: hidden; height: 34px; display: flex; align-items: center; }
@@ -94,22 +93,40 @@
         </div>
     </div>
 
-    <!-- 효과음 선택 모달 창 -->
+    <!-- 효과음 & API 설정 통합 모달 창 -->
     <div id="sound-setting-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden flex items-center justify-center p-3">
         <div class="glass-panel border-pink-500 w-full max-w-sm rounded-2xl p-4 flex flex-col gap-3 shadow-[0_0_40px_rgba(236,72,153,0.5)] my-auto animate-scale-in font-mono">
             <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
                 <div class="flex items-center gap-2.5">
                     <div class="w-9 h-9 rounded-xl bg-pink-500/20 text-pink-400 border border-pink-500 flex items-center justify-center text-base shrink-0">
-                        <i class="fa-solid fa-music"></i>
+                        <i class="fa-solid fa-gear"></i>
                     </div>
                     <div>
-                        <h3 class="text-xs font-extrabold text-white">확장형 트렌디 효과음 (7종)</h3>
-                        <p class="text-[9px] text-pink-300">선택 즉시 풍부한 여운의 사운드 재생</p>
+                        <h3 class="text-xs font-extrabold text-white">워크스테이션 환경 설정</h3>
+                        <p class="text-[9px] text-pink-300">효과음 선택 및 GitHub API 토큰 관리</p>
                     </div>
                 </div>
                 <button onclick="closeSoundModal()" class="w-7 h-7 rounded-lg bg-slate-900 text-slate-400 hover:text-white border border-slate-700 flex items-center justify-center"><i class="fa-solid fa-xmark text-xs"></i></button>
             </div>
-            <div class="flex flex-col gap-2 max-h-[50vh] overflow-y-auto custom-scroll pr-1" id="sound-list-container"></div>
+            
+            <div class="text-[11px] font-bold text-slate-200 mt-1">🔊 트렌디 효과음 (7종)</div>
+            <div class="flex flex-col gap-2 max-h-[35vh] overflow-y-auto custom-scroll pr-1" id="sound-list-container"></div>
+            
+            <!-- GitHub Token 입력 구역 -->
+            <div class="mt-2 pt-3 border-t border-slate-800 flex flex-col gap-1.5">
+                <div class="flex items-center justify-between">
+                    <label class="text-[10px] font-bold text-sky-300 flex items-center gap-1">
+                        <i class="fa-brands fa-github"></i> GitHub Access Token
+                    </label>
+                    <span id="token-status-badge" class="text-[8px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded font-bold">미등록 (60회/h)</span>
+                </div>
+                <div class="flex gap-1.5">
+                    <input type="password" id="github-token-input" placeholder="ghp_xxxxxxxxxxxx" class="w-full bg-slate-950 border border-slate-700 text-xs rounded-xl px-2.5 py-2 text-slate-100 placeholder-slate-600 font-mono focus:outline-none focus:border-sky-400">
+                    <button onclick="saveGitHubToken()" class="px-3 py-2 bg-sky-600 hover:bg-sky-500 active:bg-sky-700 text-white font-bold text-xs rounded-xl shrink-0 shadow">저장</button>
+                </div>
+                <p class="text-[8px] text-slate-400 leading-tight">개인 토큰 등록 시 API 호출 한도가 시간당 5,000회로 확장됩니다.</p>
+            </div>
+
             <button onclick="closeSoundModal()" class="w-full py-2 bg-pink-600 active:bg-pink-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-pink-600/30 mt-1">확인 및 적용 완료</button>
         </div>
     </div>
@@ -170,7 +187,7 @@
                     <div class="min-w-0">
                         <div class="flex items-center gap-1.5 flex-wrap">
                             <h1 class="text-xs sm:text-sm font-extrabold tracking-tight text-white font-mono truncate">PS5 Core Enterprise Workstation</h1>
-                            <span class="text-[8px] font-mono bg-sky-500/20 text-sky-300 border border-sky-400 px-1.5 py-0.5 rounded font-bold">v12.0 API</span>
+                            <span class="text-[8px] font-mono bg-sky-500/20 text-sky-300 border border-sky-400 px-1.5 py-0.5 rounded font-bold">v12.1 Permanent</span>
                         </div>
                         <p class="text-[10px] text-slate-300 mt-0.5 truncate">실시간 GitHub API 릴리스 스캔 및 알림 워크스테이션</p>
                     </div>
@@ -214,19 +231,19 @@
                 </div>
             </div>
 
-            <!-- 2번째 카드: API 실시간 변경 감지 피드 (7일 자동 만료 무한 플립) -->
+            <!-- 2번째 카드: API 실시간 변경 감지 피드 (수동 해제 전까지 유지) -->
             <div id="card-detected" class="neon-pulse-card neon-pulse-rose card-artwork-bg p-3 flex flex-col justify-between min-h-[110px] cursor-pointer" onclick="scrollToRecentDetections()">
-                <div class="flex items-center justify-between text-xs text-rose-300 font-mono font-bold drop-shadow"><span><i class="fa-solid fa-satellite-dish animate-pulse"></i> API 변경 감지 피드 (7일이내)</span><span id="detected-badge-count" class="text-[10px] bg-rose-600 text-white px-2.5 py-0.5 rounded-full font-black animate-bounce shadow">0건 ✔ 확인</span></div>
+                <div class="flex items-center justify-between text-xs text-rose-300 font-mono font-bold drop-shadow"><span><i class="fa-solid fa-satellite-dish animate-pulse"></i> API 변경 감지 피드 (수동해제형)</span><span id="detected-badge-count" class="text-[10px] bg-rose-600 text-white px-2.5 py-0.5 rounded-full font-black animate-bounce shadow">0건 ✔ 확인</span></div>
                 <div class="flight-ticker-container my-1 bg-black/60 backdrop-blur-md p-1 rounded-lg border border-rose-500/40 shadow-inner">
                     <div id="card-detected-preview" class="flight-ticker-track"></div>
                 </div>
                 <div class="text-[9px] text-rose-300 font-mono flex items-center justify-between pt-0.5 border-t border-rose-950 drop-shadow"><span>플립 모션 무한반복 (1,2,1,2...)</span><span class="text-rose-400 font-black">보기 ➔</span></div>
             </div>
 
-            <!-- 3번째 카드: API 최근 업데이트 항목 (7일 자동 만료 무한 플립) -->
+            <!-- 3번째 카드: API 최근 업데이트 항목 (수동 해제 전까지 유지) -->
             <div class="neon-pulse-card neon-pulse-emerald p-3 flex flex-col justify-between min-h-[110px]">
                 <div class="flex items-center justify-between text-xs text-emerald-300 font-mono font-bold">
-                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-list-check"></i> API 최근 업데이트 항목 (7일이내)</span>
+                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-list-check"></i> API 최근 업데이트 항목 (수동해제형)</span>
                     <span id="recent-updated-badge-count" class="text-[10px] bg-emerald-600 text-white px-2.5 py-0.5 rounded-full font-black animate-bounce shadow">0건 ✔ 확인</span>
                 </div>
                 <div class="flight-ticker-container my-1 bg-slate-950 p-1 rounded-lg border border-emerald-900">
@@ -338,7 +355,7 @@
 
     <!-- MOBILE FLOATING ACTION DOCK -->
     <div class="fixed bottom-2.5 left-1/2 -translate-x-1/2 z-40 w-[94%] max-w-md bg-slate-950/95 backdrop-blur-xl border border-sky-400 rounded-2xl p-2 shadow-2xl flex items-center justify-around font-mono text-[10px]">
-        <button onclick="openSoundModal()" class="flex flex-col items-center gap-0.5 text-pink-300 p-1 font-bold"><i class="fa-solid fa-music text-sm"></i><span>효과음선택</span></button>
+        <button onclick="openSoundModal()" class="flex flex-col items-center gap-0.5 text-pink-300 p-1 font-bold"><i class="fa-solid fa-gear text-sm"></i><span>환경설정</span></button>
         <button onclick="fetchAllGitHubReleases()" class="flex flex-col items-center gap-0.5 text-sky-300 p-1 font-bold"><i class="fa-solid fa-rotate text-sm"></i><span>API동기화</span></button>
         <button onclick="toggleNotification()" class="flex flex-col items-center gap-0.5 text-amber-300 p-1 font-bold"><i class="fa-solid fa-bell text-sm"></i><span>알림</span></button>
         <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="flex flex-col items-center gap-0.5 text-slate-200 p-1 font-bold"><i class="fa-solid fa-arrow-up text-sm"></i><span>맨위로</span></button>
@@ -348,7 +365,6 @@
         let isNotificationEnabled = true;
         const TOTAL_SCAN_SECONDS = 3600;
         let remainingSeconds = TOTAL_SCAN_SECONDS;
-        const nowMs = Date.now();
         let pendingConfirmItem = null;
         let pendingLinkUrl = null;
 
@@ -387,24 +403,46 @@
             { id: "e9", no: 9, name: "ProsperoStore", icon: "fa-solid fa-bag-shopping", iconColor: "text-amber-400", owner: "darkxex", repo: "ProsperoStore", version: "v1.000.114", date: "2026-10-28", isNewDetected: true, initialVer: "v1.000.112", initialDate: "2026-10-25", patchNote: "✔ v1.000.114 최신릴리스 반영: 카테고리 필터링 속도 개선" }
         ];
 
-        // 7일(일주일) 자동 만료 체크 및 API 연동 함수
-        function checkAndUpdateExpiration() {
-            const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
-            const now = Date.now();
+        // GitHub 토큰 저장 및 관리
+        function saveGitHubToken() {
+            const inputEl = document.getElementById("github-token-input");
+            if (!inputEl) return;
+            const token = inputEl.value.trim();
+            const badge = document.getElementById("token-status-badge");
             
-            [...utilitiesData, ...emulatorsData].forEach(item => {
-                if (item.isNewDetected && item.date) {
-                    const releaseTime = new Date(item.date).getTime();
-                    if (now - releaseTime > SEVEN_DAYS_MS) {
-                        item.isNewDetected = false;
-                        item.initialVer = item.version;
-                        item.initialDate = item.date;
-                    }
+            if (token) {
+                localStorage.setItem("ps5_github_token", token);
+                if (badge) {
+                    badge.textContent = "등록됨 (5,000회/h)";
+                    badge.className = "text-[8px] bg-emerald-950 text-emerald-300 border border-emerald-500 px-1.5 py-0.5 rounded font-bold";
                 }
-            });
+                showInAppToast("GitHub 토큰 저장 완료", "API 시간당 제한이 5,000회로 확장되었습니다.");
+                logToTerminal("[API] GitHub Access Token이 정상적으로 저장됨", "INFO");
+            } else {
+                localStorage.removeItem("ps5_github_token");
+                if (badge) {
+                    badge.textContent = "미등록 (60회/h)";
+                    badge.className = "text-[8px] bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded font-bold";
+                }
+                showInAppToast("GitHub 토큰 해제", "기본 익명 요청(시간당 60회)으로 전환되었습니다.");
+                logToTerminal("[API] GitHub Access Token이 삭제됨", "WARN");
+            }
         }
 
-        // 실제 GitHub API를 호출하여 최신 릴리스 정보를 실시간으로 가져오는 함수
+        function loadSavedGitHubToken() {
+            const token = localStorage.getItem("ps5_github_token");
+            const inputEl = document.getElementById("github-token-input");
+            const badge = document.getElementById("token-status-badge");
+            if (token && inputEl) {
+                inputEl.value = token;
+                if (badge) {
+                    badge.textContent = "등록됨 (5,000회/h)";
+                    badge.className = "text-[8px] bg-emerald-950 text-emerald-300 border border-emerald-500 px-1.5 py-0.5 rounded font-bold";
+                }
+            }
+        }
+
+        // GitHub API 라이브 호출 (수동 해제 전까지 감지 상태 영구 유지)
         async function fetchAllGitHubReleases() {
             const progressModal = document.getElementById("sync-progress-modal");
             const progressBar = document.getElementById("sync-progress-bar");
@@ -416,13 +454,19 @@
             if (progressModal) progressModal.classList.remove("hidden");
             logToTerminal("[API] GitHub 릴리스 엔드포인트 라이브 스캔 시작...", "INFO");
 
+            const savedToken = localStorage.getItem("ps5_github_token");
+            const headers = {};
+            if (savedToken) {
+                headers["Authorization"] = `Bearer ${savedToken}`;
+            }
+
             const allItems = [...utilitiesData, ...emulatorsData];
             let completedCount = 0;
 
             for (let i = 0; i < allItems.length; i++) {
                 const item = allItems[i];
                 try {
-                    const res = await fetch(`https://api.github.com/repos/${item.owner}/${item.repo}/releases/latest`);
+                    const res = await fetch(`https://api.github.com/repos/${item.owner}/${item.repo}/releases/latest`, { headers });
                     if (res.ok) {
                         const data = await res.json();
                         const latestTag = data.tag_name || data.name;
@@ -434,17 +478,12 @@
                             item.date = pubDate;
                             item.patchNote = data.body ? data.body.substring(0, 120) + "..." : "GitHub API 최신 릴리스 동기화 완료";
                             
-                            // 7일 이내인 경우에만 자동으로 감지 상태(isNewDetected) 활성화
-                            const diffDays = (Date.now() - new Date(pubDate).getTime()) / (1000 * 3600 * 24);
-                            if (diffDays <= 7) {
-                                item.isNewDetected = true;
-                            }
-                            logToTerminal(`[API 업데이트 감지] ${item.name} -> ${latestTag} (${pubDate})`, "ALERT");
+                            // 사용자가 직접 확인 해제하기 전까지는 감지 상태(isNewDetected)를 계속 유지
+                            item.isNewDetected = true;
+                            logToTerminal(`[API 감지] ${item.name} -> ${latestTag} (${pubDate})`, "ALERT");
                         }
                     }
-                } catch (e) {
-                    // API 호출 제한 또는 네트워크 오류 시 기본 데이터 유지
-                }
+                } catch (e) {}
 
                 completedCount++;
                 const percent = Math.floor((completedCount / allItems.length) * 100);
@@ -457,7 +496,6 @@
                 if (progressModal) progressModal.classList.add("hidden");
                 if (syncIcon) syncIcon.classList.remove("fa-spin");
                 document.getElementById("last-sync-time").textContent = getCurrentTimeString();
-                checkAndUpdateExpiration();
                 updateUI();
                 logToTerminal("[API] 모든 릴리스 엔드포인트 동기화 완료", "INFO");
                 showInAppToast("API 동기화 완료", "GitHub 최신 릴리스가 반영되었습니다.");
@@ -518,7 +556,6 @@
             if (!body) return;
             body.innerHTML = "";
 
-            checkAndUpdateExpiration();
             const recentItems = [...utilitiesData, ...emulatorsData].filter(i => i.isNewDetected);
             if (countBadge) countBadge.textContent = `${recentItems.length}개 항목`;
 
@@ -676,26 +713,27 @@
             soundOptions.forEach(opt => {
                 const isSelected = currentSoundType === opt.id;
                 const itemDiv = document.createElement("div");
-                itemDiv.className = `p-3 rounded-xl border flex items-center justify-between cursor-pointer transition-all ${isSelected ? 'bg-pink-950 border-pink-400 text-white shadow-lg' : 'bg-slate-900 border-slate-700 text-slate-200 hover:border-slate-500'}`;
+                itemDiv.className = `p-2.5 rounded-xl border flex items-center justify-between cursor-pointer transition-all ${isSelected ? 'bg-pink-950 border-pink-400 text-white shadow-lg' : 'bg-slate-900 border-slate-700 text-slate-200 hover:border-slate-500'}`;
                 itemDiv.onclick = () => selectSound(opt.id);
 
                 itemDiv.innerHTML = `
-                    <div class="flex items-center gap-2.5">
-                        <div class="w-7 h-7 rounded-lg ${isSelected ? 'bg-pink-600 text-white' : 'bg-slate-800 text-slate-300'} flex items-center justify-center text-xs font-bold border border-pink-400">
+                    <div class="flex items-center gap-2">
+                        <div class="w-6 h-6 rounded-lg ${isSelected ? 'bg-pink-600 text-white' : 'bg-slate-800 text-slate-300'} flex items-center justify-center text-[10px] font-bold border border-pink-400">
                             <i class="fa-solid ${isSelected ? 'fa-check' : 'fa-music'}"></i>
                         </div>
                         <div>
-                            <h4 class="font-extrabold text-xs">${opt.name}</h4>
-                            <p class="text-[9px] text-slate-300">${opt.desc}</p>
+                            <h4 class="font-extrabold text-[11px]">${opt.name}</h4>
+                            <p class="text-[8px] text-slate-400">${opt.desc}</p>
                         </div>
                     </div>
-                    <span class="text-[10px] font-bold px-2 py-1 rounded ${isSelected ? 'bg-pink-600 text-white' : 'bg-slate-800 text-slate-300'}">${isSelected ? '적용됨' : '선택'}</span>
+                    <span class="text-[9px] font-bold px-2 py-0.5 rounded ${isSelected ? 'bg-pink-600 text-white' : 'bg-slate-800 text-slate-300'}">${isSelected ? '적용됨' : '선택'}</span>
                 `;
                 container.appendChild(itemDiv);
             });
 
+            loadSavedGitHubToken();
             modal.classList.remove("hidden");
-            logToTerminal("효과음 설정 대화상자 오픈", "INFO");
+            logToTerminal("환경설정 대화상자 오픈", "INFO");
         }
 
         function closeSoundModal() { document.getElementById("sound-setting-modal").classList.add("hidden"); }
@@ -704,8 +742,8 @@
             currentSoundType = soundId;
             playTadaSound();
             const selectedOpt = soundOptions.find(o => o.id === soundId);
-            showInAppToast("효과음 변경 완료", `[${selectedOpt.name}] 확장형 효과음이 적용되었습니다.`);
-            logToTerminal(`[효과음설정] 효과음이 '${selectedOpt.name}'(으)로 변경됨`, "ALERT");
+            showInAppToast("효과음 변경 완료", `[${selectedOpt.name}] 효과음이 적용되었습니다.`);
+            logToTerminal(`[효과음] '${selectedOpt.name}'(으)로 변경됨`, "ALERT");
             openSoundModal();
         }
 
@@ -724,7 +762,6 @@
             document.getElementById("last-sync-time").textContent = getCurrentTimeString();
             logToTerminal("[SYSTEM] PS5 Core Enterprise Workstation 부팅 완료", "INFO");
 
-            // 최초 접속 시 자동으로 GitHub API 라이브 스캔 실행
             setTimeout(() => { fetchAllGitHubReleases(); }, 800);
 
             setInterval(() => {
@@ -755,7 +792,7 @@
             const icon = document.getElementById("notif-icon");
             if (isNotificationEnabled) {
                 btnText.textContent = "알림 ON"; icon.className = "fa-solid fa-bell text-pink-400 text-xs";
-                playTadaSound(); showInAppToast("알림 설정", "확장형 효과음 및 알림 활성화됨");
+                playTadaSound(); showInAppToast("알림 설정", "효과음 및 알림 활성화됨");
                 logToTerminal("[알림] 사운드 및 알림 활성화됨", "INFO");
             } else {
                 btnText.textContent = "알림 OFF"; icon.className = "fa-solid fa-bell-slash text-slate-400 text-xs";
@@ -827,7 +864,6 @@
             if (!container) return;
             container.innerHTML = "";
             
-            checkAndUpdateExpiration();
             const recentItems = [...utilitiesData, ...emulatorsData].filter(i => i.isNewDetected);
             
             if (badgeEl) badgeEl.textContent = `${recentItems.length}건 ✔ 확인`;
@@ -871,7 +907,7 @@
                     track.style.transition = 'none';
                     tickerOffsetRecent = 0;
                     track.style.transform = `translateY(0px)`;
-                    setTimeout(() => { track.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'; }, 50);
+                    setTimeout(() => { track.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);'; }, 50);
                 } else {
                     track.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
                     track.style.transform = `translateY(-${tickerOffsetRecent}px)`;
@@ -880,7 +916,6 @@
         }, 2800);
 
         document.addEventListener("DOMContentLoaded", () => {
-            checkAndUpdateExpiration();
             updateUI();
             initializeAppSyncAndClock();
             const searchInput = document.getElementById("searchInput");
@@ -888,7 +923,6 @@
         });
 
         function updateUI() {
-            checkAndUpdateExpiration();
             const searchInput = document.getElementById("searchInput");
             const kw = searchInput ? searchInput.value.trim() : "";
             renderTable("utility-tbody", utilitiesData, kw);
