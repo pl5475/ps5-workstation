@@ -1,119 +1,87 @@
-name: Auto Update PS5 Releases data.json
-
-on:
-  schedule:
-    - cron: '0 * * * *'
-  workflow_dispatch:
-
-permissions:
-  contents: write
-
-jobs:
-  update-data:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      - name: Fetch Latest Releases and Generate data.json
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          node -e '
-          const fs = require("fs");
-          const https = require("https");
-
-          const modules = [
-              { id: "u1", owner: "itsPLK", repo: "ps5-y2jb-autoloader" },
-              { id: "u2", owner: "itsPLK", repo: "ps5-payload-manager" },
-              { id: "u3", owner: "drakmor", repo: "shadowMountPlus" },
-              { id: "u4", owner: "gasb07", repo: "ps4mount" },
-              { id: "u5", owner: "EchoStretch", repo: "kstuff-lite" },
-              { id: "u6", owner: "drakmor", repo: "nanoDNS" },
-              { id: "u7", owner: "itsPLK", repo: "ps5-webkit-autoloader" },
-              { id: "u8", owner: "ps5-payload-dev", repo: "ftpsrv" },
-              { id: "u9", owner: "itsPLK", repo: "ps5-pkg-manager" },
-              { id: "e1", owner: "mihawk-99", repo: "PS5_RetroArch" },
-              { id: "e2", owner: "MisterTemaki", repo: "snes9xPS5" },
-              { id: "e3", owner: "elripalda", repo: "Porpoise-Dolphin-Emulator-for-PS5" },
-              { id: "e4", owner: "premohq", repo: "PS5-ECAM" },
-              { id: "e5", owner: "MisterTemaki", repo: "fceummPS5" },
-              { id: "e6", owner: "MisterTemaki", repo: "fbneo-ps5" },
-              { id: "e7", owner: "blackbearreloaded", repo: "ProsperoEden" },
-              { id: "e8", owner: "kasobos67", repo: "SwitchLauncher" },
-              { id: "e9", owner: "darkxex", repo: "ProsperoStore" }
-          ];
-
-          function fetchGitHub(path) {
-              return new Promise((resolve) => {
-                  const options = {
-                      hostname: "api.github.com",
-                      path: path,
-                      headers: {
-                          "User-Agent": "Node.js-AutoFetcher",
-                          "Authorization": process.env.GITHUB_TOKEN ? `token ${process.env.GITHUB_TOKEN}` : ""
-                      }
-                  };
-                  https.get(options, (res) => {
-                      let data = "";
-                      res.on("data", chunk => data += chunk);
-                      res.on("end", () => {
-                          try {
-                              if (res.statusCode === 200) resolve(JSON.parse(data));
-                              else resolve(null);
-                          } catch (e) { resolve(null); }
-                      });
-                  }).on("error", () => resolve(null));
-              });
-          }
-
-          async function getLatestInfo(owner, repo) {
-              // 1. 전체 Releases 목록에서 최신 항목 확인 (Pre-release 및 Tag 포함 감지)
-              let releases = await fetchGitHub(`/repos/${owner}/${repo}/releases`);
-              if (releases && releases.length > 0) {
-                  const latest = releases[0];
-                  return {
-                      version: latest.tag_name || latest.name,
-                      date: latest.published_at ? latest.published_at.split("T")[0] : new Date().toISOString().split("T")[0]
-                  };
-              }
-              // 2. Release가 없는 경우 Tags 목록 확인
-              let tags = await fetchGitHub(`/repos/${owner}/${repo}/tags`);
-              if (tags && tags.length > 0) {
-                  return {
-                      version: tags[0].name,
-                      date: new Date().toISOString().split("T")[0]
-                  };
-              }
-              return null;
-          }
-
-          async function run() {
-              const results = [];
-              for (const mod of modules) {
-                  const info = await getLatestInfo(mod.owner, mod.repo);
-                  if (info) {
-                      results.push({
-                          id: mod.id,
-                          version: info.version,
-                          date: info.date
-                      });
-                  }
-                  await new Promise(r => setTimeout(r, 200));
-              }
-              fs.writeFileSync("data.json", JSON.stringify(results, null, 2));
-              console.log("data.json updated successfully.");
-          }
-          run();
-          '
-
-      - name: Commit and Push if data changed
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "🤖 Auto-update data.json with all releases/tags"
-          branch: main
+[
+  {
+    "id": "u1",
+    "version": "v1.0.4-35c4413",
+    "date": "2026-10-28"
+  },
+  {
+    "id": "u2",
+    "version": "v0.6.3",
+    "date": "2026-10-19"
+  },
+  {
+    "id": "u3",
+    "version": "1.7beta9",
+    "date": "2026-10-27"
+  },
+  {
+    "id": "u4",
+    "version": "v0.7.0",
+    "date": "2026-10-24"
+  },
+  {
+    "id": "u5",
+    "version": "v1.11",
+    "date": "2026-09-20"
+  },
+  {
+    "id": "u6",
+    "version": "0.4",
+    "date": "2026-08-04"
+  },
+  {
+    "id": "u7",
+    "version": "v0.6.2",
+    "date": "2026-10-28"
+  },
+  {
+    "id": "u8",
+    "version": "v0.21.1",
+    "date": "2026-08-20"
+  },
+  {
+    "id": "u9",
+    "version": "v1.5.1",
+    "date": "2026-10-10"
+  },
+  {
+    "id": "e1",
+    "version": "v4.0.0-beta-4",
+    "date": "2026-10-19"
+  },
+  {
+    "id": "e2",
+    "version": "v2.9",
+    "date": "2026-10-23"
+  },
+  {
+    "id": "e3",
+    "version": "v4.0",
+    "date": "2026-10-21"
+  },
+  {
+    "id": "e4",
+    "version": "v5.1.0",
+    "date": "2026-10-28"
+  },
+  {
+    "id": "e5",
+    "version": "v1.1",
+    "date": "2026-10-24"
+  },
+  {
+    "id": "e6",
+    "version": "v2.1",
+    "date": "2026-10-25"
+  },
+  {
+    "id": "e8",
+    "version": "v1.005.000",
+    "date": "2026-10-18"
+  },
+  {
+    "id": "e9",
+    "version": "v1.000.114",
+    "date": "2026-10-27"
+  }
+]
