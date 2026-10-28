@@ -214,19 +214,19 @@
                 </div>
             </div>
 
-            <!-- 2번째 카드: 독립형 무한 플립 모션 (변경 감지 피드) -->
+            <!-- 2번째 카드: 7일 자동 만료 무한 플립 모션 (변경 감지 피드) -->
             <div id="card-detected" class="neon-pulse-card neon-pulse-rose card-artwork-bg p-3 flex flex-col justify-between min-h-[110px] cursor-pointer" onclick="scrollToRecentDetections()">
-                <div class="flex items-center justify-between text-xs text-rose-300 font-mono font-bold drop-shadow"><span><i class="fa-solid fa-satellite-dish animate-pulse"></i> 변경 감지 피드</span><span id="detected-badge-count" class="text-[10px] bg-rose-600 text-white px-2.5 py-0.5 rounded-full font-black animate-bounce shadow">2건 ✔ 확인</span></div>
+                <div class="flex items-center justify-between text-xs text-rose-300 font-mono font-bold drop-shadow"><span><i class="fa-solid fa-satellite-dish animate-pulse"></i> 변경 감지 피드 (7일자동만료)</span><span id="detected-badge-count" class="text-[10px] bg-rose-600 text-white px-2.5 py-0.5 rounded-full font-black animate-bounce shadow">0건 ✔ 확인</span></div>
                 <div class="flight-ticker-container my-1 bg-black/60 backdrop-blur-md p-1 rounded-lg border border-rose-500/40 shadow-inner">
                     <div id="card-detected-preview" class="flight-ticker-track"></div>
                 </div>
                 <div class="text-[9px] text-rose-300 font-mono flex items-center justify-between pt-0.5 border-t border-rose-950 drop-shadow"><span>플립 모션 무한반복 (1,2,1,2...)</span><span class="text-rose-400 font-black">보기 ➔</span></div>
             </div>
 
-            <!-- 3번째 카드: 독립형 무한 플립 모션 (최근 업데이트 항목) -->
+            <!-- 3번째 카드: 7일 자동 만료 무한 플립 모션 (최근 업데이트 항목) -->
             <div class="neon-pulse-card neon-pulse-emerald p-3 flex flex-col justify-between min-h-[110px]">
                 <div class="flex items-center justify-between text-xs text-emerald-300 font-mono font-bold">
-                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-list-check"></i> 최근 업데이트 항목</span>
+                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-list-check"></i> 최근 업데이트 항목 (7일자동만료)</span>
                     <span id="recent-updated-badge-count" class="text-[10px] bg-emerald-600 text-white px-2.5 py-0.5 rounded-full font-black animate-bounce shadow">0건 ✔ 확인</span>
                 </div>
                 <div class="flight-ticker-container my-1 bg-slate-950 p-1 rounded-lg border border-emerald-900">
@@ -364,28 +364,45 @@
         ];
 
         let utilitiesData = [
-            { id: "u1", no: 1, name: "Y2JB-Autoloader", icon: "fa-solid fa-link", iconColor: "text-sky-300", owner: "itsPLK", repo: "ps5-y2jb-autoloader", version: "v1.0.3", date: "2026-10-20", lastUpdatedTime: nowMs - (4 * 3600 * 1000), isNewDetected: false, initialVer: "v1.0.3", initialDate: "2026-10-20", patchNote: "커널 익스플로잇 로더 백업 안정화 및 메모리 할당 최적화" },
-            { id: "u2", no: 2, name: "Payload_Manager", icon: "fa-solid fa-gear", iconColor: "text-slate-300", owner: "itsPLK", repo: "ps5-payload-manager", version: "v0.6.3", date: "2026-10-20", lastUpdatedTime: nowMs - (18 * 3600 * 1000), isNewDetected: false, initialVer: "v0.6.3", initialDate: "2026-10-20", patchNote: "페이로드 주입 성공률 99% 향상 및 예외처리 추가" },
-            { id: "u3", no: 3, name: "ShadowMountPlus", icon: "fa-solid fa-database", iconColor: "text-rose-400", owner: "drakmor", repo: "shadowMountPlus", version: "1.7beta9", date: "2026-10-28", lastUpdatedTime: nowMs - (15 * 60 * 1000), isNewDetected: true, initialVer: "1.7beta8", initialDate: "2026-10-26", patchNote: "✔ 1.7beta9 최신릴리스 반영: 백그라운드 마운트 안정성 강화" },
-            { id: "u4", no: 4, name: "PS4_Mount", icon: "fa-solid fa-folder-closed", iconColor: "text-amber-400", owner: "gasb07", repo: "ps4mount", version: "v0.7.0", date: "2026-10-25", lastUpdatedTime: nowMs - (2 * 86400 * 1000), isNewDetected: false, initialVer: "v0.7.0", initialDate: "2026-10-25", patchNote: "하위호환 이미지 읽기 패치 및 가상 디스크 속도 개선" },
-            { id: "u5", no: 5, name: "kstuff-lite", icon: "fa-solid fa-microchip", iconColor: "text-sky-300", owner: "EchoStretch", repo: "kstuff-lite", version: "v1.11", date: "2026-09-20", lastUpdatedTime: nowMs - (15 * 86400 * 1000), isNewDetected: false, initialVer: "v1.11", initialDate: "2026-09-20", patchNote: "FW 호환 패널 개편 및 디버그 심볼 정리" },
-            { id: "u6", no: 6, name: "nanoDNS", icon: "fa-solid fa-globe", iconColor: "text-rose-400", owner: "drakmor", repo: "nanoDNS", version: "0.4", date: "2026-08-04", lastUpdatedTime: nowMs - (42 * 86400 * 1000), isNewDetected: false, initialVer: "0.4", initialDate: "2026-08-04", patchNote: "업데이트 차단 DNS 테이블 갱신 및 응답 속도 최적화" },
-            { id: "u7", no: 7, name: "WebKit-Autoloader", icon: "fa-solid fa-code", iconColor: "text-indigo-400", owner: "itsPLK", repo: "ps5-webkit-autoloader", version: "v0.6.1", date: "2026-10-09", lastUpdatedTime: nowMs - (7 * 3600 * 1000), isNewDetected: false, initialVer: "v0.6.1", initialDate: "2026-10-09", patchNote: "웹킷 캐시 메모리 리크 수정 및 트리거 안정성 확보" },
-            { id: "u8", no: 8, name: "ftpsrv", icon: "fa-solid fa-network-wired", iconColor: "text-purple-400", owner: "ps5-payload-dev", repo: "ftpsrv", version: "v0.21.1", date: "2026-08-20", lastUpdatedTime: nowMs - (55 * 86400 * 1000), isNewDetected: false, initialVer: "v0.21.1", initialDate: "2026-08-20", patchNote: "초당 120MB 파일 전송 지원 및 멀티 세션 버그 수정" },
-            { id: "u9", no: 9, name: "PKG_Manager", icon: "fa-solid fa-box-archive", iconColor: "text-amber-400", owner: "itsPLK", repo: "ps5-pkg-manager", version: "v1.5.1", date: "2026-10-13", lastUpdatedTime: nowMs - (12 * 3600 * 1000), isNewDetected: false, initialVer: "v1.5.1", initialDate: "2026-10-13", patchNote: "대용량 패키지 분할 설치 개선 및 검증 로직 추가" }
+            { id: "u1", no: 1, name: "Y2JB-Autoloader", icon: "fa-solid fa-link", iconColor: "text-sky-300", owner: "itsPLK", repo: "ps5-y2jb-autoloader", version: "v1.0.3", date: "2026-10-20", isNewDetected: false, initialVer: "v1.0.3", initialDate: "2026-10-20", patchNote: "커널 익스플로잇 로더 백업 안정화 및 메모리 할당 최적화" },
+            { id: "u2", no: 2, name: "Payload_Manager", icon: "fa-solid fa-gear", iconColor: "text-slate-300", owner: "itsPLK", repo: "ps5-payload-manager", version: "v0.6.3", date: "2026-10-20", isNewDetected: false, initialVer: "v0.6.3", initialDate: "2026-10-20", patchNote: "페이로드 주입 성공률 99% 향상 및 예외처리 추가" },
+            { id: "u3", no: 3, name: "ShadowMountPlus", icon: "fa-solid fa-database", iconColor: "text-rose-400", owner: "drakmor", repo: "shadowMountPlus", version: "1.7beta9", date: "2026-10-28", isNewDetected: true, initialVer: "1.7beta8", initialDate: "2026-10-26", patchNote: "✔ 1.7beta9 최신릴리스 반영: 백그라운드 마운트 안정성 강화" },
+            { id: "u4", no: 4, name: "PS4_Mount", icon: "fa-solid fa-folder-closed", iconColor: "text-amber-400", owner: "gasb07", repo: "ps4mount", version: "v0.7.0", date: "2026-10-25", isNewDetected: false, initialVer: "v0.7.0", initialDate: "2026-10-25", patchNote: "하위호환 이미지 읽기 패치 및 가상 디스크 속도 개선" },
+            { id: "u5", no: 5, name: "kstuff-lite", icon: "fa-solid fa-microchip", iconColor: "text-sky-300", owner: "EchoStretch", repo: "kstuff-lite", version: "v1.11", date: "2026-09-20", isNewDetected: false, initialVer: "v1.11", initialDate: "2026-09-20", patchNote: "FW 호환 패널 개편 및 디버그 심볼 정리" },
+            { id: "u6", no: 6, name: "nanoDNS", icon: "fa-solid fa-globe", iconColor: "text-rose-400", owner: "drakmor", repo: "nanoDNS", version: "0.4", date: "2026-08-04", isNewDetected: false, initialVer: "0.4", initialDate: "2026-08-04", patchNote: "업데이트 차단 DNS 테이블 갱신 및 응답 속도 최적화" },
+            { id: "u7", no: 7, name: "WebKit-Autoloader", icon: "fa-solid fa-code", iconColor: "text-indigo-400", owner: "itsPLK", repo: "ps5-webkit-autoloader", version: "v0.6.1", date: "2026-10-09", isNewDetected: false, initialVer: "v0.6.1", initialDate: "2026-10-09", patchNote: "웹킷 캐시 메모리 리크 수정 및 트리거 안정성 확보" },
+            { id: "u8", no: 8, name: "ftpsrv", icon: "fa-solid fa-network-wired", iconColor: "text-purple-400", owner: "ps5-payload-dev", repo: "ftpsrv", version: "v0.21.1", date: "2026-08-20", isNewDetected: false, initialVer: "v0.21.1", initialDate: "2026-08-20", patchNote: "초당 120MB 파일 전송 지원 및 멀티 세션 버그 수정" },
+            { id: "u9", no: 9, name: "PKG_Manager", icon: "fa-solid fa-box-archive", iconColor: "text-amber-400", owner: "itsPLK", repo: "ps5-pkg-manager", version: "v1.5.1", date: "2026-10-13", isNewDetected: false, initialVer: "v1.5.1", initialDate: "2026-10-13", patchNote: "대용량 패키지 분할 설치 개선 및 검증 로직 추가" }
         ];
 
         let emulatorsData = [
-            { id: "e1", no: 1, name: "PS5_RetroArch", icon: "fa-solid fa-robot", iconColor: "text-sky-300", owner: "mihawk-99", repo: "PS5_RetroArch", version: "v4.0.0-beta-4", date: "2026-10-20", lastUpdatedTime: nowMs - (1 * 3600 * 1000), isNewDetected: false, initialVer: "v4.0.0-beta-4", initialDate: "2026-10-20", patchNote: "코어 모듈 프레임 스킵 지원 및 불칸 렌더러 최적화" },
-            { id: "e2", no: 2, name: "Snes9x", icon: "fa-solid fa-gamepad", iconColor: "text-purple-400", owner: "MisterTemaki", repo: "snes9xPS5", version: "v2.9", date: "2026-10-24", lastUpdatedTime: nowMs - (22 * 3600 * 1000), isNewDetected: false, initialVer: "v2.9", initialDate: "2026-10-24", patchNote: "SuperFX 칩셋 에뮬레이션 속도 향상 및 오디오 끊김 패치" },
-            { id: "e3", no: 3, name: "Porpoise-Dolphin", icon: "fa-solid fa-fish", iconColor: "text-sky-300", owner: "elripalda", repo: "Porpoise-Dolphin-Emulator-for-PS5", version: "v4.0", date: "2026-10-25", lastUpdatedTime: nowMs - (6 * 3600 * 1000), isNewDetected: false, initialVer: "v4.0", initialDate: "2026-10-25", patchNote: "GC/Wii GPU 파이프라인 버그 패치 및 쉐이더 컴파일 속도 개선" },
-            { id: "e4", no: 4, name: "ECAM", icon: "fa-solid fa-cube", iconColor: "text-rose-400", owner: "premohq", repo: "PS5-ECAM", version: "v5.0.1", date: "2026-10-22", lastUpdatedTime: nowMs - (3 * 86400 * 1000), isNewDetected: false, initialVer: "v5.0.1", initialDate: "2026-10-22", patchNote: "GBA 커스텀 오디오 필터 패치 및 입력 지연 감소" },
-            { id: "e5", no: 5, name: "fceummPS5", icon: "fa-solid fa-tv", iconColor: "text-rose-400", owner: "MisterTemaki", repo: "fceummPS5", version: "v1.3.0", date: "2026-10-11", lastUpdatedTime: nowMs - (16 * 86400 * 1000), isNewDetected: false, initialVer: "v1.3.0", initialDate: "2026-10-11", patchNote: "NES 팔레트 색상 렌더링 수정 및 매퍼 확장" },
-            { id: "e6", no: 6, name: "fbneo-PS5", icon: "fa-solid fa-gamepad", iconColor: "text-amber-400", owner: "MisterTemaki", repo: "fbneo-ps5", version: "v2.1", date: "2026-10-26", lastUpdatedTime: nowMs - (48 * 60 * 1000), isNewDetected: false, initialVer: "v2.1", initialDate: "2026-10-26", patchNote: "아케이드 CPS3 롬셋 호환성 확보 및 메모리 맵 재조정" },
-            { id: "e7", no: 7, name: "ProsperoEden", icon: "fa-solid fa-leaf", iconColor: "text-rose-400", owner: "blackbearreloaded", repo: "ProsperoEden", version: "v1.005.000", date: "2026-10-18", lastUpdatedTime: nowMs - (9 * 3600 * 1000), isNewDetected: false, initialVer: "v1.005.000", initialDate: "2026-10-18", patchNote: "3D 그래픽 쉐이더 캐싱 속도 개선 및 예외 핸들링 강화" },
-            { id: "e8", no: 8, name: "SwitchLauncher", icon: "fa-solid fa-toggle-on", iconColor: "text-rose-400", owner: "kasobos67", repo: "SwitchLauncher", version: "v1.005.000", date: "2026-10-19", lastUpdatedTime: nowMs - (11 * 3600 * 1000), isNewDetected: false, initialVer: "v1.005.000", initialDate: "2026-10-19", patchNote: "듀얼센스 햅틱 피드백 매핑 개선 및 설정 UI 반응성 향상" },
-            { id: "e9", no: 9, name: "ProsperoStore", icon: "fa-solid fa-bag-shopping", iconColor: "text-amber-400", owner: "darkxex", repo: "ProsperoStore", version: "v1.000.114", date: "2026-10-28", lastUpdatedTime: nowMs - (20 * 60 * 1000), isNewDetected: true, initialVer: "v1.000.112", initialDate: "2026-10-25", patchNote: "✔ v1.000.114 최신릴리스 반영: 카테고리 필터링 속도 개선" }
+            { id: "e1", no: 1, name: "PS5_RetroArch", icon: "fa-solid fa-robot", iconColor: "text-sky-300", owner: "mihawk-99", repo: "PS5_RetroArch", version: "v4.0.0-beta-4", date: "2026-10-20", isNewDetected: false, initialVer: "v4.0.0-beta-4", initialDate: "2026-10-20", patchNote: "코어 모듈 프레임 스킵 지원 및 불칸 렌더러 최적화" },
+            { id: "e2", no: 2, name: "Snes9x", icon: "fa-solid fa-gamepad", iconColor: "text-purple-400", owner: "MisterTemaki", repo: "snes9xPS5", version: "v2.9", date: "2026-10-24", isNewDetected: false, initialVer: "v2.9", initialDate: "2026-10-24", patchNote: "SuperFX 칩셋 에뮬레이션 속도 향상 및 오디오 끊김 패치" },
+            { id: "e3", no: 3, name: "Porpoise-Dolphin", icon: "fa-solid fa-fish", iconColor: "text-sky-300", owner: "elripalda", repo: "Porpoise-Dolphin-Emulator-for-PS5", version: "v4.0", date: "2026-10-25", isNewDetected: false, initialVer: "v4.0", initialDate: "2026-10-25", patchNote: "GC/Wii GPU 파이프라인 버그 패치 및 쉐이더 컴파일 속도 개선" },
+            { id: "e4", no: 4, name: "ECAM", icon: "fa-solid fa-cube", iconColor: "text-rose-400", owner: "premohq", repo: "PS5-ECAM", version: "v5.0.1", date: "2026-10-22", isNewDetected: false, initialVer: "v5.0.1", initialDate: "2026-10-22", patchNote: "GBA 커스텀 오디오 필터 패치 및 입력 지연 감소" },
+            { id: "e5", no: 5, name: "fceummPS5", icon: "fa-solid fa-tv", iconColor: "text-rose-400", owner: "MisterTemaki", repo: "fceummPS5", version: "v1.3.0", date: "2026-10-11", isNewDetected: false, initialVer: "v1.3.0", initialDate: "2026-10-11", patchNote: "NES 팔레트 색상 렌더링 수정 및 매퍼 확장" },
+            { id: "e6", no: 6, name: "fbneo-PS5", icon: "fa-solid fa-gamepad", iconColor: "text-amber-400", owner: "MisterTemaki", repo: "fbneo-ps5", version: "v2.1", date: "2026-10-26", isNewDetected: false, initialVer: "v2.1", initialDate: "2026-10-26", patchNote: "아케이드 CPS3 롬셋 호환성 확보 및 메모리 맵 재조정" },
+            { id: "e7", no: 7, name: "ProsperoEden", icon: "fa-solid fa-leaf", iconColor: "text-rose-400", owner: "blackbearreloaded", repo: "ProsperoEden", version: "v1.005.000", date: "2026-10-18", isNewDetected: false, initialVer: "v1.005.000", initialDate: "2026-10-18", patchNote: "3D 그래픽 쉐이더 캐싱 속도 개선 및 예외 핸들링 강화" },
+            { id: "e8", no: 8, name: "SwitchLauncher", icon: "fa-solid fa-toggle-on", iconColor: "text-rose-400", owner: "kasobos67", repo: "SwitchLauncher", version: "v1.005.000", date: "2026-10-19", isNewDetected: false, initialVer: "v1.005.000", initialDate: "2026-10-19", patchNote: "듀얼센스 햅틱 피드백 매핑 개선 및 설정 UI 반응성 향상" },
+            { id: "e9", no: 9, name: "ProsperoStore", icon: "fa-solid fa-bag-shopping", iconColor: "text-amber-400", owner: "darkxex", repo: "ProsperoStore", version: "v1.000.114", date: "2026-10-28", isNewDetected: true, initialVer: "v1.000.112", initialDate: "2026-10-25", patchNote: "✔ v1.000.114 최신릴리스 반영: 카테고리 필터링 속도 개선" }
         ];
+
+        // 7일(일주일)이 지난 감지 항목 자동 만료 처리 함수
+        function checkAndUpdateExpiration() {
+            const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
+            const now = Date.now();
+            
+            [...utilitiesData, ...emulatorsData].forEach(item => {
+                if (item.isNewDetected && item.date) {
+                    const releaseTime = new Date(item.date).getTime();
+                    if (now - releaseTime > SEVEN_DAYS_MS) {
+                        item.isNewDetected = false;
+                        item.initialVer = item.version;
+                        item.initialDate = item.date;
+                    }
+                }
+            });
+        }
 
         function getTagsPageUrl(item) { return `https://github.com/${item.owner}/${item.repo}/tags`; }
         function getDownloadPageUrl(item) { return `https://github.com/${item.owner}/${item.repo}/releases/latest`; }
@@ -441,6 +458,7 @@
             if (!body) return;
             body.innerHTML = "";
 
+            checkAndUpdateExpiration();
             const recentItems = [...utilitiesData, ...emulatorsData].filter(i => i.isNewDetected);
             if (countBadge) countBadge.textContent = `${recentItems.length}개 항목`;
 
@@ -764,7 +782,6 @@
             logToTerminal("터미널 로그가 초기화되었습니다.", "INFO");
         }
 
-        // 각 카드별 독립적인 무한 플립 순환 변수 및 함수
         let tickerOffsetDetected = 0;
         let tickerOffsetRecent = 0;
 
@@ -791,6 +808,8 @@
             const badgeEl = document.getElementById("recent-updated-badge-count");
             if (!container) return;
             container.innerHTML = "";
+            
+            checkAndUpdateExpiration();
             const recentItems = [...utilitiesData, ...emulatorsData].filter(i => i.isNewDetected);
             
             if (badgeEl) badgeEl.textContent = `${recentItems.length}건 ✔ 확인`;
@@ -806,7 +825,6 @@
             });
         }
 
-        // 독립된 개별 루프 인터벌로 2개 카드 모두 완벽하게 무한 반복동작 보장
         setInterval(() => {
             const track = document.getElementById('card-detected-preview');
             if (track && track.children.length >= 3) {
@@ -817,7 +835,7 @@
                     track.style.transition = 'none';
                     tickerOffsetDetected = 0;
                     track.style.transform = `translateY(0px)`;
-                    setTimeout(() => { track.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'; }, 50);
+                    setTimeout(() => { track.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);'; }, 50);
                 } else {
                     track.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
                     track.style.transform = `translateY(-${tickerOffsetDetected}px)`;
@@ -835,7 +853,7 @@
                     track.style.transition = 'none';
                     tickerOffsetRecent = 0;
                     track.style.transform = `translateY(0px)`;
-                    setTimeout(() => { track.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)'; }, 50);
+                    setTimeout(() => { track.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);'; }, 50);
                 } else {
                     track.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
                     track.style.transform = `translateY(-${tickerOffsetRecent}px)`;
@@ -844,6 +862,7 @@
         }, 2800);
 
         document.addEventListener("DOMContentLoaded", () => {
+            checkAndUpdateExpiration();
             updateUI();
             initializeAppSyncAndClock();
             const searchInput = document.getElementById("searchInput");
@@ -851,6 +870,7 @@
         });
 
         function updateUI() {
+            checkAndUpdateExpiration();
             const searchInput = document.getElementById("searchInput");
             const kw = searchInput ? searchInput.value.trim() : "";
             renderTable("utility-tbody", utilitiesData, kw);
