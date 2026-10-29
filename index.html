@@ -90,6 +90,7 @@
                 <div id="sync-progress-bar" class="bg-gradient-to-r from-sky-400 via-purple-500 to-pink-500 h-full w-0 transition-all duration-300"></div>
             </div>
             <div class="flex items-center justify-between w-full text-[10px] font-mono text-slate-300"><span>실시간 API 스캔</span><span id="sync-percent-text" class="text-sky-300 font-bold">0%</span></div>
+            <button onclick="forceCloseSyncModal()" class="mt-1 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-[10px] font-mono rounded-lg border border-slate-700">스캔 강제 닫기</button>
         </div>
     </div>
 
@@ -187,7 +188,7 @@
                     <div class="min-w-0">
                         <div class="flex items-center gap-1.5 flex-wrap">
                             <h1 class="text-xs sm:text-sm font-extrabold tracking-tight text-white font-mono truncate">PS5 Core Enterprise Workstation</h1>
-                            <span class="text-[8px] font-mono bg-sky-500/20 text-sky-300 border border-sky-400 px-1.5 py-0.5 rounded font-bold">v12.2 ProSync</span>
+                            <span class="text-[8px] font-mono bg-sky-500/20 text-sky-300 border border-sky-400 px-1.5 py-0.5 rounded font-bold">v12.8 ProSync</span>
                         </div>
                         <p class="text-[10px] text-slate-300 mt-0.5 truncate">실시간 GitHub API 릴리스 스캔 및 알림 워크스테이션</p>
                     </div>
@@ -367,6 +368,7 @@
         let remainingSeconds = TOTAL_SCAN_SECONDS;
         let pendingConfirmItem = null;
         let pendingLinkUrl = null;
+        let isSyncing = false;
 
         let currentSoundType = "cyber_chime";
         const soundOptions = [
@@ -379,11 +381,10 @@
             { id: "plasma_bell", name: "플라즈마 벨", desc: "청명하면서 길게 이어지는 딥 벨소리" }
         ];
 
-        // 정확한 깃허브 엔드포인트 전수 교정 데이터
-        let utilitiesData = [
+        let baseUtilitiesData = [
             { id: "u1", no: 1, name: "Y2JB-Autoloader", icon: "fa-solid fa-link", iconColor: "text-sky-300", owner: "itsPLK", repo: "ps5-y2jb-autoloader", version: "v1.0.3", date: "2026-10-20", isNewDetected: false, initialVer: "v1.0.3", initialDate: "2026-10-20", patchNote: "커널 익스플로잇 로더 백업 안정화 및 메모리 할당 최적화" },
             { id: "u2", no: 2, name: "Payload_Manager", icon: "fa-solid fa-gear", iconColor: "text-slate-300", owner: "itsPLK", repo: "ps5-payload-manager", version: "v0.6.3", date: "2026-10-20", isNewDetected: false, initialVer: "v0.6.3", initialDate: "2026-10-20", patchNote: "페이로드 주입 성공률 99% 향상 및 예외처리 추가" },
-            { id: "u3", no: 3, name: "ShadowMountPlus", icon: "fa-solid fa-database", iconColor: "text-rose-400", owner: "drakmor", repo: "shadowMountPlus", version: "1.7beta9", date: "2026-10-28", isNewDetected: true, initialVer: "1.7beta8", initialDate: "2026-10-26", patchNote: "✔ 1.7beta9 최신릴리스 반영: 백그라운드 마운트 안정성 강화" },
+            { id: "u3", no: 3, name: "ShadowMountPlus", icon: "fa-solid fa-database", iconColor: "text-rose-400", owner: "drakmor", repo: "shadowMountPlus", version: "1.7beta8", date: "2026-10-26", isNewDetected: true, initialVer: "1.7beta8", initialDate: "2026-10-26", patchNote: "백그라운드 마운트 안정성 강화" },
             { id: "u4", no: 4, name: "PS4_Mount", icon: "fa-solid fa-folder-closed", iconColor: "text-amber-400", owner: "gasb07", repo: "ps4mount", version: "v0.7.0", date: "2026-10-25", isNewDetected: false, initialVer: "v0.7.0", initialDate: "2026-10-25", patchNote: "하위호환 이미지 읽기 패치 및 가상 디스크 속도 개선" },
             { id: "u5", no: 5, name: "kstuff-lite", icon: "fa-solid fa-microchip", iconColor: "text-sky-300", owner: "EchoStretch", repo: "kstuff-lite", version: "v1.11", date: "2026-09-20", isNewDetected: false, initialVer: "v1.11", initialDate: "2026-09-20", patchNote: "FW 호환 패널 개편 및 디버그 심볼 정리" },
             { id: "u6", no: 6, name: "nanoDNS", icon: "fa-solid fa-globe", iconColor: "text-rose-400", owner: "drakmor", repo: "nanoDNS", version: "0.4", date: "2026-08-04", isNewDetected: false, initialVer: "0.4", initialDate: "2026-08-04", patchNote: "업데이트 차단 DNS 테이블 갱신 및 응답 속도 최적화" },
@@ -392,7 +393,7 @@
             { id: "u9", no: 9, name: "PKG_Manager", icon: "fa-solid fa-box-archive", iconColor: "text-amber-400", owner: "itsPLK", repo: "ps5-pkg-manager", version: "v1.5.1", date: "2026-10-13", isNewDetected: false, initialVer: "v1.5.1", initialDate: "2026-10-13", patchNote: "대용량 패키지 분할 설치 개선 및 검증 로직 추가" }
         ];
 
-        let emulatorsData = [
+        let baseEmulatorsData = [
             { id: "e1", no: 1, name: "PS5_RetroArch", icon: "fa-solid fa-robot", iconColor: "text-sky-300", owner: "mihawk-99", repo: "PS5_RetroArch", version: "v4.0.0-beta-4", date: "2026-10-20", isNewDetected: false, initialVer: "v4.0.0-beta-4", initialDate: "2026-10-20", patchNote: "코어 모듈 프레임 스킵 지원 및 불칸 렌더러 최적화" },
             { id: "e2", no: 2, name: "Snes9x", icon: "fa-solid fa-gamepad", iconColor: "text-purple-400", owner: "MisterTemaki", repo: "snes9xPS5", version: "v2.9", date: "2026-10-24", isNewDetected: false, initialVer: "v2.9", initialDate: "2026-10-24", patchNote: "SuperFX 칩셋 에뮬레이션 속도 향상 및 오디오 끊김 패치" },
             { id: "e3", no: 3, name: "Porpoise-Dolphin", icon: "fa-solid fa-fish", iconColor: "text-sky-300", owner: "elripalda", repo: "Porpoise-Dolphin-Emulator-for-PS5", version: "v4.0", date: "2026-10-25", isNewDetected: false, initialVer: "v4.0", initialDate: "2026-10-25", patchNote: "GC/Wii GPU 파이프라인 버그 패치 및 쉐이더 컴파일 속도 개선" },
@@ -401,10 +402,32 @@
             { id: "e6", no: 6, name: "fbneo-PS5", icon: "fa-solid fa-gamepad", iconColor: "text-amber-400", owner: "MisterTemaki", repo: "fbneo-ps5", version: "v2.1", date: "2026-10-26", isNewDetected: false, initialVer: "v2.1", initialDate: "2026-10-26", patchNote: "아케이드 CPS3 롬셋 호환성 확보 및 메모리 맵 재조정" },
             { id: "e7", no: 7, name: "ProsperoEden", icon: "fa-solid fa-leaf", iconColor: "text-rose-400", owner: "blackbearreloaded", repo: "ProsperoEden", version: "v1.005.000", date: "2026-10-18", isNewDetected: false, initialVer: "v1.005.000", initialDate: "2026-10-18", patchNote: "3D 그래픽 쉐이더 캐싱 속도 개선 및 예외 핸들링 강화" },
             { id: "e8", no: 8, name: "SwitchLauncher", icon: "fa-solid fa-toggle-on", iconColor: "text-rose-400", owner: "kasobos67", repo: "SwitchLauncher", version: "v1.005.000", date: "2026-10-19", isNewDetected: false, initialVer: "v1.005.000", initialDate: "2026-10-19", patchNote: "듀얼센스 햅틱 피드백 매핑 개선 및 설정 UI 반응성 향상" },
-            { id: "e9", no: 9, name: "ProsperoStore", icon: "fa-solid fa-bag-shopping", iconColor: "text-amber-400", owner: "darkxex", repo: "ProsperoStore", version: "v1.000.114", date: "2026-10-28", isNewDetected: true, initialVer: "v1.000.112", initialDate: "2026-10-25", patchNote: "✔ v1.000.114 최신릴리스 반영: 카테고리 필터링 속도 개선" }
+            { id: "e9", no: 9, name: "ProsperoStore", icon: "fa-solid fa-bag-shopping", iconColor: "text-amber-400", owner: "darkxex", repo: "ProsperoStore", version: "v1.000.112", date: "2026-10-25", isNewDetected: true, initialVer: "v1.000.112", initialDate: "2026-10-25", patchNote: "카테고리 필터링 속도 개선" }
         ];
 
-        // GitHub 토큰 저장 및 관리
+        let utilitiesData = JSON.parse(JSON.stringify(baseUtilitiesData));
+        let emulatorsData = JSON.parse(JSON.stringify(baseEmulatorsData));
+
+        // 로컬 스토리지에서 사용자 확정/수동보정 데이터 불러오기
+        function loadSavedDataFromStorage() {
+            try {
+                const savedUtil = localStorage.getItem("ps5_saved_utilities");
+                const savedEmu = localStorage.getItem("ps5_saved_emulators");
+                if (savedUtil) utilitiesData = JSON.parse(savedUtil);
+                if (savedEmu) emulatorsData = JSON.parse(savedEmu);
+            } catch (e) {}
+        }
+
+        // 로컬 스토리지에 현재 상태 영구 저장
+        function persistDataToStorage() {
+            try {
+                localStorage.setItem("ps5_saved_utilities", JSON.stringify(utilitiesData));
+                localStorage.setItem("ps5_saved_emulators", JSON.stringify(emulatorsData));
+            } catch (e) {}
+        }
+
+        loadSavedDataFromStorage();
+
         function saveGitHubToken() {
             const inputEl = document.getElementById("github-token-input");
             if (!inputEl) return;
@@ -443,8 +466,10 @@
             }
         }
 
-        // 고도화된 GitHub API 라이브 호출 스캐너 (Releases + Tags 듀얼 스캔 모드)
         async function fetchAllGitHubReleases() {
+            if (isSyncing) return;
+            isSyncing = true;
+
             const progressModal = document.getElementById("sync-progress-modal");
             const progressBar = document.getElementById("sync-progress-bar");
             const percentText = document.getElementById("sync-percent-text");
@@ -455,13 +480,16 @@
             if (progressModal) progressModal.classList.remove("hidden");
             logToTerminal("[API Engine] 듀얼 릴리스/태그 엔드포인트 라이브 스캔 가동...", "INFO");
 
+            const safetyTimer = setTimeout(() => {
+                if (progressModal && !progressModal.classList.contains("hidden")) {
+                    forceCloseSyncModal();
+                    logToTerminal("[API Engine] 타임아웃 발생으로 스캔 강제 종료됨", "WARN");
+                }
+            }, 12000);
+
             const savedToken = localStorage.getItem("ps5_github_token");
-            const headers = {
-                "Accept": "application/vnd.github.v3+json"
-            };
-            if (savedToken) {
-                headers["Authorization"] = `Bearer ${savedToken}`;
-            }
+            const headers = { "Accept": "application/vnd.github.v3+json" };
+            if (savedToken) { headers["Authorization"] = `Bearer ${savedToken}`; }
 
             const allItems = [...utilitiesData, ...emulatorsData];
             let completedCount = 0;
@@ -473,16 +501,13 @@
                 let patchNote = "GitHub API 최신 동기화 완료";
 
                 try {
-                    // 1차 시도: /releases/latest 조회
                     let res = await fetch(`https://api.github.com/repos/${item.owner}/${item.repo}/releases/latest`, { headers });
-                    
                     if (res.ok) {
                         const data = await res.json();
                         latestTag = data.tag_name || data.name;
                         pubDate = data.published_at ? data.published_at.split('T')[0] : item.date;
                         if (data.body) patchNote = data.body.substring(0, 120) + "...";
                     } else {
-                        // 2차 폴백: Releases가 없을 경우 /tags 조회하여 최신 태그 추출
                         let tagRes = await fetch(`https://api.github.com/repos/${item.owner}/${item.repo}/tags`, { headers });
                         if (tagRes.ok) {
                             const tagsData = await tagRes.json();
@@ -493,16 +518,13 @@
                         }
                     }
 
-                    // 버전 변경 감지 시 업데이트 적용
-                    if (latestTag && latestTag !== item.version) {
-                        item.initialVer = item.version;
+                    if (latestTag && latestTag !== item.version && latestTag !== item.initialVer) {
                         item.version = latestTag;
                         item.date = pubDate;
                         item.patchNote = patchNote;
-                        item.isNewDetected = true; // 수동 해제 전까지 유지
+                        item.isNewDetected = true;
                         logToTerminal(`[최신 감지 성공] ${item.name} ➔ ${latestTag} (${pubDate})`, "ALERT");
                     }
-
                 } catch (e) {
                     logToTerminal(`[스캔 예외] ${item.name} 교신 중 에러 발생`, "WARN");
                 }
@@ -514,14 +536,26 @@
                 if (stepText) stepText.textContent = `노드 동기화 중 (${completedCount}/${allItems.length}): ${item.name}`;
             }
 
+            clearTimeout(safetyTimer);
             setTimeout(() => {
                 if (progressModal) progressModal.classList.add("hidden");
                 if (syncIcon) syncIcon.classList.remove("fa-spin");
                 document.getElementById("last-sync-time").textContent = getCurrentTimeString();
+                persistDataToStorage();
                 updateUI();
+                isSyncing = false;
                 logToTerminal("[API Engine] 전 정밀 엔드포인트 라이브 스캔 완료", "INFO");
                 showInAppToast("API 동기화 완료", "GitHub 최신 버전 데이터가 동기화되었습니다.");
             }, 500);
+        }
+
+        function forceCloseSyncModal() {
+            const progressModal = document.getElementById("sync-progress-modal");
+            const syncIcon = document.getElementById("sync-icon");
+            if (progressModal) progressModal.classList.add("hidden");
+            if (syncIcon) syncIcon.classList.remove("fa-spin");
+            isSyncing = false;
+            updateUI();
         }
 
         function getTagsPageUrl(item) { return `https://github.com/${item.owner}/${item.repo}/tags`; }
@@ -559,6 +593,10 @@
                 pendingConfirmItem.initialVer = pendingConfirmItem.version;
                 pendingConfirmItem.initialDate = pendingConfirmItem.date;
                 pendingConfirmItem.isNewDetected = false;
+                
+                // 영구 저장 처리
+                persistDataToStorage();
+
                 showInAppToast("최신 유지 상태로 전환됨", `[${pendingConfirmItem.name}] 모듈의 업데이트 확인이 해제되었습니다.`);
                 logToTerminal(`[최신유지전환] ${pendingConfirmItem.name} (${pendingConfirmItem.version}) 확인 해제됨`, "WARN");
                 updateUI();
@@ -784,7 +822,7 @@
             document.getElementById("last-sync-time").textContent = getCurrentTimeString();
             logToTerminal("[SYSTEM] PS5 Core Enterprise Workstation 부팅 완료", "INFO");
 
-            setTimeout(() => { fetchAllGitHubReleases(); }, 800);
+            updateUI();
 
             setInterval(() => {
                 const cardClockEl = document.getElementById("card-live-clock");
@@ -972,6 +1010,7 @@
             target.version = document.getElementById(`override-ver-${id}`).value.trim() || target.version;
             target.date = document.getElementById(`override-date-${id}`).value.trim() || target.date;
             target.isNewDetected = true;
+            persistDataToStorage();
             showInAppToast("수동 보정 반영", `${target.name}: ${target.version}`);
             logToTerminal(`[수동보정] ${target.name} -> ${target.version}`, "WARN");
             updateUI();
@@ -983,13 +1022,17 @@
                 const d = document.getElementById(`override-date-${item.id}`);
                 if (v && d) { item.version = v.value.trim() || item.version; item.date = d.value.trim() || item.date; item.isNewDetected = true; }
             });
+            persistDataToStorage();
             showInAppToast("전체 지정 저장", "수동 저장 완료");
             logToTerminal("[수동보정] 전체 항목 재지정 완료", "WARN");
             updateUI(); switchTab('dashboard');
         }
 
         function resetAllOverrides() {
-            [...utilitiesData, ...emulatorsData].forEach(item => { item.version = item.initialVer; item.date = item.initialDate; item.isNewDetected = false; });
+            utilitiesData = JSON.parse(JSON.stringify(baseUtilitiesData));
+            emulatorsData = JSON.parse(JSON.stringify(baseEmulatorsData));
+            localStorage.removeItem("ps5_saved_utilities");
+            localStorage.removeItem("ps5_saved_emulators");
             showInAppToast("상태 초기화", "모든 버전 복원됨");
             logToTerminal("[초기화] 모든 모듈 버전이 초기값으로 복원됨", "INFO");
             updateUI();
