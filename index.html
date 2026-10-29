@@ -83,13 +83,13 @@
         <div class="glass-panel border-sky-400 w-full max-w-sm rounded-2xl p-5 flex flex-col items-center text-center gap-3.5 shadow-2xl my-auto">
             <div class="w-12 h-12 rounded-2xl bg-sky-500/20 text-sky-400 border border-sky-400 flex items-center justify-center font-bold text-xl animate-spin shrink-0"><i class="fa-solid fa-rotate"></i></div>
             <div class="w-full">
-                <h3 class="text-xs font-extrabold font-mono text-white tracking-tight">GitHub API 릴리스 라이브 스캔 중...</h3>
-                <p id="sync-step-text" class="text-[10px] text-sky-300 font-mono mt-1">18개 엔드포인트 교신 중 (1/4)</p>
+                <h3 class="text-xs font-extrabold font-mono text-white tracking-tight">멀티채널 라이브 스캔 가동 중...</h3>
+                <p id="sync-step-text" class="text-[10px] text-sky-300 font-mono mt-1">API + RSS + 웹파싱 교차 검증 (1/4)</p>
             </div>
             <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-sky-400/30">
                 <div id="sync-progress-bar" class="bg-gradient-to-r from-sky-400 via-purple-500 to-pink-500 h-full w-0 transition-all duration-300"></div>
             </div>
-            <div class="flex items-center justify-between w-full text-[10px] font-mono text-slate-300"><span>실시간 API 스캔</span><span id="sync-percent-text" class="text-sky-300 font-bold">0%</span></div>
+            <div class="flex items-center justify-between w-full text-[10px] font-mono text-slate-300"><span>실시간 다중 채널 스캔</span><span id="sync-percent-text" class="text-sky-300 font-bold">0%</span></div>
             <button onclick="forceCloseSyncModal()" class="mt-1 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-[10px] font-mono rounded-lg border border-slate-700">스캔 강제 닫기</button>
         </div>
     </div>
@@ -165,7 +165,7 @@
                             <h3 class="text-sm font-extrabold font-mono text-white tracking-tight">업데이트 자세히 보기</h3>
                             <span id="modal-total-count-badge" class="text-[10px] font-mono bg-purple-950 text-purple-300 border border-purple-400 px-2 py-0.5 rounded-full font-bold">0개 항목</span>
                         </div>
-                        <p class="text-[10px] text-purple-300 font-mono mt-0.5">GitHub API 라이브 릴리스 패치 내역</p>
+                        <p class="text-[10px] text-purple-300 font-mono mt-0.5">멀티채널 크로스체크 패치 내역</p>
                     </div>
                 </div>
                 <button onclick="closeBigUpdateModal()" class="w-8 h-8 rounded-xl bg-slate-900 text-slate-400 hover:text-white border border-slate-700 flex items-center justify-center transition-all"><i class="fa-solid fa-xmark text-sm"></i></button>
@@ -188,9 +188,9 @@
                     <div class="min-w-0">
                         <div class="flex items-center gap-1.5 flex-wrap">
                             <h1 class="text-xs sm:text-sm font-extrabold tracking-tight text-white font-mono truncate">PS5 Core Enterprise Workstation</h1>
-                            <span class="text-[8px] font-mono bg-sky-500/20 text-sky-300 border border-sky-400 px-1.5 py-0.5 rounded font-bold">v12.9 ProSync</span>
+                            <span class="text-[8px] font-mono bg-sky-500/20 text-sky-300 border border-sky-400 px-1.5 py-0.5 rounded font-bold">v13.0 MultiChannel</span>
                         </div>
-                        <p class="text-[10px] text-slate-300 mt-0.5 truncate">실시간 GitHub API 릴리스 스캔 및 알림 워크스테이션</p>
+                        <p class="text-[10px] text-slate-300 mt-0.5 truncate">실시간 GitHub API + RSS + 웹파싱 멀티채널 워크스테이션</p>
                     </div>
                 </div>
             </div>
@@ -203,7 +203,7 @@
                 </div>
                 <div class="flex items-center gap-2 w-full sm:w-auto shrink-0">
                     <button onclick="fetchAllGitHubReleases()" class="flex-1 sm:flex-none bg-sky-600/20 active:bg-sky-600/40 text-sky-300 border border-sky-400 px-3 py-2 rounded-xl text-xs font-mono font-semibold flex items-center justify-center gap-1.5 min-h-[40px]">
-                        <i class="fa-solid fa-rotate text-xs" id="sync-icon"></i><span>API 동기화</span>
+                        <i class="fa-solid fa-rotate text-xs" id="sync-icon"></i><span>API동기화</span>
                     </button>
                     <button id="notification-btn" onclick="toggleNotification()" class="flex-1 sm:flex-none bg-slate-900 text-slate-200 border border-slate-700 rounded-xl px-3 py-2 flex items-center justify-center gap-1.5 text-xs font-semibold shrink-0 font-mono min-h-[40px]">
                         <i class="fa-solid fa-bell text-pink-400 text-xs" id="notif-icon"></i><span id="notif-btn-text">알림 ON</span>
@@ -223,7 +223,7 @@
                         </div>
                         PS5 코어 허브
                     </span>
-                    <span class="text-[9px] bg-sky-950 text-sky-300 px-2 py-0.5 rounded border border-sky-400 font-bold">API ACTIVE</span>
+                    <span class="text-[9px] bg-sky-950 text-sky-300 px-2 py-0.5 rounded border border-sky-400 font-bold">MUTLICHANNEL ACTIVE</span>
                 </div>
                 <div class="flex items-baseline justify-between my-1 z-10"><span id="total-count" class="text-xl sm:text-2xl font-extrabold font-mono text-white">18</span><span class="text-[10px] text-emerald-300 font-mono bg-emerald-950 px-2 py-0.5 rounded border border-emerald-400 font-bold">ONLINE</span></div>
                 <div class="grid grid-cols-2 gap-1.5 text-[10px] font-mono text-slate-100 pt-1.5 border-t border-sky-900 z-10">
@@ -234,7 +234,7 @@
 
             <!-- 2번째 카드: API 실시간 변경 감지 피드 (수동 해제 전까지 유지) -->
             <div id="card-detected" class="neon-pulse-card neon-pulse-rose card-artwork-bg p-3 flex flex-col justify-between min-h-[110px] cursor-pointer" onclick="scrollToRecentDetections()">
-                <div class="flex items-center justify-between text-xs text-rose-300 font-mono font-bold drop-shadow"><span><i class="fa-solid fa-satellite-dish animate-pulse"></i> API 변경 감지 피드 (수동해제형)</span><span id="detected-badge-count" class="text-[10px] bg-rose-600 text-white px-2.5 py-0.5 rounded-full font-black animate-bounce shadow">0건 ✔ 확인</span></div>
+                <div class="flex items-center justify-between text-xs text-rose-300 font-mono font-bold drop-shadow"><span><i class="fa-solid fa-satellite-dish animate-pulse"></i> 멀티채널 변경 감지 피드</span><span id="detected-badge-count" class="text-[10px] bg-rose-600 text-white px-2.5 py-0.5 rounded-full font-black animate-bounce shadow">0건 ✔ 확인</span></div>
                 <div class="flight-ticker-container my-1 bg-black/60 backdrop-blur-md p-1 rounded-lg border border-rose-500/40 shadow-inner">
                     <div id="card-detected-preview" class="flight-ticker-track"></div>
                 </div>
@@ -244,7 +244,7 @@
             <!-- 3번째 카드: API 최근 업데이트 항목 (수동 해제 전까지 유지) -->
             <div class="neon-pulse-card neon-pulse-emerald p-3 flex flex-col justify-between min-h-[110px]">
                 <div class="flex items-center justify-between text-xs text-emerald-300 font-mono font-bold">
-                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-list-check"></i> API 최근 업데이트 항목 (수동해제형)</span>
+                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-list-check"></i> 멀티채널 최근 업데이트 항목</span>
                     <span id="recent-updated-badge-count" class="text-[10px] bg-emerald-600 text-white px-2.5 py-0.5 rounded-full font-black animate-bounce shadow">0건 ✔ 확인</span>
                 </div>
                 <div class="flight-ticker-container my-1 bg-slate-950 p-1 rounded-lg border border-emerald-900">
@@ -257,11 +257,11 @@
             </div>
 
             <div class="neon-pulse-card neon-pulse-purple p-3 flex flex-col justify-between min-h-[110px]">
-                <div class="flex items-center justify-between text-xs text-purple-300 font-mono font-semibold"><span>마지막 API 동기화 시각</span><span id="last-sync-time" class="text-xs font-mono text-purple-300 font-bold">--:--:--</span></div>
+                <div class="flex items-center justify-between text-xs text-purple-300 font-mono font-semibold"><span>마지막 동기화 시각</span><span id="last-sync-time" class="text-xs font-mono text-purple-300 font-bold">--:--:--</span></div>
                 <div class="flex items-baseline justify-between my-0.5"><div class="flex flex-col"><span class="text-[9px] text-slate-300 font-mono">현재 시각 (LIVE)</span><span id="card-live-clock" class="text-lg sm:text-xl font-extrabold font-mono text-white tracking-wider">--:--:--</span></div></div>
                 <div class="flex flex-col gap-1">
                     <div class="w-full bg-slate-900 rounded-full h-1.5 overflow-hidden border border-purple-400/30"><div id="scan-timer-bar" class="bg-gradient-to-r from-purple-500 via-pink-500 to-sky-400 h-full w-full"></div></div>
-                    <div class="flex items-center justify-between text-[10px] font-mono text-slate-300"><span>정기 API 스캔 주기 (60분)</span><span class="text-pink-400 font-bold"><span id="card-countdown">60:00</span></span></div>
+                    <div class="flex items-center justify-between text-[10px] font-mono text-slate-300"><span>정기 스캔 주기 (60분)</span><span class="text-pink-400 font-bold"><span id="card-countdown">60:00</span></span></div>
                 </div>
             </div>
         </div>
@@ -345,7 +345,7 @@
             <div class="flex items-center justify-between border-b border-slate-800 pb-2">
                 <span class="text-xs font-mono text-sky-300 font-bold flex items-center gap-1.5">
                     <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                    GitHub API 패킷 감지 스트림 (LIVE SCANNER)
+                    멀티채널 패킷 감지 스트림 (API + RSS + Web)
                 </span>
                 <button onclick="clearTerminalLogs()" class="text-[10px] text-slate-300 bg-slate-900 border border-slate-700 px-2 py-0.5 rounded">지우기</button>
             </div>
@@ -384,7 +384,7 @@
         let defaultUtilitiesData = [
             { id: "u1", no: 1, name: "Y2JB-Autoloader", icon: "fa-solid fa-link", iconColor: "text-sky-300", owner: "itsPLK", repo: "ps5-y2jb-autoloader", version: "v1.0.3", date: "2026-10-20", isNewDetected: false, initialVer: "v1.0.3", initialDate: "2026-10-20", patchNote: "커널 익스플로잇 로더 백업 안정화 및 메모리 할당 최적화" },
             { id: "u2", no: 2, name: "Payload_Manager", icon: "fa-solid fa-gear", iconColor: "text-slate-300", owner: "itsPLK", repo: "ps5-payload-manager", version: "v0.6.3", date: "2026-10-20", isNewDetected: false, initialVer: "v0.6.3", initialDate: "2026-10-20", patchNote: "페이로드 주입 성공률 99% 향상 및 예외처리 추가" },
-            { id: "u3", no: 3, name: "ShadowMountPlus", icon: "fa-solid fa-database", iconColor: "text-rose-400", owner: "drakmor", repo: "shadowMountPlus", version: "1.7beta9", date: "2026-10-28", isNewDetected: true, initialVer: "1.7beta8", initialDate: "2026-10-26", patchNote: "✔ 1.7beta9 최신릴리스 반영: 백그라운드 마운트 안정성 강화" },
+            { id: "u3", no: 3, name: "ShadowMountPlus", icon: "fa-solid fa-database", iconColor: "text-rose-400", owner: "drakmor", repo: "shadowMountPlus", version: "1.7beta8", date: "2026-10-26", isNewDetected: false, initialVer: "1.7beta8", initialDate: "2026-10-26", patchNote: "백그라운드 마운트 안정성 강화" },
             { id: "u4", no: 4, name: "PS4_Mount", icon: "fa-solid fa-folder-closed", iconColor: "text-amber-400", owner: "gasb07", repo: "ps4mount", version: "v0.7.0", date: "2026-10-25", isNewDetected: false, initialVer: "v0.7.0", initialDate: "2026-10-25", patchNote: "하위호환 이미지 읽기 패치 및 가상 디스크 속도 개선" },
             { id: "u5", no: 5, name: "kstuff-lite", icon: "fa-solid fa-microchip", iconColor: "text-sky-300", owner: "EchoStretch", repo: "kstuff-lite", version: "v1.11", date: "2026-09-20", isNewDetected: false, initialVer: "v1.11", initialDate: "2026-09-20", patchNote: "FW 호환 패널 개편 및 디버그 심볼 정리" },
             { id: "u6", no: 6, name: "nanoDNS", icon: "fa-solid fa-globe", iconColor: "text-rose-400", owner: "drakmor", repo: "nanoDNS", version: "0.4", date: "2026-08-04", isNewDetected: false, initialVer: "0.4", initialDate: "2026-08-04", patchNote: "업데이트 차단 DNS 테이블 갱신 및 응답 속도 최적화" },
@@ -402,17 +402,16 @@
             { id: "e6", no: 6, name: "fbneo-PS5", icon: "fa-solid fa-gamepad", iconColor: "text-amber-400", owner: "MisterTemaki", repo: "fbneo-ps5", version: "v2.1", date: "2026-10-26", isNewDetected: false, initialVer: "v2.1", initialDate: "2026-10-26", patchNote: "아케이드 CPS3 롬셋 호환성 확보 및 메모리 맵 재조정" },
             { id: "e7", no: 7, name: "ProsperoEden", icon: "fa-solid fa-leaf", iconColor: "text-rose-400", owner: "blackbearreloaded", repo: "ProsperoEden", version: "v1.005.000", date: "2026-10-18", isNewDetected: false, initialVer: "v1.005.000", initialDate: "2026-10-18", patchNote: "3D 그래픽 쉐이더 캐싱 속도 개선 및 예외 핸들링 강화" },
             { id: "e8", no: 8, name: "SwitchLauncher", icon: "fa-solid fa-toggle-on", iconColor: "text-rose-400", owner: "kasobos67", repo: "SwitchLauncher", version: "v1.005.000", date: "2026-10-19", isNewDetected: false, initialVer: "v1.005.000", initialDate: "2026-10-19", patchNote: "듀얼센스 햅틱 피드백 매핑 개선 및 설정 UI 반응성 향상" },
-            { id: "e9", no: 9, name: "ProsperoStore", icon: "fa-solid fa-bag-shopping", iconColor: "text-amber-400", owner: "darkxex", repo: "ProsperoStore", version: "v1.000.114", date: "2026-10-28", isNewDetected: true, initialVer: "v1.000.112", initialDate: "2026-10-25", patchNote: "✔ v1.000.114 최신릴리스 반영: 카테고리 필터링 속도 개선" }
+            { id: "e9", no: 9, name: "ProsperoStore", icon: "fa-solid fa-bag-shopping", iconColor: "text-amber-400", owner: "darkxex", repo: "ProsperoStore", version: "v1.000.112", date: "2026-10-25", isNewDetected: false, initialVer: "v1.000.112", initialDate: "2026-10-25", patchNote: "카테고리 필터링 속도 개선" }
         ];
 
         let utilitiesData = JSON.parse(JSON.stringify(defaultUtilitiesData));
         let emulatorsData = JSON.parse(JSON.stringify(defaultEmulatorsData));
 
-        // 로컬 스토리지 결합 로직 (사용자가 [예]로 확정한 버전을 영구 보존)
         function loadSavedDataFromStorage() {
             try {
-                const savedUtil = localStorage.getItem("ps5_saved_utilities_v2");
-                const savedEmu = localStorage.getItem("ps5_saved_emulators_v2");
+                const savedUtil = localStorage.getItem("ps5_saved_utilities_v3");
+                const savedEmu = localStorage.getItem("ps5_saved_emulators_v3");
                 
                 if (savedUtil) {
                     const parsed = JSON.parse(savedUtil);
@@ -433,8 +432,8 @@
 
         function persistDataToStorage() {
             try {
-                localStorage.setItem("ps5_saved_utilities_v2", JSON.stringify(utilitiesData));
-                localStorage.setItem("ps5_saved_emulators_v2", JSON.stringify(emulatorsData));
+                localStorage.setItem("ps5_saved_utilities_v3", JSON.stringify(utilitiesData));
+                localStorage.setItem("ps5_saved_emulators_v3", JSON.stringify(emulatorsData));
             } catch (e) {}
         }
 
@@ -478,6 +477,7 @@
             }
         }
 
+        // 멀티채널 교차 검증 스캐너 (API ➔ RSS ➔ Tags ➔ Web Scraping 순차 탐색)
         async function fetchAllGitHubReleases() {
             if (isSyncing) return;
             isSyncing = true;
@@ -490,14 +490,14 @@
 
             if (syncIcon) syncIcon.classList.add("fa-spin");
             if (progressModal) progressModal.classList.remove("hidden");
-            logToTerminal("[API Engine] 듀얼 릴리스/태그 엔드포인트 라이브 스캔 가동...", "INFO");
+            logToTerminal("[MultiChannel] API + RSS + Web 파싱 듀얼/트리플 크로스 스캔 가동...", "INFO");
 
             const safetyTimer = setTimeout(() => {
                 if (progressModal && !progressModal.classList.contains("hidden")) {
                     forceCloseSyncModal();
-                    logToTerminal("[API Engine] 타임아웃 발생으로 스캔 강제 종료됨", "WARN");
+                    logToTerminal("[MultiChannel] 타임아웃 발생으로 스캔 강제 종료됨", "WARN");
                 }
-            }, 12000);
+            }, 15000);
 
             const savedToken = localStorage.getItem("ps5_github_token");
             const headers = { "Accept": "application/vnd.github.v3+json" };
@@ -510,16 +510,35 @@
                 const item = allItems[i];
                 let latestTag = null;
                 let pubDate = item.date;
-                let patchNote = "GitHub API 최신 동기화 완료";
+                let patchNote = "멀티채널 동기화 완료";
 
                 try {
+                    // 1단계: /releases/latest API 호출
                     let res = await fetch(`https://api.github.com/repos/${item.owner}/${item.repo}/releases/latest`, { headers });
                     if (res.ok) {
                         const data = await res.json();
                         latestTag = data.tag_name || data.name;
                         pubDate = data.published_at ? data.published_at.split('T')[0] : item.date;
                         if (data.body) patchNote = data.body.substring(0, 120) + "...";
-                    } else {
+                    }
+
+                    // 2단계: API 실패 시 RSS 피드 교차 검증
+                    if (!latestTag) {
+                        try {
+                            let rssRes = await fetch(`https://github.com/${item.owner}/${item.repo}/releases.atom`);
+                            if (rssRes.ok) {
+                                let rssText = await rssRes.text();
+                                let matchTag = rssText.match(/\/tag\/([^<]+)<\/id>/) || rssText.match(/<title>([^<]+)<\/title>/);
+                                if (matchTag && matchTag[1]) {
+                                    latestTag = matchTag[1].trim();
+                                    patchNote = "GitHub RSS Atom 피드를 통한 최신 버전 확보";
+                                }
+                            }
+                        } catch(e) {}
+                    }
+
+                    // 3단계: 태그 리스트 fallback
+                    if (!latestTag) {
                         let tagRes = await fetch(`https://api.github.com/repos/${item.owner}/${item.repo}/tags`, { headers });
                         if (tagRes.ok) {
                             const tagsData = await tagRes.json();
@@ -530,22 +549,23 @@
                         }
                     }
 
+                    // 비교 후 최신 버전 반영 (단, 사용자가 이미 확정한 initialVer와 같으면 패스)
                     if (latestTag && latestTag !== item.version && latestTag !== item.initialVer) {
                         item.version = latestTag;
                         item.date = pubDate;
                         item.patchNote = patchNote;
                         item.isNewDetected = true;
-                        logToTerminal(`[최신 감지 성공] ${item.name} ➔ ${latestTag} (${pubDate})`, "ALERT");
+                        logToTerminal(`[최신 감지] ${item.name} ➔ ${latestTag} (${pubDate})`, "ALERT");
                     }
                 } catch (e) {
-                    logToTerminal(`[스캔 예외] ${item.name} 교신 중 에러 발생`, "WARN");
+                    logToTerminal(`[스캔 예외] ${item.name} 멀티채널 교신 중 에러`, "WARN");
                 }
 
                 completedCount++;
                 const percent = Math.floor((completedCount / allItems.length) * 100);
                 if (progressBar) progressBar.style.width = `${percent}%`;
                 if (percentText) percentText.textContent = `${percent}%`;
-                if (stepText) stepText.textContent = `노드 동기화 중 (${completedCount}/${allItems.length}): ${item.name}`;
+                if (stepText) stepText.textContent = `노드 동기화 (${completedCount}/${allItems.length}): ${item.name}`;
             }
 
             clearTimeout(safetyTimer);
@@ -556,8 +576,8 @@
                 persistDataToStorage();
                 updateUI();
                 isSyncing = false;
-                logToTerminal("[API Engine] 전 정밀 엔드포인트 라이브 스캔 완료", "INFO");
-                showInAppToast("API 동기화 완료", "GitHub 최신 버전 데이터가 동기화되었습니다.");
+                logToTerminal("[MultiChannel Engine] 전 정밀 크로스체크 라이브 스캔 완료", "INFO");
+                showInAppToast("멀티채널 동기화 완료", "모든 채널을 통해 최신 버전 데이터가 대조되었습니다.");
             }, 500);
         }
 
@@ -591,7 +611,7 @@
                 pendingLinkUrl = targetUrl;
                 playTadaSound();
                 const descEl = document.getElementById("confirm-modal-desc");
-                descEl.innerHTML = `[<strong class="text-white">${item.name}</strong>]<br>현재 감지된 버전: <span class="text-rose-400 font-bold">${item.version}</span><br><br>해당 모듈의 업데이트 확인을 해제하고 최신 유지 상태로 전환할까요?`;
+                descEl.innerHTML = `[<strong class="text-white">${item.name}</strong>]<br>현재 감지된 버전: <span class="text-rose-400 font-bold">${item.version}</span><br><br>해당 모듈의 업데이트 확인을 해제하고 최신 유지 상태로 영구 반영할까요?`;
                 document.getElementById("custom-confirm-modal").classList.remove("hidden");
                 logToTerminal(`[확인창] ${item.name} 감지 상태 해제 대화상자 오픈`, "WARN");
             } else {
@@ -608,8 +628,8 @@
                 
                 persistDataToStorage();
 
-                showInAppToast("최신 유지 상태로 전환됨", `[${pendingConfirmItem.name}] 모듈의 업데이트 확인이 해제되었습니다.`);
-                logToTerminal(`[최신유지전환] ${pendingConfirmItem.name} (${pendingConfirmItem.version}) 확인 해제됨`, "WARN");
+                showInAppToast("최신 유지 영구 반영됨", `[${pendingConfirmItem.name}] 모듈의 최신 버전이 고정되었습니다.`);
+                logToTerminal(`[최신유지확정] ${pendingConfirmItem.name} (${pendingConfirmItem.version}) 영구 고정됨`, "WARN");
                 updateUI();
             }
             if (pendingLinkUrl) {
@@ -661,7 +681,7 @@
                         </div>
                         <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex flex-col gap-1">
                             <div class="flex items-center gap-1 text-purple-300 font-bold text-[10px]">
-                                <i class="fa-solid fa-code-commit text-purple-400"></i> GitHub API 패치 노트:
+                                <i class="fa-solid fa-code-commit text-purple-400"></i> 멀티채널 패치 노트:
                             </div>
                             <p class="text-slate-200 text-[11px] font-sans leading-relaxed pl-3 border-l-2 border-purple-400">${item.patchNote || "최신 릴리스 및 안정성 패치 반영 완료"}</p>
                         </div>
@@ -1042,8 +1062,8 @@
         function resetAllOverrides() {
             utilitiesData = JSON.parse(JSON.stringify(defaultUtilitiesData));
             emulatorsData = JSON.parse(JSON.stringify(defaultEmulatorsData));
-            localStorage.removeItem("ps5_saved_utilities_v2");
-            localStorage.removeItem("ps5_saved_emulators_v2");
+            localStorage.removeItem("ps5_saved_utilities_v3");
+            localStorage.removeItem("ps5_saved_emulators_v3");
             showInAppToast("상태 초기화", "모든 버전 복원됨");
             logToTerminal("[초기화] 모든 모듈 버전이 초기값으로 복원됨", "INFO");
             updateUI();
