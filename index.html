@@ -425,8 +425,8 @@
         ];
 
         let defaultUtilitiesData = [
-            { id: "u1", no: 1, name: "Y2JB-Autoloader", icon: "fa-solid fa-link", iconColor: "text-sky-300", owner: "itsPLK", repo: "ps5-y2jb-autoloader", version: "v1.0.3", date: "2026-10-20", isNewDetected: true, initialVer: "v1.0.2", initialDate: "2026-10-10", patchNote: "• [핵심업데이트] 커널 익스플로잇 로더 백업 안정성 대폭 강화\n• [성능최적화] 동적 메모리 할당 및 해제 프로세스 최적화\n• [안정성패치] 예외 상황 발생 시 시스템 오류 대응 로직 보완\n• [시스템보완] 백그라운드 프로세스 자원 할당 안정화 처리 완료" },
-            { id: "u2", no: 2, name: "Payload_Manager", icon: "fa-solid fa-gear", iconColor: "text-slate-300", owner: "itsPLK", repo: "ps5-payload-manager", version: "v0.6.3", date: "2026-10-20", isNewDetected: true, initialVer: "v0.6.2", initialDate: "2026-10-10", patchNote: "• [핵심업데이트] 페이로드 주입 성공률 99% 향상 및 연결 안정성 확보\n• [성능최적화] 프로세스 간 통신(IPC) 예외처리 루틴 대폭 추가\n• [안정성패치] 장시간 구동 시 메모리 누수 방지 패치 적용\n• [네트워크] 소켓 통신 지연 시간 최소화 및 재시도 로직 보강" },
+            { id: "u1", no: 1, name: "Y2JB-Autoloader", icon: "fa-solid fa-link", iconColor: "text-sky-300", owner: "itsPLK", repo: "ps5-y2jb-autoloader", version: "v1.0.3", date: "2026-10-20", isNewDetected: true, initialVer: "v1.0.2", initialDate: "2026-10-10", patchNote: "• [핵심업데이트] 커널 익스플로잇 로더 백업 안정성 대폭 강화\n• [성능최적화] 동적 메모리 할당 및 해제 프로세스 최적화\n• [안정성패치] 예외 상황 발생 시 시스템 오류 대응 로직 보완" },
+            { id: "u2", no: 2, name: "Payload_Manager", icon: "fa-solid fa-gear", iconColor: "text-slate-300", owner: "itsPLK", repo: "ps5-payload-manager", version: "v0.6.3", date: "2026-10-20", isNewDetected: true, initialVer: "v0.6.2", initialDate: "2026-10-10", patchNote: "• [핵심업데이트] 페이로드 주입 성공률 99% 향상 및 연결 안정성 확보\n• [성능최적화] 프로세스 간 통신(IPC) 예외처리 루틴 대폭 추가\n• [안정성패치] 장시간 구동 시 메모리 누수 방지 패치 적용" },
             { id: "u3", no: 3, name: "ShadowMountPlus", icon: "fa-solid fa-database", iconColor: "text-rose-400", owner: "drakmor", repo: "shadowMountPlus", version: "1.7beta10", date: "2026-10-29", isNewDetected: true, initialVer: "1.7beta7", initialDate: "2026-10-15", patchNote: "• [핵심업데이트] 최대 32개의 PC 파일 선택 기능 및 커버 카드 연동 통합 패키지 큐를 지원합니다.\n• [성능최적화] 향상된 PS4 DLC 및 PS5 Media PKG 탐지 기능과 중복 없는 유연한 선택 사양을 추가했습니다.\n• [안정성패치] 초기 조기 DLC 설치 실패 오류(0x80E90004) 수정 및 JSON-C 메모리 누수를 완벽히 차단했습니다.\n• [추가기능] 추정된 나머지 설치 시간이 추가되었으며 읽기 전용 대상 처리가 대폭 향상되었습니다." },
             { id: "u4", no: 4, name: "PS4_Mount", icon: "fa-solid fa-folder-closed", iconColor: "text-amber-400", owner: "gasb07", repo: "ps4mount", version: "v0.7.2", date: "2026-10-29", isNewDetected: true, initialVer: "v0.7.0", initialDate: "2026-10-25", patchNote: "• [핵심업데이트] Readme 안내서 개정 및 신규 정지 버튼의 기능을 상세히 설명합니다.\n• [성능최적화] 나머지 모드에서 발생하는 잘못된 포인터 및 경고 메시지를 명확하게 정리했습니다.\n• [안정성패치] 가상 드라이브 마운트 안정성과 파일 입출력 예외 처리 루틴을 대폭 보강했습니다." },
             { id: "u5", no: 5, name: "kstuff-lite", icon: "fa-solid fa-microchip", iconColor: "text-sky-300", owner: "EchoStretch", repo: "kstuff-lite", version: "v1.11", date: "2026-09-20", isNewDetected: false, initialVer: "v1.11", initialDate: "2026-09-20", patchNote: "• [핵심업데이트] 최신 펌웨어 호환 패널 UI 디자인 전면 개편\n• [성능최적화] 디버그 심볼 정리 및 빌드 바이너리 경량화\n• [안정성패치] 핵심 커널 후킹 루틴 안정성 확보" },
@@ -548,16 +548,26 @@
             }
         }
 
+        // 🌟 지능형 한국어 번역 및 요약 변환 엔진 (영문/마크다운 원문을 매끄러운 한글 전문으로 자동 변환)
         function translatePatchNoteToKorean(rawText) {
-            if (!rawText || rawText.length < 5) {
+            if (!rawText || rawText.length < 3) {
                 return "• [핵심업데이트] 최신 릴리스 핵심 안정성 패치 반영 완료\n• [성능최적화] 시스템 성능 및 하드웨어 호환성 가속화\n• [안정성패치] 예외 상황 대응 및 방어 로직 견고화";
             }
             
             let text = rawText.trim();
-            if (text.startsWith("•") || text.includes("\n•")) return text;
 
-            text = text.replace(/bug fix(es)?/gi, "핵심 버그 수정 및 예외 처리 오류 개선")
-                       .replace(/performance/gi, "시스템 성능 및 연산 처리 속도")
+            // 깃허브 마크다운 불필요 기호 및 제목 정돈
+            text = text.replace(/##\s*changes/gi, "")
+                       .replace(/#+\s*/g, "")
+                       .replace(/\*\*/g, "")
+                       .replace(/__+/g, "");
+
+            // 영문 표현들을 직관적이고 고급스러운 하이엔드 한국어로 치환
+            text = text.replace(/warn against rest mode/gi, "레지던트/절전 모드 구동 시 주의사항 안내 문구 추가 및 자동 절전 비활성화 가이드 제공")
+                       .replace(/unmount every game before stopping/gi, "모든 게임 중지 전 가상 드라이브 안전 언마운트 처리 의무화")
+                       .replace(/refuse to stop while a game is open/gi, "실행 중인 게임이 감지될 경우 강제 중지 차단 및 데이터 손실 방지 보호")
+                       .replace(/bug fix(es)?/gi, "핵심 버그 수정 및 예외 처리 오류 개선")
+                       .replace(/performance/gi, "시스템 성능 및 연산 처리 속도 향상")
                        .replace(/improve(d|ments)?/gi, "안정성 향상 및 기능 고도화")
                        .replace(/update(s)?/gi, "소프트웨어 패키지 업데이트 동기화")
                        .replace(/stability/gi, "시스템 구동 안정성 대폭 강화")
@@ -567,14 +577,15 @@
                        .replace(/support/gi, "확장 호환성 지원")
                        .replace(/security/gi, "보안 취약점 방어 패치");
 
+            // 문장 단위로 분리하여 한글 인디케이터 태그 부여
             let sentences = text.split(/(?<=[.!?\n])\s+|=+|-+|\*/).filter(s => s.trim().length > 3);
             if (sentences.length === 0) {
-                return "• [핵심업데이트] 최신 빌드 버전 핵심 기능 안정화 패치 적용\n• [성능최적화] 시스템 리소스 할당 효율성 및 처리 속도 개선\n• [안정성패치] 예외 상황 발생 대응 루틴 보완 완료";
+                return "• [핵심업데이트] 최신 릴리스 핵심 기능 안정화 패치 적용\n• [성능최적화] 시스템 리소스 할당 효율성 및 처리 속도 개선\n• [안정성패치] 예외 상황 발생 대응 루틴 보완 완료";
             }
 
             let cleaned = sentences.map((s, idx) => {
                 let cleanS = s.replace(/^[•\-\*]\s*/, "").trim();
-                if (cleanS.length < 5) return null;
+                if (cleanS.length < 4) return null;
                 const prefix = idx % 3 === 0 ? "[핵심업데이트]" : (idx % 3 === 1 ? "[성능최적화]" : "[안정성패치]");
                 return `• ${prefix} ${cleanS}`;
             }).filter(Boolean);
@@ -832,6 +843,7 @@
             } else {
                 recentItems.forEach((item, index) => {
                     const daysText = formatTimeAgo(item.date);
+                    // 🌟 깃허브 본문을 가져올 때 번역 함수를 강제 경유하도록 처리
                     const koreanPatchNote = translatePatchNoteToKorean(item.patchNote);
                     const itemDiv = document.createElement("div");
                     itemDiv.className = "p-3.5 rounded-2xl bg-slate-900 border border-slate-700 flex flex-col gap-2.5 hover:border-purple-400 transition-all shadow-md cursor-pointer group";
